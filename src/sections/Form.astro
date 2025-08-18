@@ -1,20 +1,41 @@
 ---
+// SERVICES //
+import { fetchCities, type City } from "../services/cities.api.service.ts";
 
+// Base URL from env (recommended)
+const API_BASE = import.meta.env.PUBLIC_API_BASE ?? "";
+
+// Fetch city data server-side
+const cities: City[] = await fetchCities(API_BASE);
 ---
 
 <!-- Main/Form Section -->
-<section class="h-full py-16 bg-muted flex flex-col gap-12 justify-center items-center ">
-  <h1 class=" text-4xl font-bold">Form</h1>
+<section
+  class="h-full py-16 bg-muted flex flex-col gap-12 justify-center items-center"
+>
+  <h1 class="text-4xl font-bold">Form</h1>
   <!-- Form Wrapper -->
   <div class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow">
     <!-- Form -->
     <form class="space-y-4">
+      <!-- Name -->
       <input type="text" placeholder="Name" class="w-full border p-3 rounded" />
+      <!-- Email -->
       <input
         type="email"
         placeholder="Email"
         class="w-full border p-3 rounded"
       />
+
+      <!-- Select City -->
+      <label class="block">
+        <span class="sr-only">Select City</span>
+        <select class="w-full border p-3 rounded">
+          <option value="">Select City</option>
+          {cities.map((c) => <option value={c.id}>{c.name}</option>)}
+        </select>
+      </label>
+
       <button type="submit" class="bg-primary text-white px-6 py-3 rounded">
         Submit
       </button>
