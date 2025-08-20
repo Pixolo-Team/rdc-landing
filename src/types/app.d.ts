@@ -4,3 +4,7 @@ export type ApiResponseData<T> = {
   message: string;
   data: T;
 };
+
+export type AuthenticationResponseData = {
+  token: string
+}

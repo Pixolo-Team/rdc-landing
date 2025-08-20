@@ -6,7 +6,7 @@ import RootLayout from "../layouts/RootLayout.astro";
 import Footer from "../sections/Footer.astro";
 import Form from "../sections/Form.astro";
 import Hero from "../sections/Hero.astro";
-
+import scriptUrl from "../script/form.ts?url";
 ---
 
 <!-- Root Layout  -->
@@ -15,8 +15,9 @@ import Hero from "../sections/Hero.astro";
     <!-- Hero section -->
     <Hero />
     <!-- Main/Form section -->
-    <Form/>
+    <Form />
     <!-- Footer section -->
     <Footer />
   </div>
-</BaseLayout>
+  <script type="module" src={scriptUrl}></script>
+</RootLayout>

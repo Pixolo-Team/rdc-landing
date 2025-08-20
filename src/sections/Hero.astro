@@ -1,11 +1,101 @@
 ---
+import Select from "../components/Select.astro";
+
+const locations = [
+  {
+    value: "andheri",
+    label: `Reliance Digital, 137, Gr to 2nd Flr, Sonal
+Business Park, Gharda Circle Dombivli East
+Thane - 421203`,
+  },
+  {
+    value: "bandra",
+    label: `Reliance Digital, Turner Rd, Bandra West
+Mumbai, Maharashtra
+400050`,
+  },
+  {
+    value: "thane",
+    label: `Reliance Digital, Viviana Mall, Thane
+Maharashtra - 400607`,
+  },
+];
+
 ---
+
 <!-- Hero Section -->
-<section class="h-full flex items-center justify-center ">
+<section class="h-full flex items-center justify-center">
   <div class="text-center">
+    <Select
+      id="location"
+      label="Location/Center"
+      options={locations}
+    />
+
     <!-- Title -->
     <h1 class="text-4xl font-bold">Welcome</h1>
     <!-- Subtitle -->
     <p class="mt-4 text-lg text-n-600">Centered hero section.</p>
+    <form id="otp-form">
+      <!-- Email -->
+      <div class="flex gap-4">
+        <div class="text-start">
+          <label class="block text-sm font-medium text-n-700"> Email </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            class="w-full border p-3 rounded"
+          />
+        </div>
+
+        <button type="submit" class="block bg-n-800 text-n-50 rounded w-full">
+          Verify Otp
+        </button>
+        <p id="message" class="text-sm mt-2"></p>
+      </div>
+    </form>
   </div>
 </section>
+
+<script>
+  // API SERVICES //
+  import {
+    otpRequest,
+    verifyOtpRequest,
+  } from "../services/api/auth.api.service";
+
+  const form = document.getElementById("otp-form") as HTMLFormElement;
+  const emailInput = document.getElementById("email") as HTMLInputElement;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Email
+    const email = emailInput.value.trim();
+
+    if (!email) return;
+
+    try {
+      const res = await otpRequest(email);
+      console.log("Otp request response", res);
+      // TODO: Update with success message
+    } catch (err) {
+      // Log error
+      console.error(err);
+      // TODO: show an error message in UI if needed
+    }
+  });
+
+  emailInput.addEventListener("change", async (e) => {
+    e.preventDefault();
+
+    try {
+      const otpver = await verifyOtpRequest("hussain.pixolo@gmial.com", "9401");
+      console.log(otpver);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+</script>

@@ -28,7 +28,6 @@
   --color-n-800: var(--color-slate-800);
   --color-n-900: var(--color-slate-900);
   --color-n-950: var(--color-slate-950);
-  
 }
 
 .dark {
@@ -43,4 +42,16 @@
   --color-n-800: var(--color-slate-200);
   --color-n-900: var(--color-slate-100);
   --color-n-950: var(--color-slate-50);
+}
+
+.select-common-class {
+  @apply w-full border-0 border-b-2 border-n-300
+    bg-transparent appearance-none
+    focus:outline-none focus:border-sky-500
+    text-n-900 text-base p-2 pr-8
+    disabled:border-n-200 disabled:text-n-400;
+}
+
+.select-icon {
+  @apply pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400;
 }

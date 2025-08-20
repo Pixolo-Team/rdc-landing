@@ -1,0 +1,97 @@
+---
+const {
+  id = "location",
+  label = "Location/Center*",
+  required = true,
+  options = [],
+} = Astro.props;
+---
+
+<div class="w-full">
+  <!-- Custom Select Wrapper -->
+  <div class="relative">
+    <!-- Hidden input for form value -->
+    <input type="hidden" id={`${id}-value`} name={id} />
+
+    <!-- Trigger button -->
+    <button
+      id={`${id}-button`}
+      type="button"
+      class="w-full text-left bg-transparent border-b-1 border-n-800 py-2 text-n-900 text-sm focus:outline-none focus:border-sky-500 flex justify-between items-center"
+      aria-haspopup="listbox"
+      aria-expanded="false"
+    >
+      <span data-slot="current-label" class="truncate text-n-500"
+        >Select {label}</span
+      >
+      <img
+        src="/icons/down-arrow.svg"
+        alt=""
+        class="w-4 h-4 pointer-events-none"
+      />
+    </button>
+
+    <!-- Options list -->
+    <ul
+      id={`${id}-list`}
+      class="absolute z-10 mt-2 px-5  w-full bg-white shadow-lg rounded-2xl border border-n-200 hidden max-h-60 overflow-auto"
+      role="listbox"
+    >
+      {
+        options.map((optionItem, oi) => (
+          <li
+          data-index = {oi}
+            key={optionItem.value}
+            role="option"
+            data-value={optionItem.value}
+            class="cursor-pointer py-4 text-sm text-n-900 hover:bg-n-50 hover:px-0 border-b-1 last:border-0"
+          >
+            {optionItem.label}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<!-- Script -->
+<script is:inline>
+  (() => {
+    const root = document.currentScript?.closest("div");
+    if (!root) return;
+
+    const button = root.querySelector("button");
+    const menu = root.querySelector("ul");
+    const current = root.querySelector("[data-slot='current-label']");
+    const input = root.querySelector("input");
+
+    if (!button || !menu || !current || !input) return;
+
+    const open = () => {
+      menu.classList.remove("hidden");
+      button.setAttribute("aria-expanded", "true");
+    };
+    const close = () => {
+      menu.classList.add("hidden");
+      button.setAttribute("aria-expanded", "false");
+    };
+    const toggle = () => (menu.classList.contains("hidden") ? open() : close());
+
+    button.addEventListener("click", toggle);
+
+    menu.addEventListener("click", (e) => {
+      const li = e.target.closest("[role='option']");
+      if (!li) return;
+      input.value = li.dataset.value ?? "";
+      current.textContent = li.textContent?.trim() ?? "";
+      close();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!root.contains(e.target)) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  })();
+</script>

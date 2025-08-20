@@ -11,9 +11,14 @@ import { CONSTANTS } from "../../lib/constants";
 export async function registerRequest(
   payload: RegisterRequestPayload
 ): Promise<ApiResponseData<any>> {
+
+  // Read token from localstorage
+  const token = await localStorage.getItem("authToken");
+
   const res = await fetch(`${CONSTANTS.API_URL}register`, {
     method: "POST",
     headers: {
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),

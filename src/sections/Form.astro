@@ -1,4 +1,7 @@
 ---
+// COMPONENTS //
+import Select from "../components/Select.astro";
+
 // API SERVICES //
 import { getAllCitiesRequest } from "../services/api/dropdowns.api.service.ts";
 import { getAllLocationsRequest } from "../services/api/dropdowns.api.service";
@@ -12,7 +15,255 @@ import { getAllLocationsRequest } from "../services/api/dropdowns.api.service";
 // console.log(loc);
 
 const res = await getAllCitiesRequest();
-const data = res.items;
+// console.log(res.data.items, "hh");
+
+const data = [
+  {
+    id: "city-uuid-1",
+    name: "Mumbai",
+    locations: [
+      {
+        id: "loc-uuid-1-1",
+        name: "Phoenix Marketcity, Kurla",
+        appointments: [
+          { id: "slot-uuid-1-1-1", name: "22 Aug, 2025 10:00am" },
+          { id: "slot-uuid-1-1-2", name: "22 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-1-2",
+        name: "R City Mall, Ghatkopar",
+        appointments: [
+          { id: "slot-uuid-1-2-1", name: "23 Aug, 2025 10:00am" },
+          { id: "slot-uuid-1-2-2", name: "23 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-1-3",
+        name: "Seawoods Grand Central, Navi Mumbai",
+        appointments: [
+          { id: "slot-uuid-1-3-1", name: "24 Aug, 2025 10:00am" },
+          { id: "slot-uuid-1-3-2", name: "24 Aug, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-2",
+    name: "Pune",
+    locations: [
+      {
+        id: "loc-uuid-2-1",
+        name: "Phoenix Marketcity, Viman Nagar",
+        appointments: [
+          { id: "slot-uuid-2-1-1", name: "25 Aug, 2025 10:00am" },
+          { id: "slot-uuid-2-1-2", name: "25 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-2-2",
+        name: "Amanora Mall, Hadapsar",
+        appointments: [
+          { id: "slot-uuid-2-2-1", name: "26 Aug, 2025 10:00am" },
+          { id: "slot-uuid-2-2-2", name: "26 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-2-3",
+        name: "SGS Mall, Camp",
+        appointments: [
+          { id: "slot-uuid-2-3-1", name: "27 Aug, 2025 10:00am" },
+          { id: "slot-uuid-2-3-2", name: "27 Aug, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-3",
+    name: "Bengaluru",
+    locations: [
+      {
+        id: "loc-uuid-3-1",
+        name: "Phoenix Marketcity, Whitefield",
+        appointments: [
+          { id: "slot-uuid-3-1-1", name: "28 Aug, 2025 10:00am" },
+          { id: "slot-uuid-3-1-2", name: "28 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-3-2",
+        name: "Forum Mall, Koramangala",
+        appointments: [
+          { id: "slot-uuid-3-2-1", name: "29 Aug, 2025 10:00am" },
+          { id: "slot-uuid-3-2-2", name: "29 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-3-3",
+        name: "Orion Mall, Rajajinagar",
+        appointments: [
+          { id: "slot-uuid-3-3-1", name: "30 Aug, 2025 10:00am" },
+          { id: "slot-uuid-3-3-2", name: "30 Aug, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-4",
+    name: "Delhi",
+    locations: [
+      {
+        id: "loc-uuid-4-1",
+        name: "Select Citywalk, Saket",
+        appointments: [
+          { id: "slot-uuid-4-1-1", name: "31 Aug, 2025 10:00am" },
+          { id: "slot-uuid-4-1-2", name: "31 Aug, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-4-2",
+        name: "Pacific Mall, Tagore Garden",
+        appointments: [
+          { id: "slot-uuid-4-2-1", name: "01 Sep, 2025 10:00am" },
+          { id: "slot-uuid-4-2-2", name: "01 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-4-3",
+        name: "DLF Promenade, Vasant Kunj",
+        appointments: [
+          { id: "slot-uuid-4-3-1", name: "02 Sep, 2025 10:00am" },
+          { id: "slot-uuid-4-3-2", name: "02 Sep, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-5",
+    name: "Hyderabad",
+    locations: [
+      {
+        id: "loc-uuid-5-1",
+        name: "GVK One, Banjara Hills",
+        appointments: [
+          { id: "slot-uuid-5-1-1", name: "03 Sep, 2025 10:00am" },
+          { id: "slot-uuid-5-1-2", name: "03 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-5-2",
+        name: "Inorbit Mall, Hitech City",
+        appointments: [
+          { id: "slot-uuid-5-2-1", name: "04 Sep, 2025 10:00am" },
+          { id: "slot-uuid-5-2-2", name: "04 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-5-3",
+        name: "Sarath City Capital Mall",
+        appointments: [
+          { id: "slot-uuid-5-3-1", name: "05 Sep, 2025 10:00am" },
+          { id: "slot-uuid-5-3-2", name: "05 Sep, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-6",
+    name: "Chennai",
+    locations: [
+      {
+        id: "loc-uuid-6-1",
+        name: "Express Avenue, Royapettah",
+        appointments: [
+          { id: "slot-uuid-6-1-1", name: "06 Sep, 2025 10:00am" },
+          { id: "slot-uuid-6-1-2", name: "06 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-6-2",
+        name: "Phoenix Marketcity, Velachery",
+        appointments: [
+          { id: "slot-uuid-6-2-1", name: "07 Sep, 2025 10:00am" },
+          { id: "slot-uuid-6-2-2", name: "07 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-6-3",
+        name: "VR Chennai, Anna Nagar",
+        appointments: [
+          { id: "slot-uuid-6-3-1", name: "08 Sep, 2025 10:00am" },
+          { id: "slot-uuid-6-3-2", name: "08 Sep, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-7",
+    name: "Ahmedabad",
+    locations: [
+      {
+        id: "loc-uuid-7-1",
+        name: "Ahmedabad One (Alpha One)",
+        appointments: [
+          { id: "slot-uuid-7-1-1", name: "09 Sep, 2025 10:00am" },
+          { id: "slot-uuid-7-1-2", name: "09 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-7-2",
+        name: "CG Road",
+        appointments: [
+          { id: "slot-uuid-7-2-1", name: "10 Sep, 2025 10:00am" },
+          { id: "slot-uuid-7-2-2", name: "10 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-7-3",
+        name: "Maninagar",
+        appointments: [
+          { id: "slot-uuid-7-3-1", name: "11 Sep, 2025 10:00am" },
+          { id: "slot-uuid-7-3-2", name: "11 Sep, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "city-uuid-8",
+    name: "Kolkata",
+    locations: [
+      {
+        id: "loc-uuid-8-1",
+        name: "South City Mall",
+        appointments: [
+          { id: "slot-uuid-8-1-1", name: "12 Sep, 2025 10:00am" },
+          { id: "slot-uuid-8-1-2", name: "12 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-8-2",
+        name: "Quest Mall",
+        appointments: [
+          { id: "slot-uuid-8-2-1", name: "13 Sep, 2025 10:00am" },
+          { id: "slot-uuid-8-2-2", name: "13 Sep, 2025 12:30pm" },
+        ],
+      },
+      {
+        id: "loc-uuid-8-3",
+        name: "City Centre, Salt Lake",
+        appointments: [
+          { id: "slot-uuid-8-3-1", name: "14 Sep, 2025 10:00am" },
+          { id: "slot-uuid-8-3-2", name: "14 Sep, 2025 12:30pm" },
+        ],
+      },
+    ],
+  },
+];
+
+const cityOptions = data.map((city, ci) => ({
+  value: String(ci),
+  label: city.name,
+}));
 ---
 
 <!-- Main/Form Section -->
@@ -26,14 +277,14 @@ const data = res.items;
     <form id="registerForm" class="space-y-4 w-full">
       <!-- Full Name -->
       <div>
-        <label for="fullName" class="block text-sm font-medium text-n-700">
-          Full Name
-        </label>
         <input
           id="fullName"
           type="text"
-          placeholder="Enter your full name"
-          class="w-full border p-3 rounded"
+          placeholder="Full name"
+          class="w-full border-0 border-b border-gray-300
+           focus:outline-none focus:border-b-2 focus:border-sky-500
+           active:outline-none active:border-b-2 active:border-sky-500
+           p-3 placeholder-n-400 active:text-n-900 focus:text-n-900"
         />
       </div>
 
@@ -64,16 +315,21 @@ const data = res.items;
       </div>
 
       <!-- Email -->
-      <div>
-        <label for="email" class="block text-sm font-medium text-n-700">
-          Email
-        </label>
-        <input
-          id="email"
-          type="email"
-          placeholder="Enter your email"
-          class="w-full border p-3 rounded"
-        />
+      <div class="flex items-end flex-1 gap-3">
+        <div class="flex-1">
+          <label for="email" class="block text-sm font-medium text-n-700">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            class="w-full border p-3 rounded"
+          />
+        </div>
+        <button id="request-otp" type="button" class="p-3 bg-n-800 text-n-50"
+          >Verify Email</button
+        >
       </div>
 
       <!-- Institution -->
@@ -89,45 +345,62 @@ const data = res.items;
         />
       </div>
 
-      <!-- City -->
-      <div>
-        <label for="city" class="block text-sm font-medium text-n-700"
-          >City</label
-        >
-        <select id="city" class="w-full border p-3 rounded">
-          <option value="">Select City</option>
-          {data.map((city) => <option value={city.id}>{city.name}</option>)}
-        </select>
-      </div>
+      <div class="space-y-6">
+        <!-- City -->
+        <div>
+          <label for="city-value" class="block text-sm font-medium text-n-700"
+            >City</label
+          >
+          <Select id="city" label="City" options={cityOptions} />
+        </div>
 
-      <!-- Location -->
-      <div>
-        <label for="location" class="block text-sm font-medium text-n-700"
-          >Location/Center</label
-        >
-        <select id="location" class="w-full border p-3 rounded">
-          <option value="">Select Location</option>
-        </select>
-      </div>
+        <!-- Locations (one custom Select per city) -->
+        {
+          data.map((city, ci) => {
+            const locationOptions = city.locations.map((loc, li) => ({
+              value: loc.id,
+              label: loc.name,
+            }));
+            const isFirst = ci === 0;
+            return (
+              <div
+                id={`location-${ci}-wrap`}
+                class={isFirst ? "block" : "hidden"}
+              >
+                <Select
+                  id={`location-${ci}`}
+                  label="Location/Center"
+                  options={locationOptions}
+                />
+              </div>
+            );
+          })
+        }
 
-      <!-- Slot Date -->
-      <div>
-        <label for="slotDate" class="block text-sm font-medium text-n-700"
-          >Slot Date</label
-        >
-        <select id="slotDate" class="w-full border p-3 rounded">
-          <option value="">Select Date</option>
-        </select>
-      </div>
-
-      <!-- Slot Time -->
-      <div>
-        <label for="slotTime" class="block text-sm font-medium text-n-700"
-          >Slot Time</label
-        >
-        <select id="slotTime" class="w-full border p-3 rounded">
-          <option value="">Select Date</option>
-        </select>
+        <!-- Slot Dates (one custom Select per city+location) -->
+        {
+          data.map((city, ci) =>
+            city.locations.map((loc, li) => {
+              const slotOptions = loc.appointments.map((a) => ({
+                value: a.id,
+                label: a.name,
+              }));
+              const show = ci === 0 && li === 0; // only first pair visible initially
+              return (
+                <div
+                  id={`slot-${ci}-${li}-wrap`}
+                  class={show ? "block" : "hidden"}
+                >
+                  <Select
+                    id={`slot-${ci}-${li}`}
+                    label="Slot Date"
+                    options={slotOptions}
+                  />
+                </div>
+              );
+            })
+          )
+        }
       </div>
 
       <!-- Submit -->
@@ -136,228 +409,121 @@ const data = res.items;
       </button>
     </form>
   </div>
-</section>
-<script>
-  // Imports (client-side, ESM)
 
-  import {
-    getAllLocationsRequest,
-    getAllSlotDateRequest,
-    getAllSlotTimeRequest,
-  } from "../services/api/dropdowns.api.service";
-  import { registerRequest } from "../services/api/register.api.service";
+  <script is:inline>
+    (() => {
+      let lastCityIndex = 0;
+      let cityIdx = 0;
+      let lastLocationValue = 0;
+      let locIdx = 0;
+      const getValue = (id) =>
+        document.getElementById(`${id}-value`)?.value ?? "";
 
-  // Grab DOM elements (narrow with proper types)
-  const citySelect = document.getElementById(
-    "city"
-  ) as HTMLSelectElement | null;
-  const locationSelect = document.getElementById(
-    "location"
-  ) as HTMLSelectElement | null;
-  const slotDateSelect = document.getElementById(
-    "slotDate"
-  ) as HTMLSelectElement | null;
-  const slotTimeSelect = document.getElementById(
-    "slotTime"
-  ) as HTMLSelectElement | null;
-  const form = document.getElementById(
-    "registerForm"
-  ) as HTMLFormElement | null;
+      const hideAll = (selector) =>
+        document
+          .querySelectorAll(selector)
+          .forEach((el) => el.classList.add("hidden"));
 
-  /** Replace options of a select element */
-  function setOptions(
-    select: HTMLSelectElement,
-    options: Array<{ id: string | number; name: string }>,
-    placeholder = "Select Location"
-  ): void {
-    // Reset with placeholder
-    select.innerHTML = `<option value="">${placeholder}</option>`;
-    // Append rows
-    for (const option of options) {
-      const opt = document.createElement("option");
-      opt.value = String(option.id);
-      opt.textContent = option.name;
-      select.appendChild(opt);
-    }
-  }
+      const resetAll = (selector) => {
+        console.log("inside");
 
-  // Guard: required elements must exist
-  if (
-    !citySelect ||
-    !locationSelect ||
-    !slotDateSelect ||
-    !slotTimeSelect ||
-    !form
-  ) {
-    // Log error
-    console.error("[form] Required elements not found in the DOM.");
-  } else {
-    // Disable location until a city is chosen
-    locationSelect.disabled = true;
-    slotDateSelect.disabled = true;
-    slotTimeSelect.disabled = true;
-
-    // Helper: clear dependent selects whenever something upstream changes
-    const resetAfterCity = () => {
-      setOptions(locationSelect, [], "Select Location/Center");
-      locationSelect.disabled = true;
-
-      setOptions(slotDateSelect, [], "Select Slot Date");
-      slotDateSelect.disabled = true;
-
-      setOptions(slotTimeSelect, [], "Select Slot Time");
-      slotTimeSelect.disabled = true;
-    };
-
-    const resetAfterLocation = () => {
-      setOptions(slotDateSelect, [], "Select Slot Date");
-      slotDateSelect.disabled = true;
-
-      setOptions(slotTimeSelect, [], "Select Slot Time");
-      slotTimeSelect.disabled = true;
-    };
-
-    const resetAfterDate = () => {
-      setOptions(slotTimeSelect, [], "Select Slot Time");
-      slotTimeSelect.disabled = true;
-    };
-
-    // CITY change → fetch LOCATIONS
-    citySelect.addEventListener("change", async (e: Event) => {
-      const cityId = (e.currentTarget as HTMLSelectElement).value;
-
-      // reset downstream selects
-      resetAfterCity();
-
-      if (!cityId) return;
-
-      // show loading in location
-      setOptions(locationSelect, [], "Loading locations...");
-      try {
-        const res = await getAllLocationsRequest(cityId);
-        setOptions(locationSelect, res.items, "Select Location/Center");
-      } catch (err) {
-        console.error("[locations] fetch failed:", err);
-        setOptions(locationSelect, [], "Failed to load locations");
-      } finally {
-        locationSelect.disabled = false;
-      }
-    });
-
-    // LOCATION change → fetch SLOT DATES
-    locationSelect.addEventListener("change", async () => {
-      const cityId = citySelect.value;
-      const locationId = locationSelect.value;
-
-      // reset downstream
-      resetAfterLocation();
-
-      if (!cityId || !locationId) return;
-
-      function formatIsoToDDMMYYYY(iso: string): string {
-        const d = new Date(iso);
-        const dd = String(d.getDate()).padStart(2, "0");
-        const mm = String(d.getMonth() + 1).padStart(2, "0");
-        const yyyy = d.getFullYear();
-        return `${dd}-${mm}-${yyyy}`;
-      }
-
-      // show loading in dates
-      setOptions(slotDateSelect, [], "Loading slot dates...");
-      try {
-        // NOTE: your service signature is (cityId, locationId)
-        const res = await getAllSlotDateRequest(cityId, locationId);
-        console.log(res.items);
-
-
-        // Expecting each item: { id, name } e.g. id="2025-08-22", name="22 Aug 2025"
-        setOptions(slotDateSelect, res.items, "Select Slot Date");
-      } catch (err) {
-        console.error("[slot-dates] fetch failed:", err);
-        setOptions(slotDateSelect, [], "Failed to load slot dates");
-      } finally {
-        slotDateSelect.disabled = false;
-      }
-    });
-
-    // SLOT DATE change → fetch SLOT TIMES
-    slotDateSelect.addEventListener("change", async () => {
-      const cityId = citySelect.value;
-      const locationId = locationSelect.value;
-      const selectedDate = slotDateSelect.value; // expect ISO or API-expected format
-
-      // reset times
-      resetAfterDate();
-
-      if (!cityId || !locationId || !selectedDate) return;
-
-      // show loading in times
-      setOptions(slotTimeSelect, [], "Loading slot times...");
-      try {
-        // NOTE: your service signature is (cityId, locationId, date)
-        const res = await getAllSlotTimeRequest(
-          cityId,
-          locationId,
-          selectedDate
-        );
-        const times = Array.isArray(res?.data) ? res.data : [];
-        // Expecting each item: { id, name } e.g. id="101", name="11:30 AM"
-        setOptions(slotTimeSelect, times, "Select Slot Time");
-      } catch (err) {
-        console.error("[slot-times] fetch failed:", err);
-        setOptions(slotTimeSelect, [], "Failed to load slot times");
-      } finally {
-        slotTimeSelect.disabled = false;
-      }
-    });
-
-    // FORM submit → send registration payload
-    form.addEventListener("submit", async (e: SubmitEvent) => {
-      e.preventDefault();
-
-      // Collect values
-      const formData = new FormData(form);
-      const payload = {
-        fullName: (formData.get("fullName") as string) ?? "",
-        dob: (formData.get("dob") as string) ?? "",
-        email: (formData.get("email") as string) ?? "",
-        phone: (formData.get("phone") as string) ?? "",
-        institution: (formData.get("institution") as string) ?? "",
-        city_id: Number(formData.get("city")) || 0,
-        location_id: Number(formData.get("location")) || 0,
-
-        // If your API expects appointment_id from the selected time:
-        // - ensure <option value="APPOINTMENT_ID">TIME_LABEL</option> for slotTimeSelect
-        // - then:
-        appointment_id: Number(formData.get("slotTime")) || 0,
-
-        // If your API instead needs raw date/time strings, add them too:
-        // slot_date: (fd.get("slotDate") as string) ?? "",
-        // slot_time: (fd.get("slotTimeLabel") as string) ?? "",
+        document.querySelectorAll(selector).forEach((el) => {
+          el.querySelector("input").value = "";
+          el.querySelector("[data-slot='current-label']").textContent = "";
+        });
       };
 
-      // minimal validation
-      if (
-        !payload.fullName ||
-        !payload.email ||
-        !payload.city_id ||
-        !payload.location_id ||
-        !payload.appointment_id
-      ) {
-        alert("Please fill all required fields.");
-        return;
-      }
+      const showOnly = (selectorToShow, groupSelector) => {
+        hideAll(groupSelector);
+        resetAll(groupSelector);
+        if (selectorToShow) {
+          const el = document.querySelector(selectorToShow);
+          if (el) el.classList.remove("hidden");
+        }
+      };
 
-      try {
-        const res = await registerRequest(payload);
-        console.log("[register] response:", res);
-        alert("Registration successful!");
-        // form.reset();
-        // resetAfterCity();
-      } catch (err) {
-        console.error("[register] submit failed:", err);
-        alert("Something went wrong. Please try again.");
-      }
-    });
-  }
-</script>
+      // NEW: helpers to hide globally (not just within one city)
+      const hideAllLocationWrappers = () => {
+        hideAll("[id^='location-'][id$='-wrap']");
+      };
+
+      const hideAllSlotDateWrappers = () =>
+        hideAll("[id^='slot-'][id$='-wrap']");
+
+      const syncVisibility = () => {
+        // 1) City
+        const cityIdxStr = getValue("city");
+        // const cityIdx = Number.isInteger(+cityIdxStr) ? Number(cityIdxStr) : -1;
+        if (cityIdx !== lastCityIndex) {
+          if (cityIdx < 0) {
+            // No city → hide everything below
+            hideAllLocationWrappers();
+            hideAllSlotDateWrappers(); // <-- hide ALL slot dates
+            return;
+          }
+
+          // Show only the matching location select
+          showOnly(
+            `#location-${cityIdx}-wrap`,
+            "[id^='location-'][id$='-wrap']"
+          );
+        }
+
+        // Always reset ALL slot dates when city changes or location is not chosen yet
+        // hideAllSlotDateWrappers(); // <-- IMPORTANT: clear previous city's slot-date
+
+        // 2) Location within this city
+        const locIdxStr = getValue(`location-${cityIdx}`);
+        // const locIdx = Number.isInteger(+locIdxStr) ? Number(locIdxStr) : -1;
+        console.log(locIdx);
+        console.log(locIdxStr);
+
+        if (lastLocationValue !== locIdxStr) {
+          if (locIdx < 0) {
+            // Location not chosen yet → keep all slot dates hidden
+            return;
+          }
+          // 3) Show the slot date for (cityIdx, locIdx)
+          showOnly(
+            `#slot-${cityIdx}-${locIdx}-wrap`,
+            "[id^='slot-'][id$='-wrap']" // <-- target ALL slot dates, not just current city
+          );
+        }
+        lastCityIndex = cityIdx;
+        lastLocationValue = locIdxStr;
+      };
+
+      const attachListClick = (id) => {
+        const list = document.getElementById(`${id}-list`);
+        if (!list) return;
+        list.addEventListener("click", (e) => {
+          const target = e.target ;
+          const li = target.closest("li[data-index]") ;
+          cityIdx = li.dataset.index;
+          console.log(cityIdx);
+          
+          setTimeout(syncVisibility);
+        });
+      };
+
+      attachListClick("city");
+      // Attach to all location lists (one per city)
+      document
+        .querySelectorAll("[id^='location-'][id$='-list']")
+        .forEach((ul) => {
+          ul.addEventListener("click",
+          (e) => {
+          const target = e.target ;
+          const li = target.closest("li[data-index]") ;
+          locIdx = li.dataset.index;
+          console.log(locIdx);
+
+          setTimeout(syncVisibility);
+
+          })})
+      
+
+      syncVisibility();
+    })();
+  </script>
+</section>

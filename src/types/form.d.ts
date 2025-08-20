@@ -8,3 +8,8 @@ export type RegisterRequestPayload = {
   location_id: number;
   appointment_id: number;
 };
+
+export type SuccessRegistrationResponseData ={
+  
+}
+
