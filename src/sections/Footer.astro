@@ -1,6 +1,157 @@
 ---
+// Footer.astro
+const year = new Date().getFullYear();
 ---
-<!-- Footer Section -->
-<footer class="h-full py-8 bg-n-900 text-n-50 text-center">
-  <p>&copy; {new Date().getFullYear()} Reliance Digital. All rights reserved.</p>
+
+<!-- Uses n-* design tokens for colors (see src/styles/global.css) -->
+<footer class="bg-n-50 border-t border-n-100/70">
+  <div class="container mx-auto max-w-7xl px-6 lg:px-8 py-20">
+    <!-- Top: Support + Partners -->
+    <div
+      class="flex items-start justify-between gap-16
+             max-sm:flex-col max-sm:items-center max-sm:text-center max-sm:gap-12"
+    >
+      <!-- Support -->
+      <div class="w-1/2 max-md:w-full">
+        <h3 class="text-2xl font-semibold text-n-900">For Support</h3>
+
+        <div class="mt-4 space-y-3 text-n-800">
+          <p class="text-lg">
+            <span class="font-medium">Call:</span>
+            <a
+              href="tel:+919999999999"
+              class="text-sky-600 hover:underline ml-2"
+            >
+              +91-XXXXXXXXXX
+            </a>
+          </p>
+          <p class="text-lg">
+            <span class="font-medium">Email:</span>
+            <a
+              href="mailto:support@yourdomain.com"
+              class="text-sky-600 hover:underline ml-2"
+            >
+              support@yourdomain.com
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Partners -->
+      <div class="w-1/2 max-md:w-full">
+        <div
+          class="flex items-baseline justify-end gap-14
+                 max-md:flex-col max-md:items-center max-md:justify-start max-md:gap-10"
+        >
+          <!-- Certification Partner -->
+          <div class="flex flex-col items-start max-md:items-center gap-4">
+            <p class="text-lg font-semibold text-n-800">
+              Certification Partner
+            </p>
+            <img
+              src="/images/AISchoolLogo.png"
+              alt="THE AI SCHOOL"
+              class="w-[200px] h-auto object-contain"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+
+          <!-- Student Impact Partner -->
+          <div class="flex flex-col items-start max-md:items-center gap-4">
+            <p class="text-lg font-semibold text-n-800">
+              Student Impact Partner
+            </p>
+
+            <div class="flex flex-col items-start max-md:items-center">
+              <img
+                src="/images/KidzByteLogo.png"
+                alt="KidzByte"
+                class="w-[200px] h-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <hr class="my-8 border-n-200 mx-auto" />
+
+    <!-- Bottom row -->
+    <div
+      class="flex items-center justify-between gap-6
+             max-sm:flex-col max-sm:items-center max-sm:text-center"
+    >
+      <p class="text-base text-n-700">
+        Copyright © {year}. All Rights Reserved.
+      </p>
+
+      <div
+        class="flex items-center flex-row-reverse gap-8 max-sm:flex-col max-sm:gap-6"
+      >
+        <!-- Socials: square buttons using n tokens -->
+        <div class="flex items-center gap-5">
+          <!-- Facebook -->
+          <a
+            href="https://m.facebook.com/reliancedigital/"
+            aria-label="Facebook"
+            class="h-12 w-12 rounded-xl bg-n-900 text-n-50 flex items-center justify-center hover:bg-n-800"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-6 w-6 fill-current"
+              aria-hidden="true"
+            >
+              <path
+                d="M22 12.06C22 6.51 17.52 2 12 2S2 6.51 2 12.06c0 5.02 3.66 9.19 8.44 9.94v-7.03H7.9V12.1h2.54V9.93c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.26c-1.24 0-1.63.77-1.63 1.56v1.85h2.78l-.44 2.87h-2.34V22c4.78-.75 8.44-4.92 8.44-9.94z"
+              ></path>
+            </svg>
+          </a>
+
+          <!-- X / Twitter -->
+          <a
+            href="https://x.com/RelianceDigital"
+            aria-label="X"
+            class="h-12 w-12 rounded-xl bg-n-900 text-n-50 flex items-center justify-center hover:bg-n-800"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-6 w-6 fill-current"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 3h3.7l5.04 7.39L17.8 3H21l-7.42 9.91L21.5 21H17.8l-5.37-7.5L6.7 21H3l8.21-10.97L3 3z"
+              ></path>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a
+            href="https://www.instagram.com/reliance_digital?igsh=MTdncmp6MTJiNmJzYw=="
+            aria-label="Instagram"
+            class="h-12 w-12 rounded-xl bg-n-900 text-n-50 flex items-center justify-center hover:bg-n-800"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              class="h-6 w-6 fill-current"
+              aria-hidden="true"
+            >
+              <path
+                d="M7 2H17A5 5 0 0 1 22 7V17A5 5 0 0 1 17 22H7A5 5 0 0 1 2 17V7A5 5 0 0 1 7 2M12 7A5 5 0 0 0 7 12A5 5 0 0 0 12 17A5 5 0 0 0 17 12A5 5 0 0 0 12 7M18.5 5.5A1.5 1.5 0 0 0 17 7A1.5 1.5 0 0 0 18.5 8.5A1.5 1.5 0 0 0 20 7A1.5 1.5 0 0 0 18.5 5.5Z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+
+        <nav aria-label="Footer links" class="text-sm text-n-700">
+          <a href="/privacy" class="hover:underline">Privacy Policy</a>
+          <span class="mx-2 text-n-400">|</span>
+          <a href="/terms" class="hover:underline">Terms &amp; Conditions</a>
+        </nav>
+      </div>
+    </div>
+  </div>
 </footer>
