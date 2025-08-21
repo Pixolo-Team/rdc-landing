@@ -9,13 +9,12 @@ const highlights = [
 ];
 ---
 
-<section class="relative overflow-hidden min-h-full">
-  <div class="relative mx-auto max-w-7xl flex flex-col items-center">
+<section class="container mx-auto overflow-hidden min-h-full">
+  <div class="flex flex-col items-center">
     <!-- Outlined background title -->
     <h2
       class="pointer-events-none select-none text-center -mb-6 text-[240px] font-bold leading-none uppercase
-           text-transparent [-webkit-text-stroke:3px_theme(colors.red.500)]
-           max-md:text-[74px] max-md:-mb-2 max-md:[-webkit-text-stroke:2px_theme(color.red.500)]"
+           text-transparent [-webkit-text-stroke:3px_theme(colors.red.500)] max-lg:text-[104px] max-sm:text-[74px] max-md:-mb-2 max-md:[-webkit-text-stroke:2px_theme(color.red.500)]"
       aria-hidden="true"
     >
       HIGHLIGHTS
@@ -30,7 +29,7 @@ const highlights = [
 
         <!-- circles row -->
         <div
-          class="flex items-center pt-12 pb-36 px-40 justify-center gap-20 max-md:flex-col"
+          class="flex items-center pt-12 pb-36 px-40 justify-center gap-20 max-lg:flex-col"
         >
           {
             highlights.map((highlightItem) => (
