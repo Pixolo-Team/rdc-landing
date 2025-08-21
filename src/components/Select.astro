@@ -4,6 +4,7 @@ const {
   label = "Location/Center*",
   required = true,
   options = [],
+  disabled = false,
 } = Astro.props;
 ---
 
@@ -20,6 +21,7 @@ const {
       class="w-full text-left bg-transparent border-b-1 border-n-800 py-2 text-n-900 text-sm focus:outline-none focus:border-sky-500 flex justify-between items-center"
       aria-haspopup="listbox"
       aria-expanded="false"
+      disabled={disabled}
     >
       <span data-slot="current-label" class="truncate text-n-500"
         >Select {label}</span

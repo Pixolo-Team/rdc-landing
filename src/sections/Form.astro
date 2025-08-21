@@ -371,6 +371,7 @@ const cityOptions = data.map((city, ci) => ({
                   id={`location-${ci}`}
                   label="Location/Center"
                   options={locationOptions}
+                  disabled={true}
                 />
               </div>
             );
@@ -395,6 +396,7 @@ const cityOptions = data.map((city, ci) => ({
                     id={`slot-${ci}-${li}`}
                     label="Slot Date"
                     options={slotOptions}
+                    disabled={true}
                   />
                 </div>
               );
@@ -412,10 +414,12 @@ const cityOptions = data.map((city, ci) => ({
 
   <script is:inline>
     (() => {
-      let lastCityIndex = 0;
-      let cityIdx = 0;
-      let lastLocationValue = 0;
-      let locIdx = 0;
+      // Initialize variables to track last selected city and location
+      let lastCityIndex = -1;
+      let cityIdx = -1;
+      let lastLocationValue = -1;
+      let locIdx = -1;
+
       const getValue = (id) =>
         document.getElementById(`${id}-value`)?.value ?? "";
 
@@ -442,67 +446,71 @@ const cityOptions = data.map((city, ci) => ({
         }
       };
 
-      // NEW: helpers to hide globally (not just within one city)
-      const hideAllLocationWrappers = () => {
-        hideAll("[id^='location-'][id$='-wrap']");
+      const resetLocationSelect = (cityIdx) => {
+        const locationSelect = document.getElementById(
+          `location-${cityIdx}-button`
+        );
+        if (locationSelect) {
+          locationSelect.disabled = false;
+          locationSelect.querySelector(
+            "[data-slot='current-label']"
+          ).textContent = "Select Location/Center";
+          console.log("Current Label Reset for City Index: ", cityIdx);
+        }
       };
 
-      const hideAllSlotDateWrappers = () =>
-        hideAll("[id^='slot-'][id$='-wrap']");
+      const resetSlotSelect = (cityIdx, locIdx, shouldDisable = true) => {
+        const slotSelect = document.getElementById(
+          `slot-${cityIdx}-${locIdx}-button`
+        );
+        if (slotSelect) {
+          slotSelect.disabled = shouldDisable;
+          slotSelect.querySelector("[data-slot='current-label']").textContent =
+            "Select Slot Date";
+        }
+      };
 
       const syncVisibility = () => {
-        // 1) City
-        const cityIdxStr = getValue("city");
-        // const cityIdx = Number.isInteger(+cityIdxStr) ? Number(cityIdxStr) : -1;
         if (cityIdx !== lastCityIndex) {
-          if (cityIdx < 0) {
-            // No city → hide everything below
-            hideAllLocationWrappers();
-            hideAllSlotDateWrappers(); // <-- hide ALL slot dates
-            return;
-          }
-
           // Show only the matching location select
           showOnly(
             `#location-${cityIdx}-wrap`,
             "[id^='location-'][id$='-wrap']"
           );
+          resetLocationSelect(cityIdx);
+          resetSlotSelect(lastCityIndex, locIdx);
+          console.log("City Index", cityIdx, locIdx);
+          locIdx = -1; // Reset location index when city changes
+          lastCityIndex = cityIdx;
         }
-
-        // Always reset ALL slot dates when city changes or location is not chosen yet
-        // hideAllSlotDateWrappers(); // <-- IMPORTANT: clear previous city's slot-date
 
         // 2) Location within this city
         const locIdxStr = getValue(`location-${cityIdx}`);
-        // const locIdx = Number.isInteger(+locIdxStr) ? Number(locIdxStr) : -1;
-        console.log(locIdx);
-        console.log(locIdxStr);
-
         if (lastLocationValue !== locIdxStr) {
           if (locIdx < 0) {
             // Location not chosen yet → keep all slot dates hidden
             return;
+          } else {
+            //Show the slot date for (cityIdx, locIdx)
+            showOnly(
+              `#slot-${cityIdx}-${locIdx}-wrap`,
+              "[id^='slot-'][id$='-wrap']" // <-- target ALL slot dates, not just current city
+            );
+            resetSlotSelect(cityIdx, locIdx, false);
           }
-          // 3) Show the slot date for (cityIdx, locIdx)
-          showOnly(
-            `#slot-${cityIdx}-${locIdx}-wrap`,
-            "[id^='slot-'][id$='-wrap']" // <-- target ALL slot dates, not just current city
-          );
+          lastLocationValue = locIdxStr;
         }
-        lastCityIndex = cityIdx;
-        lastLocationValue = locIdxStr;
       };
 
       const attachListClick = (id) => {
         const list = document.getElementById(`${id}-list`);
         if (!list) return;
         list.addEventListener("click", (e) => {
-          const target = e.target ;
-          const li = target.closest("li[data-index]") ;
+          const target = e.target;
+          const li = target.closest("li[data-index]");
           cityIdx = li.dataset.index;
-          console.log(cityIdx);
-          
-          setTimeout(syncVisibility);
+          //  setTimeout(syncVisibility); // Delay to ensure visibility is updated after click
+          syncVisibility(); // Call immediately to update visibility
         });
       };
 
@@ -511,17 +519,15 @@ const cityOptions = data.map((city, ci) => ({
       document
         .querySelectorAll("[id^='location-'][id$='-list']")
         .forEach((ul) => {
-          ul.addEventListener("click",
-          (e) => {
-          const target = e.target ;
-          const li = target.closest("li[data-index]") ;
-          locIdx = li.dataset.index;
-          console.log(locIdx);
-
-          setTimeout(syncVisibility);
-
-          })})
-      
+          ul.addEventListener("click", (e) => {
+            const target = e.target;
+            const li = target.closest("li[data-index]");
+            locIdx = li.dataset.index;
+            console.log("Setting Location Index: ", locIdx);
+            // setTimeout(syncVisibility); // Delay to ensure visibility is updated after click
+            syncVisibility(); // Call immediately to update visibility
+          });
+        });
 
       syncVisibility();
     })();
