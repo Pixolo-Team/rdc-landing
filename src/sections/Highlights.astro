@@ -1,0 +1,71 @@
+---
+const highlights = [
+  { title: "FREE to attend", caption: "(limited seats)" },
+  { title: "90-minutes of hands-on learning", caption: "" },
+  {
+    title: "Learn AI the simple, practical way",
+    caption: "(no coding required)",
+  },
+];
+---
+
+<section class="relative overflow-hidden h-full">
+  <div class="relative mx-auto max-w-7xl">
+    <!-- Outlined background title -->
+    <h2
+      class="pointer-events-none select-none text-center -mb-6 text-[178px] font-extrabold leading-none tracking-[0.06em] uppercase
+           text-transparent [-webkit-text-stroke:4px_theme(colors.red.500)]
+           max-md:text-[96px] max-sm:text-[56px] max-md:[-webkit-text-stroke:4px_theme(color.red.500)]"
+      aria-hidden="true"
+    >
+      HIGHLIGHTS
+    </h2>
+
+    <div class="mx-auto max-w-7xl px-4">
+      <!-- Patterned strip with 3 circles -->
+      <div
+        class="relative mx-auto overflow-hidden h-full bg-[url('/images/red-rect-bg.png')] bg-cover w-full"
+      >
+        <!-- background image behind circles (absolute) -->
+
+        <!-- circles row -->
+        <div
+          class="flex items-center pt-12 pb-36 justify-center gap-20 max-md:flex-col"
+        >
+          {
+            highlights.map((h) => (
+              <div class=" relative flex items-center justify-center text-center">
+                <div
+                  class="flex items-center justify-center text-n-0
+                   bg-red-500/80 w-80 h-80 rounded-full px-6
+                    text-n-50"
+                >
+                  <p class="font-semibold text-2xl leading-relaxed max-sm:text-base ">
+                    {h.title}
+                    {h.caption && (
+                      <span class="block font-medium text-lg max-sm:text-xs">
+                        {h.caption}
+                      </span>
+                    )}
+                  </p>
+                  <img
+                    src="/images/tick.svg"
+                    alt="tick-mark"
+                    class="absolute -bottom-4 left-1/2 -translate-x-1/2"
+                  />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="h-full">
+      <div class="w-full h-80 bg-[url('/images/blue-rect-bg.svg')] bg-cover">
+        <div>
+          <p>Hello this is</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

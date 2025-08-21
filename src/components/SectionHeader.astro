@@ -1,0 +1,17 @@
+---
+/** Reusable header for sections
+ * Props:
+ * - title: main heading (default is the shared one)
+ */
+const {
+  title = "",
+} = Astro.props;
+
+---
+
+<!-- Section Title -->
+<header class="">
+  <h2 class="text-5xl max-sm:text-4xl font-semibold text-cyan-500 max-md:text">
+    {title}
+  </h2>
+</header>

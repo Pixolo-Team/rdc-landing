@@ -1,0 +1,84 @@
+---
+// COMPONENTS //
+import SectionHeader from "../components/SectionHeader.astro";
+
+/** You can also pass these as props from the page if needed */
+const whatToExpect = [
+  { text: "When to use Copilot and how to prompt simply" },
+  { text: "Prompt patterns you can reuse across subjects and projects" },
+  { text: "Guided demos + quick try-it-yourself practice" },
+];
+---
+
+<section class="relative overflow-hidden min-h-full">
+  <div class="flex flex-col items-center px-8 py-16 gap-16">
+    <div
+      class="flex flex-col items-center justify-center gap-5 max-w-4xl text-center"
+    >
+      <!-- Section Title Header -->
+      <SectionHeader title="Microsoft Copilot Edition" align="center" />
+      <!-- Sub Heading -->
+      <p class="text-3xl text-n-950 font-medium ">
+        Learn how Copilot helps you study and work smarter.
+      </p>
+      <!-- Description -->
+      <p class="text-2xl text-n-950 font-medium">
+        A beginner-friendly intro to using Microsoft Copilot to speed up
+        research, drafting, and presentation prep—no coding required.
+      </p>
+    </div>
+
+    <!-- What to expect -->
+    <div class="flex flex-col gap-10">
+      <p class="text-center text-4xl font-semibold text-n-950">
+        What to expect
+      </p>
+
+      <div
+        class="flex flex-wrap justify-center gap-16 max-md:gap-6"
+      >
+        {
+          whatToExpect.map((item) => (
+            <div
+              class="relative overflow-hidden shadow-sm 
+                    flex-1 min-w-70 max-w-sm"
+            >
+              {/* Paper texture bg image  */}
+              <img
+                src="/images/paper-bg.png"
+                alt=""
+                aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
+              />
+              {/* Content  */}
+              <div class="relative px-5 py-6 text-center">
+                <p class="text-2xl text-n-900 font-medium leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Certificate -->
+    <div class="flex flex-col gap-8 text-center">
+      <h3 class="text-4xl  font-semibold text-n-950">Certificate</h3>
+
+      <p class="text-2xl font-medium text-n-950 max-w-4xl mx-auto">
+        Earn an AI-Ready Certificate (Microsoft Copilot Edition) co-branded with
+        The AI School—add it to LinkedIn, your CV, or your Instagram bio.
+      </p>
+
+      <div class="flex items-center justify-center gap-20 max-md:flex-col max-md:gap-10">
+        <img src="/images/copilot-logo.svg" alt="Copilot" class="h-12 w-auto" />
+        <img
+          src="/images/ai-school-logo.svg"
+          alt="The AI School"
+          class="h-9 w-auto"
+        />
+      </div>
+    </div>
+  </div>
+</section>
