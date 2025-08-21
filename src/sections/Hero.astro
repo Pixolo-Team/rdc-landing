@@ -1,65 +1,47 @@
 ---
+// COMPONENTS //
+import Header from "../components/Header.astro";
 
 ---
 
-<section class="relative overflow-hidden min-h-full">
-  <!-- Background Image -->
-  <div class="absolute inset-0 -z-10">
-    <img
-      src="/images/bg-image.png"
-      alt="Background"
-      class="w-full h-full object-cover"
-    />
-  </div>
-
+<!-- Hero Section with bg image -->
+<section
+  class="relative overflow-hidden min-h-screen bg-[url('/images/bg-image.png')] bg-center bg-cover bg-no-repeat"
+>
   <div
-    class="mx-auto px-32 py-8 max-md:px-8 h-full flex flex-col gap-8 max-md:gap-14"
+    class="container mx-auto px-32 py-8 max-md:px-8 h-full flex flex-col gap-8 max-md:gap-14"
   >
-    <!-- Top Row: brand left, button right -->
-    <div class="flex items-center justify-between w-full">
-      <!-- Brand logo -->
-      <a href="#">
-        <img
-          src="/images/brand-logo.svg"
-          alt="Brand"
-          class="h-20 max-md:h-16 w-auto"
-        />
-      </a>
-      <!-- Register button -->
-      <button
-        type="submit"
-        class="cursor-pointer bg-n-800 text-n-50 p-6 max-md:p-3 max-md:px-5 text-2xl max-md:text-lg font-semibold leading-none"
-      >
-        Register Now
-      </button>
-    </div>
+    <!-- Header component -->
+    <Header />
 
     <!-- Main -->
     <div class="flex justify-center gap-8 items-center">
       <!-- LEFT: stacked logos -->
       <div class="text-left">
-        <div class="flex flex-col items-center gap-9 max-md:gap-7 px-24 py-12 max-md:p-0">
+        <div
+          class="flex flex-col items-center gap-9 max-md:gap-7 px-24 py-12 max-md:p-0"
+        >
           <!-- Masterclass -->
           <img
-            src="/images/masterclass-logo.svg"
+            src="/images/masterclass-logo.png"
             alt="Masterclass"
-            class="h-74 w-auto max-md:h-auto max-md:px-4"
+            class="h-full w-auto max-md:h-auto max-md:px-4"
           />
           <!-- Mobile Model -->
           <img
             src="/images/mobile-model.png"
             alt="mobile-model"
-            class="h-74 w-auto max-lg:h-auto hidden max-lg:block"
+            class="h-full w-auto max-lg:h-auto hidden max-lg:block"
           />
           <!-- Launchpad -->
           <img
-            src="/images/launchpad-logo.svg"
+            src="/images/launchpad-logo.png"
             alt="Launchpad"
             class="h-auto w-3/4"
           />
           <!-- Microsoft -->
           <img
-            src="/images/microsoft-logo.svg"
+            src="/images/microsoft-logo.png"
             alt="Microsoft"
             class="h-auto w-auto max-md:h-14"
           />
