@@ -414,29 +414,36 @@ const cityOptions = data.map((city, ci) => ({
 
   <script is:inline>
     (() => {
-      // Initialize variables to track last selected city and location
-      let lastCityIndex = -1;
-      let cityIdx = -1;
-      let lastLocationValue = -1;
-      let locIdx = -1;
+      // ---- State Variables ----
+      // Track currently selected city and location, as well as their "last" values
+      let lastCityIndex = -1; // previously selected city
+      let cityIdx = -1; // currently selected city
+      let lastLocationValue = -1; // previously selected location value
+      let locIdx = -1; // currently selected location index
 
+      /** Get the value of the hidden <input> field for a dropdown */
       const getValue = (id) =>
         document.getElementById(`${id}-value`)?.value ?? "";
 
+      /** Hide all elements that match the given selector */
       const hideAll = (selector) =>
         document
           .querySelectorAll(selector)
           .forEach((el) => el.classList.add("hidden"));
 
+      /** Reset all dropdowns inside a group (clear inputs and labels) */
       const resetAll = (selector) => {
-        console.log("inside");
-
         document.querySelectorAll(selector).forEach((el) => {
-          el.querySelector("input").value = "";
-          el.querySelector("[data-slot='current-label']").textContent = "";
+          el.querySelector("input").value = ""; // clear hidden input value
+          el.querySelector("[data-slot='current-label']").textContent = ""; // clear visible label
         });
       };
 
+      /**
+       * Show only the selected element in a group
+       * - Hides all others
+       * - Resets their values
+       */
       const showOnly = (selectorToShow, groupSelector) => {
         hideAll(groupSelector);
         resetAll(groupSelector);
@@ -446,6 +453,7 @@ const cityOptions = data.map((city, ci) => ({
         }
       };
 
+      /** Reset location dropdown (when city changes) */
       const resetLocationSelect = (cityIdx) => {
         const locationSelect = document.getElementById(
           `location-${cityIdx}-button`
@@ -455,10 +463,10 @@ const cityOptions = data.map((city, ci) => ({
           locationSelect.querySelector(
             "[data-slot='current-label']"
           ).textContent = "Select Location/Center";
-          console.log("Current Label Reset for City Index: ", cityIdx);
         }
       };
 
+      /** Reset slot dropdown (when location changes or resets) */
       const resetSlotSelect = (cityIdx, locIdx, shouldDisable = true) => {
         const slotSelect = document.getElementById(
           `slot-${cityIdx}-${locIdx}-button`
@@ -470,65 +478,80 @@ const cityOptions = data.map((city, ci) => ({
         }
       };
 
+      /**
+       * Main function:
+       * Sync the UI based on the currently selected city and location
+       */
       const syncVisibility = () => {
+        // --- Step 1: Handle City ---
         if (cityIdx !== lastCityIndex) {
-          // Show only the matching location select
+          // Show the selected city's location dropdown
           showOnly(
             `#location-${cityIdx}-wrap`,
             "[id^='location-'][id$='-wrap']"
           );
           resetLocationSelect(cityIdx);
+
+          // Reset previous slot select (disable until new location is chosen)
           resetSlotSelect(lastCityIndex, locIdx);
-          console.log("City Index", cityIdx, locIdx);
-          locIdx = -1; // Reset location index when city changes
+
+          // Reset location index when city changes
+          locIdx = -1;
           lastCityIndex = cityIdx;
         }
 
-        // 2) Location within this city
+        // --- Step 2: Handle Location ---
         const locIdxStr = getValue(`location-${cityIdx}`);
         if (lastLocationValue !== locIdxStr) {
           if (locIdx < 0) {
-            // Location not chosen yet → keep all slot dates hidden
+            // No location selected yet → keep slots hidden
             return;
           } else {
-            //Show the slot date for (cityIdx, locIdx)
+            // Show only the slots for this (city, location)
             showOnly(
               `#slot-${cityIdx}-${locIdx}-wrap`,
-              "[id^='slot-'][id$='-wrap']" // <-- target ALL slot dates, not just current city
+              "[id^='slot-'][id$='-wrap']"
             );
-            resetSlotSelect(cityIdx, locIdx, false);
+            resetSlotSelect(cityIdx, locIdx, false); // enable slot select
           }
           lastLocationValue = locIdxStr;
         }
       };
 
+      /**
+       * Attach click event listener to a dropdown list
+       * (used for city dropdown)
+       */
       const attachListClick = (id) => {
         const list = document.getElementById(`${id}-list`);
         if (!list) return;
+
         list.addEventListener("click", (e) => {
-          const target = e.target;
-          const li = target.closest("li[data-index]");
-          cityIdx = li.dataset.index;
-          //  setTimeout(syncVisibility); // Delay to ensure visibility is updated after click
-          syncVisibility(); // Call immediately to update visibility
+          const li = e.target.closest("li[data-index]");
+          if (!li) return;
+
+          cityIdx = li.dataset.index; // update city index
+          syncVisibility(); // refresh UI immediately
         });
       };
 
-      attachListClick("city");
-      // Attach to all location lists (one per city)
+      // ---- Setup ----
+      attachListClick("city"); // City dropdown listener
+
+      // Add click listeners to all location dropdowns (one per city)
       document
         .querySelectorAll("[id^='location-'][id$='-list']")
         .forEach((ul) => {
           ul.addEventListener("click", (e) => {
-            const target = e.target;
-            const li = target.closest("li[data-index]");
-            locIdx = li.dataset.index;
-            console.log("Setting Location Index: ", locIdx);
-            // setTimeout(syncVisibility); // Delay to ensure visibility is updated after click
-            syncVisibility(); // Call immediately to update visibility
+            const li = e.target.closest("li[data-index]");
+            if (!li) return;
+
+            locIdx = li.dataset.index; // update location index
+            syncVisibility(); // refresh UI immediately
           });
         });
 
+      // Initial UI sync
       syncVisibility();
     })();
   </script>
