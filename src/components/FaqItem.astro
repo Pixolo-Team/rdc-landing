@@ -32,14 +32,15 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
             aria-controls={panelId}
           >
             {/* Title: Question */}
-            <h3 class="text-2xl font-semibold leading-snug text-n-950">
+            <p class="text-2xl font-semibold leading-snug text-n-950">
               {faq.title}
-            </h3>
+            </p>
             {/* Down Arrow icon */}
             <img
               src="/images/down-arrow.svg"
               class="faq-arrow w-6 h-6 transition-transform duration-300"
               alt="arrow"
+              draggable="false"
             />
           </button>
 
@@ -123,6 +124,17 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
       headerButton.addEventListener("click", () =>
         setItemState(itemElement, !isItemOpen(itemElement))
       );
+
+      // This guarantees clicking the <h3> or the arrow (or header whitespace) works.
+      itemElement.addEventListener("click", (e) => {
+        // Ignore clicks inside the body (so links/buttons in the answer work normally)
+        if (bodyPanel.contains(e.target)) return;
+
+        // If the click happened within the header area or on the item container itself, toggle.
+        if (headerButton.contains(e.target) || e.target === itemElement) {
+          setItemState(itemElement, !isItemOpen(itemElement));
+        }
+      });
     });
   })();
 </script>

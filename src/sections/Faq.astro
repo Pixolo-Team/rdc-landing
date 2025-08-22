@@ -21,72 +21,12 @@ const faqs = [
 <!-- FAQ Section -->
 <section class="w-full px-8 py-10">
   <div
-    class="flex flex-col gap-12 justify-start items-center w-full max-w-[42%] mx-auto"
+    class="flex flex-col gap-12 justify-start items-center w-full max-w-2/3 mx-auto"
   >
     <!-- Section Header -->
     <SectionHeader title="Frequenly Asked Questions" />
 
     <!-- FAQ List -->
     <FaqItem items={faqs} />
-
-    <!-- Astro inline script -->
-    <script is:inline>
-      (function () {
-        const list = document.querySelector(".faq-list");
-        if (!list) return;
-        const items = Array.from(list.querySelectorAll(".faq-item"));
-        const single = list.dataset.accordion === "single";
-
-        function parts(item) {
-          return {
-            header: item.querySelector(".faq-header h3"),
-            body: item.querySelector(".faq-body"),
-            arrow: item.querySelector(".faq-arrow"),
-          };
-        }
-
-        function setState(item, open) {
-          const { header, body, arrow } = parts(item);
-          if (!header || !body) return;
-          body.classList.toggle("hidden", !open);
-          header.setAttribute("aria-expanded", String(open));
-          arrow && arrow.classList.toggle("rotate-180", open);
-        }
-
-        function isOpen(item) {
-          return !parts(item).body.classList.contains("hidden");
-        }
-
-        function toggleItem(item) {
-          if (single) {
-            items.forEach((it) =>
-              setState(it, it === item ? !isOpen(it) : false)
-            );
-          } else {
-            setState(item, !isOpen(item));
-          }
-        }
-
-        // Init: set initial states (data-open="true" or body not hidden)
-        items.forEach((item, i) => {
-          const { header, body } = parts(item);
-          if (!body.id) body.id = `faq-body-${i + 1}`;
-          header && header.setAttribute("aria-controls", body.id);
-
-          const wantsOpen =
-            item.dataset.open === "true" || !body.classList.contains("hidden");
-          setState(item, wantsOpen);
-
-          // Click/keyboard toggles (h3 only)
-          header?.addEventListener("click", () => toggleItem(item));
-          header?.addEventListener("keydown", (e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              toggleItem(item);
-            }
-          });
-        });
-      })();
-    </script>
   </div>
 </section>

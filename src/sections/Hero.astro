@@ -1,51 +1,45 @@
 ---
 // COMPONENTS //
 import Header from "../components/Header.astro";
+
 ---
 
 <!-- Hero Section with bg image -->
 <section
-  class="relative overflow-hidden min-h-screen bg-[url('/images/bg-image.png')] bg-center bg-cover bg-no-repeat"
+  class="relative bg-[url('/images/bg-image.png')] bg-center bg-cover min-h-screen"
 >
-  <div
-    class="container mx-auto px-32 py-8 max-md:px-8 h-full flex flex-col gap-8 max-md:gap-14"
-  >
-    <!-- Header component -->
-    <Header />
-
+  <div class="container mx-auto py-8 max-md:px-8 pt-[144px]">
     <!-- Main -->
-    <div class="flex justify-center gap-8 items-center">
+    <div class="flex justify-center gap-8 items-center px-32 max-md:px-8">
       <!-- LEFT: stacked logos -->
-      <div class="text-left">
-        <div
-          class="flex flex-col items-center gap-9 max-md:gap-7 px-24 py-12 max-md:p-0"
+      <div
+        class="flex flex-col items-center gap-9 max-md:gap-7 lg:pr-24 py-12 max-md:p-0"
+      >
+        <!-- Masterclass -->
+        <img
+          src="/images/masterclass-logo.png"
+          alt="Masterclass"
+          class="w-[568px]"
+        />
+        <!-- Mobile Model -->
+        <img
+          src="/images/mobile-model.png"
+          alt="mobile-model"
+          class="h-auto w-[460px] hidden max-lg:block"
+        />
+        <!-- Launchpad -->
+        <img
+          src="/images/launchpad-logo.png"
+          alt="Launchpad"
+          class="h-auto w-4/5"
+        />
+        <!-- Register button -->
+        <button
+          type="submit"
+          class="cursor-pointer bg-blue-500 text-n-50 py-6 px-12 max-md:p-3 max-md:px-5 text-2xl max-md:text-lg font-semibold leading-none"
         >
-          <!-- Masterclass -->
-          <img
-            src="/images/masterclass-logo.png"
-            alt="Masterclass"
-            class="h-full w-auto max-md:h-auto max-md:px-4"
-          />
-          <!-- Mobile Model -->
-          <img
-            src="/images/mobile-model.png"
-            alt="mobile-model"
-            class="h-full w-auto max-lg:h-auto hidden max-lg:block"
-          />
-          <!-- Launchpad -->
-          <img
-            src="/images/launchpad-logo.png"
-            alt="Launchpad"
-            class="h-auto w-3/4"
-          />
-          <!-- Register button -->
-          <button
-            type="submit"
-            class="cursor-pointer bg-blue-500 text-n-50 py-6 px-12 max-md:p-3 max-md:px-5 text-2xl max-md:text-lg font-semibold leading-none"
-          >
-            Register Now
-          </button>
-        </div>
+          Register Now
+        </button>
       </div>
 
       <!-- RIGHT: single combined image (student + doodles) -->
@@ -53,7 +47,7 @@ import Header from "../components/Header.astro";
         <img
           src="/images/model.png"
           alt="Student with doodles"
-          class="h-full w-full drop-shadow-xl"
+          class="h-auto w-[740px] drop-shadow-xl"
         />
       </div>
     </div>
