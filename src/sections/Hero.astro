@@ -1,5 +1,5 @@
 ---
-import Select from "../components/Select.astro";
+import Select from "../components/Select";
 
 const locations = [
   {
@@ -20,17 +20,12 @@ Mumbai, Maharashtra
 Maharashtra - 400607`,
   },
 ];
-
 ---
 
 <!-- Hero Section -->
 <section class="h-full flex items-center justify-center">
   <div class="text-center">
-    <Select
-      id="location"
-      label="Location/Center"
-      options={locations}
-    />
+    <Select id="location" label="Location/Center" options={locations} />
 
     <!-- Title -->
     <h1 class="text-4xl font-bold">Welcome</h1>

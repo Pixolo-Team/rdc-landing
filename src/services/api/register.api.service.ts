@@ -8,22 +8,21 @@ import type { RegisterRequestPayload } from "../../types/form";
 import { CONSTANTS } from "../../lib/constants";
 
 /** Register API Request Sends form data to the backend to create a new registration */
-export async function registerRequest(
-  payload: RegisterRequestPayload
-): Promise<ApiResponseData<any>> {
+// export async function registerRequest(
+//   payload: RegisterRequestPayload
+// ): Promise<ApiResponseData<any>> {
+//   // Read token from localstorage
+//   const token = localStorage.getItem("authToken");
 
-  // Read token from localstorage
-  const token = await localStorage.getItem("authToken");
+//   const res = await fetch(`${CONSTANTS.API_URL}registrations`, {
+//     method: "POST",
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(payload),
+//   });
 
-  const res = await fetch(`${CONSTANTS.API_URL}register`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
-  });
-
-  // Parse JSON response
-  return (await res.json()) as ApiResponseData<any>;
-}
+//   // Parse JSON response
+//   return (await res.json()) as ApiResponseData<any>;
+// }

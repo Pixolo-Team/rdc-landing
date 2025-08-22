@@ -1,21 +1,29 @@
 ---
+// API SERVICES //
+import { getAppointmentsCatalogRequest } from "../services/api/dropdowns.api.service";
+
 // OTHERS //
 import RootLayout from "../layouts/RootLayout.astro";
+import scriptUrl from "../script/form.ts?url";
 
 // SECTIONS //
 import Footer from "../sections/Footer.astro";
-import Form from "../sections/Form.astro";
-import Hero from "../sections/Hero.astro";
-import scriptUrl from "../script/form.ts?url";
+import Form from "../sections/Form";
+
+// import Hero from "../sections/Hero.astro";
+
+const catalog = await getAppointmentsCatalogRequest();
+const catalogItems = catalog.data;
 ---
 
 <!-- Root Layout  -->
 <RootLayout>
   <div class="h-screen">
     <!-- Hero section -->
-    <Hero />
+    <!-- <Hero /> -->
     <!-- Main/Form section -->
-    <Form />
+    <Form client:visible catalog={catalogItems} />
+
     <!-- Footer section -->
     <Footer />
   </div>

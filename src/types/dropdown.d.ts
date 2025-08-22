@@ -9,25 +9,37 @@ export type LocationDropdownData = {
   items: DropdownOptionData[];
 };
 
-// Data type for appointment date
-export type AppointmentDateDropdownData = {
-  items: {
-    date: string;
-    seats_remaining: number;
-  };
+// Data type for appointment time
+export type AppointmentSlotDropdownData = {
+  seats_remaining: string;
+  date: string; // ISO datetime
 };
 
-// Data type for appointment time
-export type AppointmentTimeDropdownData = {
-  items: {
-    id: string;
-    date: string;
-    starts_at: string;
-    ends_at: string;
-    capacity: number;
-    seats_remaining: number;
-  };
-};
+export interface AppointmentsResponseData {
+  items: AppointmentSlotDropdownData[];
+}
 
 // Common type for similar dropdown array
 export type DropdownOptionData = { id: number; name: string };
+
+// src/types/dropdown.ts
+export interface AppointmentSlotData {
+  id: string;
+  name: string;
+}
+
+export interface LocationCatalogData {
+  id: string;
+  name: string;
+  appointments: AppointmentSlotData[];
+}
+
+export interface CityCatalogData {
+  id: string;
+  name: string;
+  locations: LocationCatalogData[];
+}
+
+export interface CatalogResponseData {
+  items: CityCatalogData[];
+}
