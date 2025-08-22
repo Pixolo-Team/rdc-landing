@@ -2,6 +2,40 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* DIN Medium */
+@font-face {
+  font-family: "PrimaryFont";
+  src: url("/fonts/DINPRO-MEDIUM.OTF") format("opentype");
+  font-weight: 500;
+}
+
+/* DIN Semi-Bold */
+@font-face {
+  font-family: "PrimaryFont";
+  src: url("/fonts/DIN-Bold.otf") format("opentype");
+  font-weight: 600;
+}
+
+
+/* DIN Bold */
+@font-face {
+  font-family: "PrimaryFont";
+  src: url("/fonts/DIN-2014_Bold.otf") format("opentype");
+  font-weight: 700;
+}
+
+/* DIN Extra-Bold */
+@font-face {
+  font-family: "PrimaryFont";
+  src: url("/fonts/DIN-2014_Extra-Bold.otf") format("opentype");
+  font-weight: 800;
+}
+
+/* Apply globally */
+body {
+  font-family: "PrimaryFont", sans-serif;
+}
+
 @theme inline {
   --color-n-50: var(--color-n-50);
   --color-n-100: var(--color-n-100);
