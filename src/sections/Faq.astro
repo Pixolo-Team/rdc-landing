@@ -1,6 +1,5 @@
 ---
 // COMPONENTS //
-import SectionHeader from "../components/SectionHeader.astro";
 import FaqItem from "../components/FaqItem.astro";
 
 const faqs = [
@@ -24,7 +23,7 @@ const faqs = [
     class="flex flex-col gap-12 justify-start items-center w-full max-w-2/3 mx-auto"
   >
     <!-- Section Header -->
-    <SectionHeader title="Frequenly Asked Questions" />
+     <h2 class="section-title">Frequenly Asked Questions</h2>
 
     <!-- FAQ List -->
     <FaqItem items={faqs} />

@@ -1,0 +1,99 @@
+---
+---
+
+<!-- Hero Section with bg image -->
+<section
+  class="relative bg-[url('/images/hero-bg-image.png')] bg-center bg-size-[34px] min-h-screen py-38 pb-14 lg:py-44 lg:pb-28 xl:flex xl:items-center"
+>
+  <div class="container mx-auto xl:flex xl:flex-row xl:gap-10 xl:justify-center xl:h-[100%] xl:items-center">
+      <!-- LEFT: stacked logos -->
+      <div
+        class="flex flex-col items-center gap-8 xl:w-[57%] xl:justify-center"
+      >
+
+        <!-- Masterclass -->
+        <img
+          src="/images/masterclass-logo.png"
+          alt="Masterclass"
+          class="w-[76%] sm:w-3/5 lg:w-[50%] xl:min-w-[576px]"
+          data-sal="slide-up"
+          data-sal-delay="300"
+          data-sal-easing="ease-out-back"
+          style="--sal-duration: 1s"
+        />
+
+        <!-- Mobile Model Wrap -->
+        <div class="text-center relative mt-2 lg:mt-6 xl:hidden">
+          <!-- Laptop Model -->
+          <img
+            src="/images/laptop-model.png"
+            alt="mobile-model"
+            class="inline-block w-[90%] sm:w-4/5 lg:w-[80%]"
+          />
+          <!-- Rocket -->
+           <img 
+            src="/images/rocket.png"
+            alt="Rocket"
+            class="rocket-flight absolute -top-2 right-6 w-18 sm:w-22 lg:w-1/6 lg:right-6"
+           />
+           <!-- Hat -->
+           <img 
+            src="/images/hat.png"
+            alt="Graduation Hat"
+            class="space-float-spin absolute top-8 left-8 w-18 sm:w-22 sm:left-4 sm:top-10 lg:left-px lg:w-1/6"
+           />
+        </div>
+
+        <div class="flex flex-col items-center gap-7 sm:gap-10 xl:gap-10">
+          <!-- Launchpad -->
+          <img
+            src="/images/launchpad-logo.png"
+            alt="Launchpad"
+            class="w-2/3 sm:w-4/5 lg:w-[90%] xl:w-[100%]"
+            data-sal="slide-up"
+            data-sal-duration="300"
+            data-sal-delay="600"
+            data-sal-easing="ease-in"
+          />
+
+          <!-- Register Button -->
+          <button
+            type="submit"
+            class="btn-cta"
+            data-sal="slide-up"
+            data-sal-duration="400"
+            data-sal-delay="1000"
+            data-sal-easing="ease-out-back"
+          >
+            Register Now
+          </button>
+        </div>
+      </div>
+
+      <!-- RIGHT: single combined image (student + doodles) -->
+      <div class="hidden relative xl:block xl:w-[42%] text-center">
+          <!-- Laptop Model -->
+          <img
+            src="/images/laptop-model.png"
+            alt="mobile-model"
+            class="inline-block w-[88%]"
+            data-sal="zoom-in"
+            data-sal-duration="300"
+            data-sal-delay="200"
+            data-sal-easing="ease-in"
+          />
+          <!-- Rocket -->
+           <img 
+            src="/images/rocket.png"
+            alt="Rocket"
+            class="rocket-flight absolute -top-4 right-8 w-30"
+           />
+           <!-- Hat -->
+           <img 
+            src="/images/hat.png"
+            alt="Graduation Hat"
+            class="space-float-spin absolute top-8 left-0 w-29"
+           />
+        </div>
+    </div>
+</section>

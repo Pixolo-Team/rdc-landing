@@ -1,36 +1,31 @@
 ---
-// OTHERS //
-import Header from "../components/Header.astro";
+// LAYOUTS //
 import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
-import CopilotEdition from "../sections/CopilotEdition.astro";
-import Certificate from "../sections/Certificate.astro";
+import Hero from "../sections/home/Hero.astro";
+import CopilotEdition from "../sections/home/CopilotEdition.astro";
+import ClassExpectations from "../sections/home/ClassExpectations.astro";
+import Certificate from "../sections/home/Certificate.astro";
+import Highlights from "../sections/home/Highlights.astro";
+import HowItWorks from "../sections/home/HowItWorks.astro";
 import Faq from "../sections/Faq.astro";
-import Footer from "../sections/Footer.astro";
-import Form from "../sections/Form.astro";
-import Hero from "../sections/Hero.astro";
-import Highlights from "../sections/Highlights.astro";
-import HowItWorks from "../sections/HowItWorks.astro";
 ---
 
 <!-- Root Layout  -->
 <RootLayout>
-  <Header />
   <!-- Hero section -->
   <Hero />
   <!-- Copilot Edition section  -->
   <CopilotEdition />
+  <!-- Class Expectations -->
+  <ClassExpectations />
   <!-- Certificate section -->
   <Certificate />
   <!-- Highlights section  -->
-  <Highlights />
+  <!-- <Highlights /> -->
   <!-- How It Works section -->
-  <HowItWorks />
-  <!-- Main/Form section -->
-  <Form />
+  <!-- <HowItWorks /> -->
   <!-- FAQ section -->
-  <Faq />
-  <!-- Footer section -->
-  <Footer />
+  <!-- <Faq /> -->
 </RootLayout>
