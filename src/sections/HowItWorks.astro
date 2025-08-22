@@ -1,0 +1,62 @@
+---
+// COMPONENTS //
+import SectionHeader from "../components/SectionHeader.astro";
+
+/** Data for "How It Works" */
+const steps = [
+  {
+    icon: "/images/resume-logo.svg",
+    alt: "Resume",
+    text: "Register and lock your seat at select Reliance Digital centers",
+  },
+  {
+    icon: "/images/ticket-logo.svg",
+    alt: "Ticket",
+    text: "Receive your ticket + Masterclass Confirmation Number by email",
+  },
+  {
+    icon: "/images/coupon-logo.svg",
+    alt: "Coupon",
+    text: "Receive two Reliance Digital Referral Discount codes by email",
+    subText: "(terms and validity included)",
+  },
+  {
+    icon: "/images/certificate-logo.svg",
+    alt: "Certificate",
+    text: "Attend, build with Microsoft Copilot, and get certified",
+  },
+];
+---
+
+<section class="container mx-auto w-full px-8 py-16 flex h-full items-center">
+  <div class="flex flex-col gap-8 items-center">
+    <!-- Section header -->
+    <SectionHeader title="How It Works" />
+
+    <div class="flex max-lg:flex-col gap-4 w-full">
+      {
+        steps.map((s) => (
+          <div
+            class="flex items-center justify-center w-full md:flex-1 bg-n-50 border-2 border-n-800 
+                   hover:shadow-lg transition-shadow duration-300 p-12 max-md:py-16"
+          >
+            <div class="flex flex-col items-center justify-center gap-6 w-full max-lg:w-1/2 max-md:w-full">
+              {/* Logo */}
+              <img src={s.icon} alt={s.alt} class="h-14 w-auto" />
+                {/* Main Text */}
+              <p class="text-center text-n-900 text-2xl font-medium leading-snug">
+                {s.text}
+              </p>
+              {/* Subtext optional */}
+              {s.subText && (
+                <p class="text-center text-n-700 text-xl font-medium leading-snug">
+                  {s.subText}
+                </p>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

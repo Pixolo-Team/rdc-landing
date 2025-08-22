@@ -4,25 +4,30 @@ import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
 import CopilotEdition from "../sections/CopilotEdition.astro";
+import Faq from "../sections/Faq.astro";
 import Footer from "../sections/Footer.astro";
 import Form from "../sections/Form.astro";
 import Hero from "../sections/Hero.astro";
 import Highlights from "../sections/Highlights.astro";
-
+import HowItWorks from "../sections/HowItWorks.astro";
 ---
 
 <!-- Root Layout  -->
-<RootLayout >
+<RootLayout>
   <div class="h-screen">
     <!-- Hero section -->
     <Hero />
     <!-- Copilot Edition section  -->
-     <CopilotEdition />
+    <CopilotEdition />
     <!-- Copilot Edition section  -->
-     <Highlights />
+    <Highlights />
+    <!-- How It Works section -->
+    <HowItWorks />
     <!-- Main/Form section -->
-    <Form/>
+    <Form />
+    <!-- FAQ section -->
+    <Faq />
     <!-- Footer section -->
     <Footer />
   </div>
-</BaseLayout>
+</RootLayout>
