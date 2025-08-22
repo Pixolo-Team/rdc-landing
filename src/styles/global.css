@@ -16,7 +16,6 @@
   font-weight: 600;
 }
 
-
 /* DIN Bold */
 @font-face {
   font-family: "PrimaryFont";
@@ -62,7 +61,10 @@ body {
   --color-n-800: var(--color-slate-800);
   --color-n-900: var(--color-slate-900);
   --color-n-950: var(--color-slate-950);
-  
+  --color-cyan-500: #1ba7e0;
+  --color-blue-500: #1d376c;
+  --color-red-50: #fffafa;
+  --color-red-500: #e32729;
 }
 
 .dark {
@@ -77,4 +79,172 @@ body {
   --color-n-800: var(--color-slate-200);
   --color-n-900: var(--color-slate-100);
   --color-n-950: var(--color-slate-50);
+}
+
+@layer components {
+  .btn-cta {
+    @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none sm:text-2xl sm:px-16 sm:py-6 transition-all xl:hover:px-20 xl:hover:rotate-2;
+  }
+
+  .section-title {
+    @apply text-cyan-500 text-[40px]/12 text-center font-semibold sm:text-[44px] lg:text-5xl xl:text-5xl/16;
+  }
+
+  .sub-title {
+    @apply text-n-950 text-[28px]/8 text-center font-semibold sm:text-3xl lg:text-4xl;
+  }
+
+  .para-text {
+    @apply text-2xl/8 text-n-950 font-medium text-center sm:text-[28px]/10 lg:text-2xl;
+  }
+}
+
+/* ANIMATIONS */
+@property --rot {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --jit {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+/* Upright rocket: gentle sway + occasional vibration burst (rotate-only) */
+.rocket-flight {
+  /* tweakables */
+  --amp: 1.1deg; /* base sway amplitude */
+  --dur: 1s; /* base sway cycle */
+  --burst-amp: 0.45deg; /* vibration amplitude for bursts */
+  --burst-period: 7s; /* time between bursts */
+
+  transform-origin: bottom center; /* pivot around the engine nozzle */
+  transform: rotate(var(--rot)) rotate(var(--jit));
+  animation:
+    rocket-sway var(--dur) linear infinite alternate,
+    rocket-burst var(--burst-period) ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Base: smooth, linear sway (like constant thrust corrections) */
+@keyframes rocket-sway {
+  from {
+    --rot: calc(var(--amp) * -1);
+  }
+  to {
+    --rot: var(--amp);
+  }
+}
+
+/* Burst: a short, subtle vibration near the end of each period */
+@keyframes rocket-burst {
+  0%,
+  80% {
+    --jit: 0deg;
+  }
+  83% {
+    --jit: calc(var(--burst-amp) * -1);
+  }
+  85% {
+    --jit: var(--burst-amp);
+  }
+  87% {
+    --jit: calc(var(--burst-amp) * -0.6);
+  }
+  89% {
+    --jit: calc(var(--burst-amp) * 0.6);
+  }
+  91% {
+    --jit: calc(var(--burst-amp) * -0.3);
+  }
+  93%,
+  100% {
+    --jit: 0deg;
+  }
+}
+
+/* Reduced motion: keep it still */
+@media (prefers-reduced-motion: reduce) {
+  .rocket-flight {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Register animatable custom props (smooth interpolation) */
+@property --rot {
+  syntax: "<angle>";
+  initial-value: 0turn;
+  inherits: false;
+}
+@property --tx {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: false;
+}
+@property --ty {
+  syntax: "<length>";
+  initial-value: 0px;
+  inherits: false;
+}
+
+/* One class: slow spin + subtle drift */
+.space-float-spin {
+  /* tweakables */
+  --spin-dur: 64s; /* bigger = slower rotation */
+  --drift-dur: 24s; /* drift loop duration */
+  --dx: 10px; /* drift x distance */
+  --dy: 6px; /* drift y distance */
+
+  transform-origin: center center;
+  transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
+  animation:
+    spin-vars var(--spin-dur) linear infinite,
+    drift-vars var(--drift-dur) ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* rotates --rot from 0 → 1 turn */
+@keyframes spin-vars {
+  from {
+    --rot: 0turn;
+  }
+  to {
+    --rot: -1turn;
+  }
+}
+
+/* drifts --tx/--ty around a gentle box/ellipse path */
+@keyframes drift-vars {
+  0% {
+    --tx: 0px;
+    --ty: 0px;
+  }
+  25% {
+    --tx: var(--dx);
+    --ty: 0px;
+  }
+  50% {
+    --tx: var(--dx);
+    --ty: var(--dy);
+  }
+  75% {
+    --tx: 0px;
+    --ty: var(--dy);
+  }
+  100% {
+    --tx: 0px;
+    --ty: 0px;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .space-float-spin {
+    animation: none;
+    transform: none;
+  }
 }

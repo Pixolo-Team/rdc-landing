@@ -1,22 +1,31 @@
 ---
-// OTHERS //
+// LAYOUTS //
 import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
-import Footer from "../sections/Footer.astro";
-import Form from "../sections/Form.astro";
-import Hero from "../sections/Hero.astro";
-
+import Hero from "../sections/home/Hero.astro";
+import CopilotEdition from "../sections/home/CopilotEdition.astro";
+import ClassExpectations from "../sections/home/ClassExpectations.astro";
+import Certificate from "../sections/home/Certificate.astro";
+import Highlights from "../sections/home/Highlights.astro";
+import HowItWorks from "../sections/home/HowItWorks.astro";
+import Faq from "../sections/Faq.astro";
 ---
 
 <!-- Root Layout  -->
 <RootLayout>
-  <div class="h-screen">
-    <!-- Hero section -->
-    <Hero />
-    <!-- Main/Form section -->
-    <Form/>
-    <!-- Footer section -->
-    <Footer />
-  </div>
-</BaseLayout>
+  <!-- Hero section -->
+  <Hero />
+  <!-- Copilot Edition section  -->
+  <CopilotEdition />
+  <!-- Class Expectations -->
+  <ClassExpectations />
+  <!-- Certificate section -->
+  <Certificate />
+  <!-- Highlights section  -->
+  <!-- <Highlights /> -->
+  <!-- How It Works section -->
+  <!-- <HowItWorks /> -->
+  <!-- FAQ section -->
+  <!-- <Faq /> -->
+</RootLayout>

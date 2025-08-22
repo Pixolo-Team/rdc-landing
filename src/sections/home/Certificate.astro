@@ -1,0 +1,44 @@
+---
+// DATA //
+const sectionContent = {
+  "title": "Certificate",
+  "paragraph": "Earn an AI-Ready Certificate (Microsoft Copilot Edition) co-branded with The AI School."
+};
+---
+
+<!-- Certificate -->
+<section class="bg-red-50 py-14 px-6"
+  data-sal="zoom-in"
+  data-sal-delay="600"
+  data-sal-duration="400"
+>
+
+  <!-- Container -->
+  <div class="container mx-auto flex flex-col gap-12 sm:px-10 lg:gap-16 xl:gap-12">
+
+    <div class="flex flex-col gap-4 items-center sm:gap-6">
+      <!-- Section Title -->
+      <h3 class="sub-title">Certificate</h3>
+
+      <!-- Paragraph -->
+      <p class="para-text xl:w-3/7">
+        {sectionContent.paragraph}
+      </p>
+    </div>
+
+    <!-- Logo's -->
+    <div
+      class="flex flex-col items-center justify-center gap-6 md:gap-8 xl:flex-row xl:gap-16"
+    >
+      <!-- Co Pilot Logo -->
+      <img src="/images/copilot-logo.svg" alt="Copilot" class="w-3/7 sm:w-2/6 xl:w-[220px]" />
+
+      <!-- AI School Logo -->
+      <img
+        src="/images/ai-school-logo.png"
+        alt="The AI School"
+        class="w-3/6  sm:w-2/5 xl:w-[250px]"
+      />
+    </div>
+  </div>
+</section>

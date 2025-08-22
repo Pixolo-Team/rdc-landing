@@ -1,0 +1,90 @@
+---
+const highlights = [
+  { title: "FREE to attend", caption: "(limited seats)" },
+  { title: "90-minutes of hands-on learning", caption: "" },
+  {
+    title: "Learn AI the simple, practical way",
+    caption: "(no coding required)",
+  },
+];
+---
+
+<section class="container mx-auto">
+  <div class="flex flex-col items-center">
+    <!-- Outlined background title -->
+    <h2
+      class="pointer-events-none select-none text-center -mb-6 text-[240px] font-bold leading-none uppercase
+           text-transparent [-webkit-text-stroke:3px_theme(colors.red.500)] max-lg:text-[104px] max-sm:text-[74px] max-md:-mb-2 max-md:[-webkit-text-stroke:2px_theme(color.red.500)]"
+      aria-hidden="true"
+    >
+      HIGHLIGHTS
+    </h2>
+
+    <div class="">
+      <!-- Patterned strip with 3 circles -->
+      <div
+        class="relative mx-auto overflow-hidden h-full bg-[url('/images/red-rect-bg.png')] bg-cover w-full max-md:py-8"
+      >
+        <!-- background image behind circles (absolute) -->
+
+        <!-- circles row -->
+        <div
+          class="flex items-center pt-12 pb-36 px-40 justify-center gap-20 max-lg:flex-col"
+        >
+          {
+            highlights.map((highlightItem) => (
+              <div class=" relative flex items-center justify-center text-center">
+                <div
+                  class="flex items-center justify-center text-n-0
+                   bg-red-500/80 w-80 h-80 rounded-full px-6
+                    text-n-50"
+                >
+                  <p class="font-semibold text-2xl leading-relaxed  ">
+                    {highlightItem.title}
+                    {highlightItem.caption && (
+                      <span class="block font-medium text-lg ">
+                        {highlightItem.caption}
+                      </span>
+                    )}
+                  </p>
+                  <div class="absolute -bottom-4 left-1/2 -translate-x-1/2">
+                    <div class="w-16 h-16 rounded-full bg-n-900 flex items-center justify-center">
+                      <img
+                        src="/images/tick.svg"
+                        alt="tick-mark"
+                        class="size-9"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <!-- Blue ribbon (image) with centered text -->
+    <div class="-mt-22 flex justify-center">
+      <div class="relative w-[780px] h-[180px] p-10 max-md:p-50 max-md:w-90">
+        <!-- ribbon image as background -->
+        <div
+          class="absolute inset-0 bg-[url('/images/blue-rec-bg.png')] bg-center bg-no-repeat bg-[length:100%_100%]"
+          aria-hidden="true"
+        >
+          <!-- centered text overlay -->
+          <div
+            class="absolute inset-0 flex items-center justify-center px-10 text-center"
+          >
+            <p class="text-n-50 text-3xl font-semibold leading-snug">
+              Two Referral Discount codes per booking for exclusive Reliance
+              Digital deals &amp; offers
+              <span class="block text-n-50 text-xl pt-1 font-medium"
+                >(redeem online or in-store)</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
