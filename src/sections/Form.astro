@@ -1,0 +1,156 @@
+---
+// COMPONENTS //
+---
+
+<!-- Main/Form Section (desktop-first; bg as CSS) -->
+<section class="w-full flex items-center py-12">
+  <!-- Wrapper with fixed heights + background image -->
+  <div
+    class="relative w-full h-full bg-[url('/images/form-bg.png')] bg-no-repeat bg-top
+         bg-[length:100%_82%]"
+  >
+    <!-- Centered overlay container -->
+    <div
+      class="container mx-auto flex justify-center items-center w-full py-24 max-md:px-7"
+    >
+      <!-- Card shell: neutral surface, rounded, shadow -->
+      <div
+        class="w-11/12 max-w-5xl bg-n-50/95 rounded-2xl shadow-xl p-20 max-md:py-14 max-md:px-8 flex flex-col items-center gap-24 max-md:gap-14"
+      >
+        <!-- Heading -->
+        <h2 class="section-title">Frequenly Asked Questions</h2>
+
+        <!-- Form: row on lg+, stacked below -->
+        <form
+          class="flex flex-col lg:flex-row justify-between items-center w-full gap-12"
+        >
+          <!-- Left column -->
+          <div class="flex flex-col gap-12 w-3/5 max-lg:w-full max-lg:contents">
+            <!-- Full Name -->
+            <div class="max-lg:order-1 w-full">
+              <input
+                type="text"
+                placeholder="Full Name*"
+                class="w-full text-xl text-n-900 bg-transparent border-b border-n-950 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500 py-3 transition-colors"
+                style="::placeholder"
+              />
+            </div>
+
+            <!-- Email (input + verify + help) -->
+            <div class="max-lg:order-3 w-full">
+              <div
+                class="flex items-center w-full border-b border-n-900/80 py-3 sm:py-4"
+              >
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                  class="flex-1 bg-transparent text-xl text-n-900 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500"
+                  aria-describedby="email-help"
+                  required
+                />
+                <button
+                  type="button"
+                  class="ml-4 text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors block max-md:hidden"
+                >
+                  Verify email
+                </button>
+              </div>
+              <p id="email-help" class="mt-1 text-base font-medium text-n-500">
+                We'll send a verification link. Check your inbox or spam/junk.
+              </p>
+
+              <!-- Small Only: Place Verify Button Below Help -->
+              <button
+                type="button"
+                class="mt-2 hidden max-md:block text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors"
+              >
+                Verify email
+              </button>
+            </div>
+
+            <!-- Institution -->
+            <div class="max-lg:order-5 w-full">
+              <input
+                type="text"
+                placeholder="Institution Name*"
+                class="w-full text-xl text-n-900 bg-transparent border-b border-n-900 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500 py-3 transition-colors"
+              />
+            </div>
+
+            <!-- Location/Center (select look) -->
+            <div
+              class="flex items-center w-full border-b border-n-900/80 py-4 max-lg:order-7"
+            >
+              <div class="flex items-center justify-between w-full">
+                <span class="text-xl font-medium text-n-500"
+                  >Location/Center</span
+                >
+                <img
+                  src="/images/down-arrow.svg"
+                  alt="Arrow Down"
+                  class="w-6 h-auto"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="flex flex-col gap-12 w-full lg:w-[28%] max-lg:contents">
+            <!-- DOB -->
+            <div class="max-lg:order-2 w-full">
+              <input
+                type="date"
+                placeholder="Date of Birth*"
+                class="w-full text-xl text-n-900 bg-transparent border-b border-n-950 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500 py-3 transition-colors"
+              />
+            </div>
+
+            <!-- Mobile -->
+            <div class="w-full max-lg:order-4">
+              <input
+                type="tel"
+                placeholder="Mobile Number*"
+                class="w-full text-xl text-n-900 bg-transparent border-b border-n-950 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500 py-3 mb-6 transition-colors"
+              />
+            </div>
+
+            <!-- City -->
+            <div class="max-lg:order-6 w-full">
+              <input
+                type="text"
+                placeholder="City*"
+                class="w-full text-xl text-n-900 bg-transparent border-b border-n-950 placeholder-n-950 placeholder:font-medium focus:outline-none focus:border-sky-500 py-3 transition-colors"
+              />
+            </div>
+
+            <!-- Slot (select look) -->
+            <div
+              class="flex items-center w-full border-b border-n-900/80 py-3 sm:py-4 max-lg:order-8"
+            >
+              <div class="flex items-center justify-between w-full">
+                <span class="text-xl font-medium text-n-500">Select Slot</span>
+                <img
+                  src="/images/down-arrow.svg"
+                  alt="Arrow Down"
+                  class="w-6 h-auto"
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Submit row -->
+        <div class="flex justify-center w-full">
+          <button
+            class="w-2/4 max-md:w-full bg-n-900 hover:bg-n-800 text-n-50 px-10 max-md:px-8 py-7 flex items-center justify-between gap-4 transition-colors"
+          >
+            <span class="text-xl font-bold leading-none">Confirm My Seat</span>
+            <img src="/images/right-arrow.svg" alt="Arrow" class="w-8 h-auto" />
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

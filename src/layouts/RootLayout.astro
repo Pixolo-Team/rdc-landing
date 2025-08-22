@@ -1,0 +1,35 @@
+---
+// STYLES //
+import "../styles/global.css";
+import 'sal.js/dist/sal.css';
+
+// LAYOUTS //
+import Header from "../components/layout/Header.astro";
+import Footer from "../components/layout/Footer.astro";
+---
+
+<html lang="en">
+  <!-- Head -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Page title -->
+    <title>PlAIground Masterclass | Reliance Digital</title>
+  </head>
+  <!-- Body -->
+  <body class="bg-background text-foreground font-sans">
+    <!-- Commion Header -->
+    <Header />
+
+    <!-- Pages content goes here -->
+    <slot />
+
+    <!-- Common Footer -->
+    <Footer />
+    
+    <script type="module" is:inline>
+      import sal from 'https://cdn.skypack.dev/sal.js';
+      sal({ threshold: 0.1, once: true });
+    </script>
+  </body>
+</html>
