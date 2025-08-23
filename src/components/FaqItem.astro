@@ -12,9 +12,6 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
 <!-- Faq Component -->
 <div
   class="faqItem-list flex flex-col justify-start items-center w-full shadow-2xl xl:max-w-2/3"
-  data-sal="fade"
-  data-sal-duration="300"
-  data-sal-easing="ease-out"
 >
   {
     faqItems.map((faqItem, itemIndex) => {
@@ -31,10 +28,6 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
           role="button"
           aria-expanded={faqItem.open ? "true" : "false"}
           aria-controls={panelId}
-          data-sal="slide-up"
-          data-sal-duration="500"
-          data-sal-easing="ease-out-back"
-          data-sal-delay={String(itemIndex * 120)}
         >
           {/* Title row (no button) */}
           <div class="flex flex-row justify-between items-center w-full gap-4">
