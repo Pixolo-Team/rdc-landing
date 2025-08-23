@@ -1,6 +1,6 @@
 ---
 // COMPONENTS //
-import FaqItem from "../components/FaqItem.astro";
+import FaqItems from "../components/FaqItems.astro";
 
 // DATA //
 const sectionContent = {
@@ -28,7 +28,7 @@ const sectionContent = {
 
 <!-- FAQ Section -->
 <section
-  class="w-full px-8 py-10 container mx-auto flex flex-col justify-center items-center gap-12"
+  class="w-full px-8 py-18 container mx-auto flex flex-col items-center gap-12"
 >
   <!-- Section Title Header -->
   <h2
@@ -41,5 +41,5 @@ const sectionContent = {
   </h2>
 
   <!-- FAQ List Component -->
-  <FaqItem items={sectionContent.faqItemList} />
+  <FaqItems items={sectionContent.faqItemList} />
 </section>
