@@ -353,8 +353,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   {/* Full Name Input */}
                   <div className="w-full relative lg:basis-[60%]">
                     <input
+                      id="fullName"
                       type="text"
-                      placeholder="Full Name *"
+                      placeholder=" "
                       aria-label="Full Name"
                       value={formDetails.fullName}
                       onChange={(e) =>
@@ -362,6 +363,21 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       }
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
+
+                    {/* Floating label that looks like a placeholder */}
+                    {formDetails.fullName.length === 0 && (
+                      <label
+                        htmlFor="fullName"
+                        className="
+                        text-xl text-n-900
+                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        pointer-events-none
+                      "
+                      >
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                    )}
+
                     {errors.fullName && (
                       <p className="mt-1 text-base font-medium text-red-500">
                         {errors.fullName}
@@ -372,8 +388,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   {/* DOB Input */}
                   <div className="w-full lg:basis-[40%] relative">
                     <input
+                      id="dob"
                       type={dobInputType}
-                      placeholder="Date of Birth *"
+                      placeholder=" "
                       aria-label="Date of Birth"
                       value={formDetails.dob}
                       onChange={(e) => updateFormField("dob", e.target.value)}
@@ -383,6 +400,21 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       }}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
+
+                    {/* Floating label that looks like a placeholder */}
+                    {formDetails.dob.length === 0 && (
+                      <label
+                        htmlFor="dob"
+                        className="
+                        text-xl text-n-900
+                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        pointer-events-none
+                      "
+                      >
+                        Date of Birth <span className="text-red-500">*</span>
+                      </label>
+                    )}
+
                     {errors.dob && (
                       <p className="mt-1 text-base font-medium text-red-500">
                         {errors.dob}
@@ -396,13 +428,28 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   {/* Email Input */}
                   <div className="w-full lg:basis-[60%] relative">
                     <input
+                      id="email"
                       type="email"
-                      placeholder="Email *"
+                      placeholder=" "
                       aria-label="Email"
                       value={formDetails.email}
                       onChange={(e) => updateFormField("email", e.target.value)}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950 pr-28"
                     />
+
+                    {/* Floating label that looks like a placeholder */}
+                    {formDetails.email.length === 0 && (
+                      <label
+                        htmlFor="email"
+                        className="
+                        text-xl text-n-900
+                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        pointer-events-none
+                      "
+                      >
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                    )}
 
                     {/* Absolute button inside input container */}
                     <button
@@ -424,8 +471,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   {/* Phone Input */}
                   <div className="w-full lg:basis-[40%] relative">
                     <input
+                      id="contactNumber"
                       type="tel"
-                      placeholder="Mobile Number *"
+                      placeholder=" "
                       aria-label="Mobile Number"
                       value={formDetails.contactNumber}
                       onChange={(e) =>
@@ -433,6 +481,21 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       }
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
+
+                    {/* Floating label that looks like a placeholder */}
+                    {formDetails.contactNumber.length === 0 && (
+                      <label
+                        htmlFor="contactNumber"
+                        className="
+                        text-xl text-n-900
+                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        pointer-events-none
+                      "
+                      >
+                        Mobile Number <span className="text-red-500">*</span>
+                      </label>
+                    )}
+
                     {errors.contactNumber && (
                       <p className="mt-1 text-base font-medium text-red-500">
                         {errors.contactNumber}
@@ -446,8 +509,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   {/* Institution Name */}
                   <div className="w-full lg:basis-[60%] relative">
                     <input
+                      id="institution"
                       type="text"
-                      placeholder="Institution Name *"
+                      placeholder=" "
                       aria-label="Institution Name"
                       value={formDetails.institution}
                       onChange={(e) =>
@@ -455,6 +519,21 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       }
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
+
+                    {/* Floating label that looks like a placeholder */}
+                    {formDetails.institution.length === 0 && (
+                      <label
+                        htmlFor="institution"
+                        className="
+                        text-xl text-n-900
+                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        pointer-events-none
+                      "
+                      >
+                        Institution <span className="text-red-500">*</span>
+                      </label>
+                    )}
+
                     {errors.institution && (
                       <p className="mt-1 text-base font-medium text-red-500">
                         {errors.institution}
@@ -466,11 +545,12 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   <div className="w-full lg:basis-[40%]">
                     <StyledSelect
                       id="city"
-                      label="City *"
+                      label="Select City"
                       options={cityOptions}
                       value={selectedCity}
                       onChange={(e) => setSelectedCity(e.target.value)}
                     />
+
                     {errors.city && (
                       <p className="mt-1 text-base font-medium text-red-500">
                         {errors.city}
@@ -484,7 +564,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   <div className="w-full lg:basis-[60%]">
                     <StyledSelect
                       id="location"
-                      label="Location/Center *"
+                      label="Location/Center"
                       options={locationOptions}
                       disabled={!selectedCity}
                       value={selectedLocation}
@@ -500,7 +580,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   <div className="w-full lg:basis-[40%]">
                     <StyledSelect
                       id="slot"
-                      label="Select Slot *"
+                      label="Select Slot"
                       options={slotOptions}
                       disabled={!selectedLocation}
                       value={selectedSlot}
