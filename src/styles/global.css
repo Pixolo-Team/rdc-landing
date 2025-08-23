@@ -83,7 +83,7 @@ body {
 
 @layer components {
   .btn-cta {
-    @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none sm:text-2xl sm:px-16 sm:py-6 transition-all xl:hover:px-20 xl:hover:rotate-2;
+    @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none sm:text-2xl sm:px-16 sm:py-6 transition-all xl:hover:px-20 xl:hover:rotate-2 disabled:opacity-50;
   }
 
   .section-title {
@@ -96,6 +96,18 @@ body {
 
   .para-text {
     @apply text-2xl/8 text-n-950 font-medium text-center sm:text-[28px]/10 lg:text-2xl;
+  }
+
+  .select-common-class {
+    @apply w-full border-0 border-b-2 border-n-300
+      bg-transparent appearance-none
+      focus:outline-none focus:border-sky-500
+      text-n-900 text-base p-2 pr-8
+      disabled:border-n-200 disabled:text-n-400;
+  }
+
+  .select-icon {
+    @apply pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400;
   }
 }
 
