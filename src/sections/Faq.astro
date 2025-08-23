@@ -2,30 +2,44 @@
 // COMPONENTS //
 import FaqItem from "../components/FaqItem.astro";
 
-const faqs = [
-  {
-    id: "data-use",
-    title: "How is my data used?",
-    description: "After booking, you'll get two discount codes…",
-    open: true,
-  },
-  {
-    id: "change-appointment",
-    title: "Can I change my appointment?",
-    description: "Yes, you can reschedule up to 24 hours in advance…",
-  },
-];
+// DATA //
+const sectionContent = {
+  title: "Frequenly Asked Questions",
+  faqItemList: [
+    {
+      title: "How is my data used?",
+      description: "After booking, you'll get two discount codes…",
+    },
+    {
+      title: "Can I change my appointment?",
+      description: "Yes, you can reschedule up to 24 hours in advance…",
+    },
+    {
+      title: "Can I change my appointment?",
+      description: "Yes, you can reschedule up to 24 hours in advance…",
+    },
+    {
+      title: "Can I change my appointment?",
+      description: "Yes, you can reschedule up to 24 hours in advance…",
+    },
+  ],
+};
 ---
 
 <!-- FAQ Section -->
-<section class="w-full px-8 py-10">
-  <div
-    class="flex flex-col gap-12 justify-start items-center w-full max-w-2/3 mx-auto"
+<section
+  class="w-full px-8 py-10 container mx-auto flex flex-col justify-center items-center gap-12"
+>
+  <!-- Section Title Header -->
+  <h2
+    class="section-title xl:w-3/5"
+    data-sal="slide-up"
+    data-sal-delay="200"
+    data-sal-duration="300"
   >
-    <!-- Section Header -->
-     <h2 class="section-title">Frequenly Asked Questions</h2>
+    {sectionContent.title}
+  </h2>
 
-    <!-- FAQ List -->
-    <FaqItem items={faqs} />
-  </div>
+  <!-- FAQ List Component -->
+  <FaqItem items={sectionContent.faqItemList} />
 </section>
