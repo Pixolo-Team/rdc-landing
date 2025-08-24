@@ -1,55 +1,69 @@
 ---
-// COMPONENTS //
-
 /** Data for "How It Works" */
-const steps = [
-  {
-    icon: "/images/resume-logo.svg",
-    alt: "Resume",
-    text: "Register and lock your seat at select Reliance Digital centers",
-  },
-  {
-    icon: "/images/ticket-logo.svg",
-    alt: "Ticket",
-    text: "Receive your ticket + Masterclass Confirmation Number by email",
-  },
-  {
-    icon: "/images/coupon-logo.svg",
-    alt: "Coupon",
-    text: "Receive two Reliance Digital Referral Discount codes by email",
-    subText: "(terms and validity included)",
-  },
-  {
-    icon: "/images/certificate-logo.svg",
-    alt: "Certificate",
-    text: "Attend, build with Microsoft Copilot, and get certified",
-  },
-];
+const sectionContent = {
+  title: "How It Works",
+  boxItemList: [
+    {
+      icon: "/images/resume-logo.svg",
+      alt: "Resume",
+      text: "Register and lock your seat at select Reliance Digital centers",
+    },
+    {
+      icon: "/images/ticket-logo.svg",
+      alt: "Ticket",
+      text: "Receive your ticket + Masterclass Confirmation Number by email",
+    },
+    {
+      icon: "/images/coupon-logo.svg",
+      alt: "Coupon",
+      text: "Receive two Reliance Digital Referral Discount codes by email",
+      subText: "(terms and validity included)",
+    },
+    {
+      icon: "/images/certificate-logo.svg",
+      alt: "Certificate",
+      text: "Attend, build with Microsoft Copilot, and get certified",
+    },
+  ],
+};
 ---
 
-<section class="container mx-auto w-full px-8 py-16 flex items-center">
-  <div class="flex flex-col gap-8 items-center">
-    <!-- Section header -->
-    <h2 class="section-title">How It Works</h2>
+<section class="container mx-auto px-4 py-16 sm:px-10">
+  <div class="flex flex-col justify-center gap-9 items-center xl:gap-6">
+    <!-- Section Title Header -->
+    <h2
+      class="section-title"
+      data-sal="slide-up"
+      data-sal-delay="200"
+      data-sal-duration="300"
+    >
+      {sectionContent.title}
+    </h2>
 
-    <div class="flex max-lg:flex-col gap-4 w-full">
+    <!-- Box Item list -->
+    <div class="flex flex-col gap-4 w-full md:flex-row md:flex-wrap lg:flex-nowrap">
       {
-        steps.map((s) => (
+        sectionContent.boxItemList.map((boxItem) => (
           <div
-            class="flex items-center justify-center w-full md:flex-1 bg-n-50 border-2 border-n-800 
-                   hover:shadow-lg transition-shadow duration-300 p-12 max-md:py-16"
+            class="flex flex-col gap-6 items-center justify-center w-full border-2 border-n-800 px-12 py-16 
+            md:flex-1 md:py-12 md:px-10 md:min-w-[48%] md:max-w-[49%]
+            lg:min-w-[23%] lg:max-w-[25%]
+            transition-shadow duration-300 hover:shadow-lg"
+            data-sal="slide-up"
+            data-sal-duration="400"
+            data-sal-easing="ease-out-back"
           >
-            <div class="flex flex-col items-center justify-center gap-6 w-full max-lg:w-1/2 max-md:w-full">
-              {/* Logo */}
-              <img src={s.icon} alt={s.alt} class="h-14 w-auto" />
-                {/* Main Text */}
-              <p class="text-center text-n-900 text-2xl font-medium leading-snug">
-                {s.text}
+            {/* Icon */}
+            <img src={boxItem.icon} alt={boxItem.alt} class="h-14 w-auto" />
+            <div class="w-full sm:w-2/3 md:w-3/4 lg:w-full">
+              {/* Main Text */}
+              <p class="para-text">
+                {boxItem.text}
               </p>
               {/* Subtext optional */}
-              {s.subText && (
-                <p class="text-center text-n-700 text-xl font-medium leading-snug">
-                  {s.subText}
+              {boxItem.subText && (
+                <p class="text-center text-n-700 text-xl font-medium leading-snug pt-2 md:pt-4">
+                  {boxItem.subText}
                 </p>
               )}
             </div>
