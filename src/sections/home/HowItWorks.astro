@@ -28,11 +28,11 @@ const sectionContent = {
 };
 ---
 
-<section class="container mx-auto w-full px-4 py-16 sm:px-10">
-  <div class="flex flex-col justify-center gap-9 xl:gap-6 items-center">
+<section class="container mx-auto px-4 py-16 sm:px-10">
+  <div class="flex flex-col justify-center gap-9 items-center xl:gap-6">
     <!-- Section Title Header -->
     <h2
-      class="section-title xl:w-3/5"
+      class="section-title"
       data-sal="slide-up"
       data-sal-delay="200"
       data-sal-duration="300"
@@ -41,21 +41,23 @@ const sectionContent = {
     </h2>
 
     <!-- Box Item list -->
-    <div class="flex flex-col xl:flex-row gap-4 w-full">
+    <div class="flex flex-col gap-4 w-full md:flex-row md:flex-wrap lg:flex-nowrap">
       {
         sectionContent.boxItemList.map((boxItem) => (
           <div
-            class="flex flex-col gap-6 items-center justify-center w-full md:flex-1 bg-n-50 border-2 border-n-800 
-                   hover:shadow-lg transition-shadow duration-300 px-12 py-16 md:py-12 md:px-10"
+            class="flex flex-col gap-6 items-center justify-center w-full border-2 border-n-800 px-12 py-16 
+            md:flex-1 md:py-12 md:px-10 md:min-w-[48%] md:max-w-[49%]
+            lg:min-w-[23%] lg:max-w-[25%]
+            transition-shadow duration-300 hover:shadow-lg"
             data-sal="slide-up"
             data-sal-duration="400"
             data-sal-easing="ease-out-back"
           >
-            {/* Logo */}
+            {/* Icon */}
             <img src={boxItem.icon} alt={boxItem.alt} class="h-14 w-auto" />
             <div class="w-full sm:w-2/3 md:w-3/4 lg:w-full">
               {/* Main Text */}
-              <p class="text-center text-n-900 text-2xl font-medium leading-snug">
+              <p class="para-text">
                 {boxItem.text}
               </p>
               {/* Subtext optional */}
