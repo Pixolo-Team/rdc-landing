@@ -1,0 +1,13 @@
+---
+
+import { getAppointmentsCatalogRequest } from "../../services/api/dropdowns.api.service";
+
+// REACT ISLANDS //
+import { ReactForm } from "../react-sections/ReactForm";
+
+// DATA //
+const catalog = await getAppointmentsCatalogRequest();
+const catalogItems = catalog.data;
+---
+
+<ReactForm client:visible catalog={catalogItems} />

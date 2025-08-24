@@ -1,0 +1,125 @@
+---
+// Props
+interface FaqItem {
+  title: string;
+  description: string;
+  open?: boolean;
+}
+
+const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
+---
+
+<!-- Faq Component -->
+<div
+  class="faqItem-list flex flex-col justify-start items-center w-full shadow-2xl xl:max-w-2/3"
+>
+  {
+    faqItems.map((faqItem, itemIndex) => {
+      // Unique id
+      const panelId = `faqItem-body-${itemIndex}`;
+
+      return (
+        <div
+          class="faqItem-box bg-n-50 p-6 md:p-8 w-full flex flex-col lg:pl-16 cursor-pointer
+         before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:h-0 data-[open=true]:before:h-full
+         before:bg-red-500 before:transition-all before:duration-300
+         relative border-b-2 border-n-200 last:border-b-0"
+          data-open={faqItem.open ? "true" : "false"}
+          role="button"
+          aria-expanded={faqItem.open ? "true" : "false"}
+          aria-controls={panelId}
+        >
+          {/* Title row (no button) */}
+          <div class="flex flex-row justify-between items-center w-full gap-4">
+
+            {/* Title */}
+            <p class="text-2xl font-semibold leading-snug text-n-950 w-[95%]">
+              {faqItem.title}
+            </p>
+
+            {/* Arrow */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" viewBox="0 0 24 14" fill="none"
+              class="faqItem-arrow w-6 h-6 transition-transform duration-300 stroke-current text-n-400">
+              <path d="M2 2L12.2 11.6L22.4 2" stroke="currentcolor" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          {/* Body */}
+          <div
+            id={panelId}
+            class={`faqItem-body pt-8 ${faqItem.open ? "" : "hidden"}`}
+          >
+            <p class="text-lg font-medium text-n-950 w-[72%]">
+              {faqItem.description}
+            </p>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
+
+<!-- (is:inline) Tells Astro to output this script into the HTML -->
+<script is:inline>
+  (function () {
+    // Find the List
+    const list = document.querySelector(".faqItem-list");
+    if (!list) return;
+
+    // Get parts inside one card
+    const getParts = (item) => ({
+      body: item.querySelector(".faqItem-body"),
+      arrow: item.querySelector(".faqItem-arrow"),
+    });
+
+    // Open/Close one card
+    function setOpen(item, open) {
+      const { body, arrow } = getParts(item);
+      if (!body) return;
+      body.classList.toggle("hidden", !open);
+      item.setAttribute("aria-expanded", String(open));
+      item.dataset.open = open ? "true" : "false";
+      if (arrow) {
+        arrow.classList.toggle("rotate-180", open);
+        arrow.classList.toggle("text-red-500", open);
+      }
+    }
+
+    // Check is card open
+    function isOpen(item) {
+      const { body } = getParts(item);
+      return body && !body.classList.contains("hidden");
+    }
+
+    // Set starting state for all cards
+    list.querySelectorAll(".faqItem-box").forEach((item) => {
+      const { body } = getParts(item);
+      if (!body) return;
+      const start =
+        item.dataset.open === "true" || !body.classList.contains("hidden");
+      setOpen(item, start);
+    });
+
+    // Ensure only one starts open (optional — keeps accordion strict)
+    const initiallyOpen = [...list.querySelectorAll('.faqItem-box[data-open="true"]')];
+    initiallyOpen.slice(1).forEach((it) => setOpen(it, false));
+
+    // Click anywhere on a card to toggle it (accordion behavior)
+    list.addEventListener("click", (e) => {
+      const item = e.target && e.target.closest(".faqItem-box");
+      if (!item || !list.contains(item)) return;
+
+      const alreadyOpen = isOpen(item);
+      if (alreadyOpen) {
+        // Same item: close it
+        setOpen(item, false);
+      } else {
+        // Different item: close any open ones, then open this
+        list.querySelectorAll('.faqItem-box[data-open="true"]').forEach((it) => {
+          if (it !== item) setOpen(it, false);
+        });
+        setOpen(item, true);
+      }
+    });
+  })();
+</script>
