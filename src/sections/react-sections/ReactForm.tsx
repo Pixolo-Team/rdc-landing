@@ -530,7 +530,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         pointer-events-none
                       "
                       >
-                        Institution <span className="text-red-500">*</span>
+                        Institution Name <span className="text-red-500">*</span>
                       </label>
                     )}
 
