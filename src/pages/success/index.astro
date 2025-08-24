@@ -3,12 +3,18 @@
 import RootLayout from "../../layouts/RootLayout.astro";
 
 // SECTIONS //
-import ConfirmationDetails from "../../sections/ConfirmationDetails.astro";
+import ConfirmationDetails from "../../sections/success/ConfirmationDetails.astro";
+import BookingConfirmed from "../../sections/success/BookingConfirmed.astro";
+import Referral from "../../sections/success/Referral.astro";
 
 ---
 
 <!-- Root Layout  -->
 <RootLayout>
+  <BookingConfirmed />
   <!-- Booking Confirm Secion -->
   <ConfirmationDetails />
+
+  <!-- Referral in Email -->
+   <Referral />
 </RootLayout>
