@@ -3,6 +3,7 @@ import { CONSTANTS } from "../../constants/app.constant";
 
 // TYPES //
 import type { ApiResponseData } from "../../types/app.d";
+import type { SuccessRegistrationResponseData } from "../../types/form";
 
 // CONSTANTS //
 
@@ -39,4 +40,21 @@ export async function registerRequest(payload: {
 
   // Return Data
   return (await res.json()) as ApiResponseData<any>;
+}
+
+/** Fetch registration success details by id (no auth required) */
+export async function getRegistrationSuccessById(
+  registrationId: string,
+): Promise<ApiResponseData<SuccessRegistrationResponseData>> {
+  const res = await fetch(
+    `${CONSTANTS.API_URL}registrations/by-id-success?registration_id=${encodeURIComponent(
+      registrationId,
+    )}`,
+    {
+      method: "GET",
+      cache: "no-store",
+    },
+  );
+
+  return (await res.json()) as ApiResponseData<SuccessRegistrationResponseData>;
 }

@@ -78,6 +78,20 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   });
 
   // ---------- Helpers ---------- //
+  /** Check if all required form fields are filled */
+  const hasAllRequiredFields = useCallback((): boolean => {
+    return !!(
+      formDetails.fullName.trim() &&
+      formDetails.dob &&
+      formDetails.email.trim() &&
+      formDetails.contactNumber.trim() &&
+      formDetails.institution.trim() &&
+      selectedCity &&
+      selectedLocation &&
+      selectedSlot
+    );
+  }, [formDetails, selectedCity, selectedLocation, selectedSlot]);
+
   /** Update the Form Inputs */
   const updateFormField = useCallback(
     (field: keyof FormDetailsData, value: string) =>
@@ -301,6 +315,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
         if (response.status) {
           setError("general", "Registration successful!");
           resetAll();
+          window.location.href = `/success?registration_id=${response.data.registration_id}`;
         } else {
           setError("general", response.message || "Registration failed");
         }
@@ -439,6 +454,11 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       onChange={(e) => updateFormField("email", e.target.value)}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950 pr-28"
                     />
+
+                    <p className="text-xs text-n-500 mt-1">
+                      We’ll send a verification link. Check your inbox or
+                      spam/junk.
+                    </p>
 
                     {/* Floating label that looks like a placeholder */}
                     {formDetails.email.length === 0 && (
@@ -603,9 +623,13 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                 <div className="flex justify-center w-full">
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !hasAllRequiredFields()}
                     onClick={handleSubmit}
-                    className="btn-cta px-10 w-full flex items-center justify-between lg:w-3/5 xl:w-2/5"
+                    className={`btn-cta px-10 w-full flex items-center justify-between lg:w-3/5 xl:w-2/5 ${
+                      !hasAllRequiredFields()
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
+                    }`}
                   >
                     <span className="text-xl font-bold leading-none">
                       {isSubmitting ? "Submitting..." : "Confirm My Seat"}

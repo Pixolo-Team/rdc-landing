@@ -1,7 +1,87 @@
 ---
 // COMPONENTS //
 import TicketPopup from "../../components/TicketPopup.astro";
+import type { SuccessRegistrationResponseData } from "../../types/form";
 
+interface Props {
+  registrationSuccessDetails: SuccessRegistrationResponseData;
+}
+
+const { registrationSuccessDetails } = Astro.props as Props;
+
+// Map month names to numbers
+const monthMap: Record<string, number> = {
+  Jan: 0,
+  Feb: 1,
+  Mar: 2,
+  Apr: 3,
+  May: 4,
+  Jun: 5,
+  Jul: 6,
+  Aug: 7,
+  Sep: 8,
+  Sept: 8,
+  October: 9,
+  Oct: 9,
+  Nov: 10,
+  Dec: 11,
+};
+
+// Extract "18 Sept" → [day, month]
+const [dayStr, monthStr] = registrationSuccessDetails.appointment_time
+  .split(",")[0]
+  .trim()
+  .split(" "); // ["18", "Sept"]
+
+const day = parseInt(dayStr, 10);
+const month = monthMap[monthStr]; // 8 for Sept
+const year = new Date().getFullYear(); // 2025
+
+function parseTime(timeStr: string) {
+  // "05:30 PM"
+  const [time, modifier] = timeStr.split(" ");
+  let [hours, minutes] = time.split(":").map(Number);
+
+  if (modifier === "PM" && hours < 12) hours += 12;
+  if (modifier === "AM" && hours === 12) hours = 0;
+
+  return { hours, minutes };
+}
+
+const { hours: startH, minutes: startM } = parseTime(
+  registrationSuccessDetails.start_time
+);
+const { hours: endH, minutes: endM } = parseTime(
+  registrationSuccessDetails.end_time
+);
+
+const start = new Date(year, month, day, startH, startM);
+const end = new Date(year, month, day, endH, endM);
+
+function toGCalUTC(d: Date) {
+  const pad = (n: number) => String(n).padStart(2, "0");
+  return (
+    d.getUTCFullYear() +
+    pad(d.getUTCMonth() + 1) +
+    pad(d.getUTCDate()) +
+    "T" +
+    pad(d.getUTCHours()) +
+    pad(d.getUTCMinutes()) +
+    pad(d.getUTCSeconds()) +
+    "Z"
+  );
+}
+
+const params = new URLSearchParams({
+  action: "TEMPLATE",
+  text: "AI Playground Masterclass by Microsoft and Reliance",
+  dates: `${toGCalUTC(start)}/${toGCalUTC(end)}`,
+  details: "Confirmation: " + registrationSuccessDetails.confirmation_number,
+  location: `${registrationSuccessDetails.location}, ${registrationSuccessDetails.city}`,
+  ctz: "Asia/Kolkata",
+});
+
+const gcalLink = `https://calendar.google.com/calendar/render?${params.toString()}`;
 ---
 
 <section
@@ -45,7 +125,9 @@ import TicketPopup from "../../components/TicketPopup.astro";
                 <p>Name</p>
                 <span>:</span>
               </div>
-              <p class="font-medium pl-2 lg:pl-4">Swagat Salunke</p>
+              <p class="font-medium pl-2 lg:pl-4">
+                {registrationSuccessDetails.full_name}
+              </p>
             </div>
 
             <!-- Session -->
@@ -55,7 +137,7 @@ import TicketPopup from "../../components/TicketPopup.astro";
                 <span>:</span>
               </div>
               <p class="font-medium pl-2 lg:pl-4">
-                15 Sep, 03:00 PM - 04:00 PM
+                {registrationSuccessDetails.appointment_time}
               </p>
             </div>
 
@@ -66,8 +148,7 @@ import TicketPopup from "../../components/TicketPopup.astro";
                 <span>:</span>
               </div>
               <p class="font-medium pl-2 lg:pl-4 md:leading-normal">
-                Reliance Digital, 137, Gr to 2nd Flr, Sonal Business Park,
-                Gharda Circle Dombivili East Thane - 421203
+                {registrationSuccessDetails.location}
               </p>
             </div>
           </div>
@@ -81,7 +162,7 @@ import TicketPopup from "../../components/TicketPopup.astro";
             Masterclass Confirmation Number
           </p>
           <p class="text-4xl md:text-5xl font-semibold tracking-wider">
-            1523 - 125689
+            {registrationSuccessDetails.confirmation_number}
           </p>
         </div>
       </div>
@@ -100,34 +181,44 @@ import TicketPopup from "../../components/TicketPopup.astro";
         View My Ticket
       </button>
       <!-- Add to Calendar Button -->
-      <button type="submit" class="btn-cta w-[70%] lg:w-[50%]">
-        Add to Calendar
-      </button>
+      <a
+        id="gcalBtn"
+        target="_blank"
+        rel="noopener"
+        class="btn-cta w-[70%] lg:w-[50%] text-center"
+        data-appointment={registrationSuccessDetails.appointment_time}
+        data-location={registrationSuccessDetails.location}
+        data-city={registrationSuccessDetails.city}
+        data-confirm={registrationSuccessDetails.confirmation_number}
+        href={gcalLink}
+      >
+        Add to Calendar >
+      </a>
     </div>
+
+    <!-- Ticket Popup -->
+    <div id="ticketPopup" class="hidden">
+      <TicketPopup registrationSuccessDetails={registrationSuccessDetails} />
+    </div>
+
+    <script is:inline>
+      (function () {
+        const openBtn = document.getElementById("viewTicket");
+        const popup = document.getElementById("ticketPopup");
+        if (!openBtn || !popup) return;
+
+        // Ensure hidden at start
+        popup.classList.add("hidden");
+        popup.classList.remove("block");
+
+        // Open on click
+        openBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          popup.classList.remove("hidden");
+          popup.classList.add("block"); // show
+          document.documentElement.classList.add("overflow-y-hidden"); // optional: lock scroll
+        });
+      })();
+    </script>
   </div>
-
-  <!-- Ticket Popup -->
-  <div id="ticketPopup" class="hidden">
-    <TicketPopup />
-  </div>
-
-  <script is:inline>
-    (function () {
-      const openBtn = document.getElementById("viewTicket");
-      const popup = document.getElementById("ticketPopup");
-      if (!openBtn || !popup) return;
-
-      // Ensure hidden at start
-      popup.classList.add("hidden");
-      popup.classList.remove("block");
-
-      // Open on click
-      openBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        popup.classList.remove("hidden");
-        popup.classList.add("block"); // show
-        document.documentElement.classList.add("overflow-y-hidden"); // optional: lock scroll
-      });
-    })();
-  </script>
 </section>

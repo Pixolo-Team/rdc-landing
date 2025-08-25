@@ -1,10 +1,22 @@
+---
+// TYPES //
+import type { SuccessRegistrationResponseData } from "../types/form";
+
+// INTERFACES //
+interface Props {
+  registrationSuccessDetails: SuccessRegistrationResponseData;
+}
+
+const { registrationSuccessDetails } = Astro.props as Props;
+---
+
 <!-- Backdrop overlay -->
 <div
   id="ticketBackdrop"
   class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm"
 >
   <div
-    class="relative w-[570px] max-w-md rounded-2xl bg-white shadow-2xl py-7 lg:py-6"
+    class="relative w-[570px] max-w-md rounded-2xl bg-n-50 shadow-2xl py-7 lg:py-6"
   >
     <!-- Ticket Popup Header -->
     <div
@@ -37,9 +49,13 @@
         class="bg-[url('/images/form-bg.png')] bg-center text-n-50 py-12 lg:py-8 px-8 text-center flex flex-col gap-5 lg:gap-4"
       >
         <!-- Name -->
-        <p class="text-3xl font-semibold">Swagat Salunke</p>
+        <p class="text-3xl font-semibold">
+          {registrationSuccessDetails.full_name}
+        </p>
         <!-- Slot time -->
-        <p class="text-xl font-medium">15 Sep, 03:00 PM - 04:00 PM</p>
+        <p class="text-xl font-medium">
+          {registrationSuccessDetails.appointment_time}
+        </p>
         <div>
           <!-- Venue label -->
           <p
@@ -49,15 +65,16 @@
           </p>
           <!-- Venue address -->
           <p class="text-xl font-medium">
-            Reliance Digital, 137, Gr to 2nd Flr, Sonal Business Park, Gharda
-            Circle Dombivili East Thane - 421203
+            {registrationSuccessDetails.location}
           </p>
         </div>
       </div>
     </div>
     <!-- Ticket Confirmation Number -->
     <div>
-      <p class="font-medium text-4xl text-center">1523 - 125689</p>
+      <p class="font-medium text-4xl text-center">
+        {registrationSuccessDetails.confirmation_number}
+      </p>
     </div>
   </div>
 </div>

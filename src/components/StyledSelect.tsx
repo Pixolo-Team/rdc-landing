@@ -133,7 +133,7 @@ const SyledSelect: React.FC<Props> = ({
         >
           <span
             data-slot="current-label"
-            className={`truncate text-xl text-n-900 ${selected ? "text-n-900" : "text-n-500"}`}
+            className={`truncate text-xl text-n-900 ${selected ? "text-n-900" : "text-n-500"} lg:max-w-[300px] xl:max-w-[450px] 2xl:max-w-[600px]`}
           >
             {selected ? selected.label : `${label} `}
             {!selected && <span className="text-red-500">*</span>}

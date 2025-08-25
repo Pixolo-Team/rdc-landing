@@ -1,4 +1,10 @@
 ---
+// TYPES //
+import type { SuccessRegistrationResponseData } from "../../types/form";
+
+// API SERVICES //
+import { getRegistrationSuccessById } from "../../services/api/register.api.service";
+
 // OTHERS //
 import RootLayout from "../../layouts/RootLayout.astro";
 
@@ -7,14 +13,41 @@ import ConfirmationDetails from "../../sections/success/ConfirmationDetails.astr
 import BookingConfirmed from "../../sections/success/BookingConfirmed.astro";
 import Referral from "../../sections/success/Referral.astro";
 
+export const prerender = false; // 🚀 SSR only
+
+let registrationSuccessDetails: SuccessRegistrationResponseData | null = null;
+const registrationId = Astro.url.searchParams.get("registration_id");
+
+if (registrationId) {
+  try {
+    const res = await getRegistrationSuccessById(registrationId);
+
+    if (res?.status && res?.data) {
+      registrationSuccessDetails = res.data;
+      console.log(registrationSuccessDetails);
+    }
+  } catch (e) {
+    registrationSuccessDetails = null;
+  }
+}
 ---
 
-<!-- Root Layout  -->
 <RootLayout>
   <BookingConfirmed />
-  <!-- Booking Confirm Secion -->
-  <ConfirmationDetails />
 
-  <!-- Referral in Email -->
-   <Referral />
+  {
+    registrationSuccessDetails ? (
+      <ConfirmationDetails
+        registrationSuccessDetails={registrationSuccessDetails}
+      />
+    ) : (
+      <section class="container mx-auto px-4 py-10">
+        <p class="para-text">
+          We could not find your booking details. Please check your link.
+        </p>
+      </section>
+    )
+  }
+
+  <Referral />
 </RootLayout>
