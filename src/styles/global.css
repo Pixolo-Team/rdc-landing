@@ -84,7 +84,7 @@ body {
 
 @layer components {
   .btn-cta {
-    @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none sm:text-2xl sm:px-16 sm:py-6 transition-all xl:hover:px-20 xl:hover:rotate-2 disabled:opacity-50;
+    @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none transition-all hover:px-20 hover:rotate-2 sm:text-2xl sm:px-16 sm:py-6 disabled:opacity-50;
   }
 
   .section-title {

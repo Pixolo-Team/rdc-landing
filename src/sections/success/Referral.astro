@@ -3,13 +3,14 @@ const sectionContent = {
     title: "Your Reliance Digital Referral Discount codes",
     icon: "",
     sub_title: "You'll also receive two single-use discount codes by email.",
-    content: "Redeem them online or in-store for exclusive offers."
+    content: "Redeem them online or in-store for exclusive offers.",
+    terms_url: "#"
 };
 ---
 <section>
-    <div class="container mx-auto flex flex-col items-center justify-center px-8 pt-12 gap-4">
+    <div class="container mx-auto flex flex-col items-center justify-center px-8 py-20 gap-4">
         <!-- Coupon/Ticket icon -->
-        <img src="/images/coupon-logo.svg" alt="ticket" class="w-20 md:w-28 rotate-45" />
+        <img src="/images/coupon-logo.svg" alt="ticket" class="w-18 md:w-26 rotate-45" />
         <!-- Section Title Header -->
         <h2
             class="section-title"
@@ -20,16 +21,15 @@ const sectionContent = {
             {sectionContent.title}
         </h2>
         <!-- Sub Title -->
-        <p class="sub-title leading-snug md:w-4/5">
+        <p class="sub-title text-2xl leading-snug">
             {sectionContent.sub_title}
         </p>
 
         <!-- Second Subtitle -->
-        <p class="para-text leading-snug md:w-4/5">
+        <p class="para-text text-lg leading-snug">
             {sectionContent.content}
         <br />
-        <a class="text-cyan-500 underline" href="#"> Terms & conditions </a>
-            apply.
+        <a class="text-cyan-500 underline" href={sectionContent.terms_url}>Terms & conditions</a> apply.
         </p>
     </div>
 </section>
