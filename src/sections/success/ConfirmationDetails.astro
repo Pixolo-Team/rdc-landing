@@ -1,4 +1,6 @@
 ---
+// COMPONENTS //
+import TicketPopup from "../../components/TicketPopup.astro";
 
 ---
 
@@ -23,7 +25,9 @@
       <div
         class="relative bg-red-500 flex flex-col gap-10 py-18 rounded-br-2xl rounded-bl-2xl md:py-22 lg:rounded-bl-[0px] lg:rounded-tr-2xl lg:w-1/2 lg:justify-between"
       >
-        <div class="flex flex-col w-full gap-10 px-8 md:gap-4 xl:gap-6 md:px-12">
+        <div
+          class="flex flex-col w-full gap-10 px-8 md:gap-4 xl:gap-6 md:px-12"
+        >
           <!-- Title -->
           <p
             class="sub-title text-n-50 text-center md:text-left md:pb-10 lg:pt-10 md:text-4xl xl:text-5xl"
@@ -92,19 +96,38 @@
       data-sal-easing="ease-out-back"
     >
       <!-- View My Ticket Button -->
-      <button
-        type="submit"
-        class="btn-cta w-[70%] lg:w-[50%]"
-      >
+      <button id="viewTicket" type="submit" class="btn-cta w-[70%] lg:w-[50%]">
         View My Ticket
       </button>
       <!-- Add to Calendar Button -->
-      <button
-        type="submit"
-        class="btn-cta w-[70%] lg:w-[50%]"
-      >
+      <button type="submit" class="btn-cta w-[70%] lg:w-[50%]">
         Add to Calendar
       </button>
     </div>
   </div>
+
+  <!-- Ticket Popup -->
+  <div id="ticketPopup" class="hidden">
+    <TicketPopup />
+  </div>
+
+  <script is:inline>
+    (function () {
+      const openBtn = document.getElementById("viewTicket");
+      const popup = document.getElementById("ticketPopup");
+      if (!openBtn || !popup) return;
+
+      // Ensure hidden at start
+      popup.classList.add("hidden");
+      popup.classList.remove("block");
+
+      // Open on click
+      openBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        popup.classList.remove("hidden");
+        popup.classList.add("block"); // show
+        document.documentElement.classList.add("overflow-y-hidden"); // optional: lock scroll
+      });
+    })();
+  </script>
 </section>
