@@ -1,0 +1,26 @@
+---
+const pageContent = {
+  title: "Booking confirmed.",
+  subTitle:
+    "Check your email for your ticket and full details. If you don’t see it, check spam/junk.",
+};
+---
+
+<section
+  class="container mx-auto flex flex-col gap-2 pt-40 py-12 px-4 items-center"
+>
+    <!-- Section Title Header -->
+    <h2
+      class="section-title"
+      data-sal="slide-up"
+      data-sal-delay="200"
+      data-sal-duration="300"
+    >
+      {pageContent.title}
+    </h2>
+    <p class="para-text leading-snug text-center lg:w-2/4"
+        data-sal="slide-up"
+        data-sal-delay="200"
+        data-sal-duration="300"
+      >{pageContent.subTitle}</p>
+</section>
