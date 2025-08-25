@@ -1,24 +1,27 @@
 ---
 // COMPONENTS //
 
-
 // DATA //
-const pageContent = {
-  "title": "Learn how Copilot helps you study better and work smarter. ",
-  "sub_title": "Learn how Copilot helps you study and work smarter.",
-  "description": "A beginner-friendly intro to using Microsoft Copilot to speed up research, drafting, and presentation prep—no coding required."
-}
+const sectionContent = {
+  title: "Learn how Copilot helps you study better and work smarter.",
+  sub_title: "Learn how Copilot helps you study and work smarter.",
+  description:
+    "A beginner-friendly intro to using Microsoft Copilot to speed up research, drafting, and presentation prep—no coding required. ",
+};
 ---
 
 <!-- Copilot Section -->
 <section class="container mx-auto px-4 py-16 sm:px-10">
   <div class="flex flex-col items-center gap-9 xl:gap-6">
-
     <!-- Section Title Header -->
-    <h2 class="section-title xl:w-3/5" 
-    data-sal="slide-up"
-    data-sal-delay="200"
-    data-sal-duration="300">{pageContent.title}</h2>
+    <h2
+      class="section-title xl:w-3/5"
+      data-sal="slide-up"
+      data-sal-delay="200"
+      data-sal-duration="300"
+    >
+      {sectionContent.title}
+    </h2>
 
     <!-- Sub Title Wrap -->
     <div
@@ -29,13 +32,12 @@ const pageContent = {
     >
       <!-- Sub Heading -->
       <!-- <p class="sub-title">
-        {pageContent.sub_title}
+        {sectionContent.sub_title}
       </p> -->
       <!-- Description -->
       <p class="para-text w-4/5 xl:w-3/5">
-        {pageContent.description}
+        {sectionContent.description}
       </p>
     </div>
-
   </div>
 </section>

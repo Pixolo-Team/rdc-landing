@@ -1,27 +1,27 @@
 ---
 // DATA //
 const sectionContent = {
-  "contact_number": "+91-xxxxxxxxxx",
-  "email": "support@yourdomain.com",
-  "year": new Date().getFullYear(),
-  "facebook_url":"#",
-  "x_url": "#",
-  "insta_url": "#"
-}
+  contact_number: "+91-xxxxxxxxxx",
+  email: "support@yourdomain.com",
+  year: new Date().getFullYear(),
+  facebook_url: "https://m.facebook.com/reliancedigital/",
+  x_url: "https://x.com/RelianceDigital",
+  insta_url:
+    "https://www.instagram.com/reliance_digital?igsh=MTdncmp6MTJiNmJzYw==",
+};
 ---
 
-<footer class="bg-n-50 ">
+<footer class="bg-n-50 pt-12 xl:pt-24">
   <div class="container mx-auto py-12 lg:py-2">
     <div class="flex flex-col gap-16 items-center md:gap-13 lg:gap-10">
-      
-      <div class="flex flex-col gap-16 items-center md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-start">
-
+      <div
+        class="flex flex-col gap-16 items-center md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-start"
+      >
         <!-- Support -->
         <div class="flex flex-col gap-5 lg:items-start">
           <h3 class="sub-title">For Support</h3>
 
-          <div class=" flex flex-col gap-2 items-center lg:items-start">
-
+          <div class="flex flex-col gap-2 items-center lg:items-start">
             <!-- Call -->
             <p class="text-center">
               <span class="para-text">Call:</span>
@@ -42,47 +42,38 @@ const sectionContent = {
                 {sectionContent.email}
               </a>
             </p>
-
           </div>
         </div>
 
         <!-- Partners -->
-        <div
-            class="flex flex-col items-center gap-12"
-          >
-          
+        <div class="flex flex-col items-center gap-12">
           <!-- Certification Partner -->
-            <div class="flex flex-col items-center gap-5 lg:items-start">
-              <p class="para-text">
-                Certification Partner
-              </p>
-              <img
-                src="/images/ai-school-logo.png"
-                alt="THE AI SCHOOL"
-                class="w-[250px]"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
+          <div class="flex flex-col items-center gap-5 lg:items-start">
+            <p class="para-text">Certification Partner</p>
+            <img
+              src="/images/ai-school-logo.png"
+              alt="THE AI SCHOOL"
+              class="w-[250px]"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
         </div>
-
       </div>
 
       <!-- Footer Bottom -->
       <div class="flex flex-col w-full gap-2 items-center lg:gap-0 lg:px-8">
-
         <!-- A divider -->
         <hr class="w-4/5 text-n-300 lg:w-full" />
 
-        <div class="flex flex-col gap-2 items-center pt-2 lg:w-full lg:pt-0 lg:justify-between lg:flex-row">
-          
+        <div
+          class="flex flex-col gap-2 items-center pt-2 lg:w-full lg:pt-0 lg:justify-between lg:flex-row"
+        >
           <!-- Copyright Text -->
           <p class="text-base text-n-700">
             Copyright © {sectionContent.year}. All Rights Reserved.
           </p>
 
-          
           <div class="flex flex-col gap-2 items-center lg:flex-row-reverse">
             <!-- Socials: square buttons using n tokens -->
             <div class="flex gap-7 py-6 lg:gap-2">
@@ -92,16 +83,12 @@ const sectionContent = {
                 aria-label="Facebook"
                 class="w-14 lg:w-6"
               >
-                <img src="/public/icons/facebook.svg" class="w-full" />
+                <img src="/icons/facebook.svg" class="w-full" />
               </a>
 
               <!-- X -->
-              <a
-                href={sectionContent.x_url}
-                aria-label="X"
-                class="w-14 lg:w-6"
-              >
-                <img src="/public/icons/x.svg" class="w-full" />
+              <a href={sectionContent.x_url} aria-label="X" class="w-14 lg:w-6">
+                <img src="/icons/x.svg" class="w-full" />
               </a>
 
               <!-- Insta -->
@@ -110,7 +97,7 @@ const sectionContent = {
                 aria-label="Insta"
                 class="w-14 lg:w-6"
               >
-                <img src="/public/icons/insta.svg" class="w-full" />
+                <img src="/icons/insta.svg" class="w-full" />
               </a>
             </div>
 
@@ -118,13 +105,12 @@ const sectionContent = {
             <nav aria-label="Footer links" class="text-sm text-n-950">
               <a href="/privacy" class="hover:underline">Privacy Policy</a>
               <span class="mx-px text-n-400">|</span>
-              <a href="/terms" class="hover:underline">Terms &amp; Conditions</a>
+              <a href="/terms" class="hover:underline">Terms &amp; Conditions</a
+              >
             </nav>
           </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </footer>
