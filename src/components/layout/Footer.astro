@@ -1,8 +1,7 @@
 ---
-// DATA //
 const sectionContent = {
-  contact_number: "+91-xxxxxxxxxx",
-  email: "support@yourdomain.com",
+  contact_number: "+91-7774047272",
+  email: "support@reliancedigitalcommunity.com",
   year: new Date().getFullYear(),
   facebook_url: "https://m.facebook.com/reliancedigital/",
   x_url: "https://x.com/RelianceDigital",
@@ -76,10 +75,16 @@ const sectionContent = {
 
           <div class="flex flex-col gap-2 items-center lg:flex-row-reverse">
             <!-- Socials: square buttons using n tokens -->
-            <div class="flex gap-7 py-6 lg:gap-2">
+            <div
+              class="flex gap-7 py-6 lg:gap-2"
+              data-sal="slide-up"
+              data-sal-duration="500"
+              data-sal-easing="ease-out-back"
+            >
               <!-- Facebook -->
               <a
                 href={sectionContent.facebook_url}
+                target="_blank"
                 aria-label="Facebook"
                 class="w-14 lg:w-6"
               >
@@ -87,13 +92,19 @@ const sectionContent = {
               </a>
 
               <!-- X -->
-              <a href={sectionContent.x_url} aria-label="X" class="w-14 lg:w-6">
+              <a
+                href={sectionContent.x_url}
+                target="_blank"
+                aria-label="X"
+                class="w-14 lg:w-6"
+              >
                 <img src="/icons/x.svg" class="w-full" />
               </a>
 
               <!-- Insta -->
               <a
                 href={sectionContent.insta_url}
+                target="_blank"
                 aria-label="Insta"
                 class="w-14 lg:w-6"
               >
@@ -103,9 +114,12 @@ const sectionContent = {
 
             <!-- Privacy & Terms -->
             <nav aria-label="Footer links" class="text-sm text-n-950">
-              <a href="/privacy" class="hover:underline">Privacy Policy</a>
+              <a href="/privacy" target="_blank" class="hover:underline"
+                >Privacy Policy</a
+              >
               <span class="mx-px text-n-400">|</span>
-              <a href="/terms" class="hover:underline">Terms &amp; Conditions</a
+              <a href="/terms" target="_blank" class="hover:underline"
+                >Terms &amp; Conditions</a
               >
             </nav>
           </div>
