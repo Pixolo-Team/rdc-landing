@@ -124,6 +124,30 @@ body {
   inherits: false;
 }
 
+.dash-loop .dash-line {
+  /* tuneables */
+  --dash: 8px; /* dash length */
+  --gap: 8px; /* gap length */
+  --speed: 1.2s; /* cycle duration */
+
+  animation: dash-move var(--speed) linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+@keyframes dash-move {
+  /* shift by one full dash+gap so the pattern loops seamlessly */
+  to {
+    stroke-dashoffset: calc(-1 * (var(--dash) + var(--gap)));
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .dash-loop {
+    animation: none;
+  }
+}
+
 /* Upright rocket: gentle sway + occasional vibration burst (rotate-only) */
 .rocket-flight {
   /* tweakables */
