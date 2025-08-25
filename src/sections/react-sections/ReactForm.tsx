@@ -394,7 +394,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       aria-label="Date of Birth"
                       value={formDetails.dob}
                       onChange={(e) => updateFormField("dob", e.target.value)}
-                      onFocus={() => setDobInputType("date")}
+                      onFocus={() => {
+                        setDobInputType("date");
+                      }}
                       onBlur={(e) => {
                         if (!e.currentTarget.value) setDobInputType("text");
                       }}
@@ -402,18 +404,19 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     />
 
                     {/* Floating label that looks like a placeholder */}
-                    {formDetails.dob.length === 0 && (
-                      <label
-                        htmlFor="dob"
-                        className="
+                    {formDetails.dob.length === 0 &&
+                      dobInputType === "text" && (
+                        <label
+                          htmlFor="dob"
+                          className="
                         text-xl text-n-900
                         absolute left-0 top-1/2 -translate-y-1/2 text-n-950
                         pointer-events-none
                       "
-                      >
-                        Date of Birth <span className="text-red-500">*</span>
-                      </label>
-                    )}
+                        >
+                          Date of Birth <span className="text-red-500">*</span>
+                        </label>
+                      )}
 
                     {errors.dob && (
                       <p className="mt-1 text-base font-medium text-red-500">
