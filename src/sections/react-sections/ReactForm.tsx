@@ -332,7 +332,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   }, []);
 
   return (
-    <section id="registerForm" className="w-full min-h-full">
+    <section id="registerForm" className="w-full min-h-full pt-16">
       {/* Wrapper with fixed heights + background image */}
       <div className="w-full bg-[url('/images/form-bg.png')] bg-no-repeat bg-top bg-[length:100%_80%]">
         {/* Centered overlay container */}
