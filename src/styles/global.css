@@ -127,7 +127,7 @@ body {
 .dash-loop .dash-line {
   /* tuneables */
   --dash: 8px; /* dash length */
-  --gap: 8px; /* gap length */
+  --gap: 17px; /* gap length */
   --speed: 1.2s; /* cycle duration */
 
   animation: dash-move var(--speed) linear infinite;
