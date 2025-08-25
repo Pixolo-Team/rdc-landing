@@ -11,15 +11,19 @@ import Head from "../components/layout/Head.astro";
 const {
   title = "AI Playground Masterclass by Microsoft & Reliance",
   description = "Join the AI Playground Masterclass by Microsoft & Reliance Digital. Beginner-friendly AI workshop with a certificate. Learn, prompt & create.",
-  ogImage = "/images/reliance-digital-logo.png",
+  ogImage = "/images/og-image.png",
   ogUrl = "https://www.reliancedigital.in/",
 } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <!-- Head -->
   <head>
+    
     <meta charset="UTF-8" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <Head
       title={title}
       description={description}
