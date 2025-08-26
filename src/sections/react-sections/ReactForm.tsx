@@ -8,16 +8,21 @@ import type {
   AppointmentSlotData,
   CatalogResponseData,
 } from "../../types/dropdown";
+import type { FormDetailsData } from "../../types/form";
 
 // COMPONENTS //
 import StyledSelect from "../../components/StyledSelect";
+import { OtpPopup } from "../../components/react-components/OtpPopup";
 
 // API SERVICES //
 import { otpRequest } from "../../services/api/auth.api.service";
 import { registerRequest } from "../../services/api/register.api.service";
-import type { FormDetailsData } from "../../types/form";
+
+// CONSTANTS //
 import { INITIAL_FORM } from "../../constants/app.constant";
-import { OtpPopup } from "../../components/react-components/OtpPopup";
+
+// UTILS //
+import { isValidEmail } from "../../utils/validation.util";
 
 // Props for this Component
 type FormProps = {
@@ -40,6 +45,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [otp, setOtp] = useState<string>("");
   const [otpSent, setOtpSent] = useState<boolean>(false);
+  const [emailVerified, setEmailVerified] = useState<boolean>(false);
 
   // Busy states
   const [isLoading, setIsLoading] = useState<boolean>(false); // for OTP send/verify
@@ -137,6 +143,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
     });
     localStorage.removeItem("authToken");
     setDobInputType("text");
+    setEmailVerified(false);
   }, []);
 
   /** Validate the Form Inputs */
@@ -165,12 +172,17 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       setError("dob", "Please select your date of birth.");
       hasErrors = true;
     }
+    // Check if min age is 13
     if (!formDetails.contactNumber.trim()) {
       setError("contactNumber", "Please enter your mobile number.");
       hasErrors = true;
     }
+    // Email
     if (!formDetails.email.trim()) {
       setError("email", "Please enter your email.");
+      hasErrors = true;
+    } else if (!isValidEmail(formDetails.email)) {
+      setError("email", "Please enter a valid email address.");
       hasErrors = true;
     }
     if (!formDetails.institution.trim()) {
@@ -255,6 +267,10 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       setError("email", "Please enter an email address");
       return;
     }
+    if (!isValidEmail(email)) {
+      setError("email", "Please enter a valid email address.");
+      return;
+    }
 
     clearError("email");
     try {
@@ -264,6 +280,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       if (response.status) {
         setOtpSent(true);
         setShowPopup(true);
+        setEmailVerified(false); // reset verified state when sending a new OTP
       } else {
         setError("email", response.message || "Failed to send OTP");
       }
@@ -385,7 +402,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="fullName"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -409,7 +426,15 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       aria-label="Date of Birth"
                       value={formDetails.dob}
                       onChange={(e) => updateFormField("dob", e.target.value)}
-                      onFocus={() => {
+                      max={
+                        new Date(
+                          new Date().setFullYear(new Date().getFullYear() - 13),
+                        )
+                          .toISOString()
+                          .split("T")[0]
+                      }
+                      onFocus={(e) => {
+                        // Switch to date
                         setDobInputType("date");
                       }}
                       onBlur={(e) => {
@@ -425,7 +450,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           htmlFor="dob"
                           className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                         >
@@ -453,12 +478,31 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       value={formDetails.email}
                       onChange={(e) => updateFormField("email", e.target.value)}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950 pr-28"
+                      disabled={emailVerified}
                     />
 
-                    <p className="text-xs text-n-500 mt-1">
-                      We’ll send a verification link. Check your inbox or
-                      spam/junk.
-                    </p>
+                    {/* Absolute button inside input container */}
+                    {!emailVerified ? (
+                      <button
+                        type="button"
+                        onClick={handleRequestOtp}
+                        disabled={isLoading}
+                        className="absolute right-0 top-3 text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors disabled:opacity-50 cursor-pointer"
+                      >
+                        {isLoading ? "Sending..." : "Verify email"}
+                      </button>
+                    ) : (
+                      <span className="absolute right-2 top-3 text-base font-semibold text-green-600">
+                        Verified
+                      </span>
+                    )}
+
+                    {!errors.email && !emailVerified && (
+                      <p className="text-xs text-n-500 mt-1">
+                        We’ll send a verification link. Check your inbox or
+                        spam/junk.
+                      </p>
+                    )}
 
                     {/* Floating label that looks like a placeholder */}
                     {formDetails.email.length === 0 && (
@@ -466,23 +510,13 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="email"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
                         Email <span className="text-red-500">*</span>
                       </label>
                     )}
-
-                    {/* Absolute button inside input container */}
-                    <button
-                      type="button"
-                      onClick={handleRequestOtp}
-                      disabled={isLoading}
-                      className="absolute right-0 top-3 text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors disabled:opacity-50 cursor-pointer"
-                    >
-                      {isLoading ? "Sending..." : "Verify email"}
-                    </button>
 
                     {errors.email && (
                       <p className="mt-1 text-base font-medium text-red-500">
@@ -511,7 +545,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="contactNumber"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -549,7 +583,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="institution"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -625,7 +659,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     type="submit"
                     disabled={isSubmitting || !hasAllRequiredFields()}
                     onClick={handleSubmit}
-                    className={`btn-cta px-10 w-full flex items-center justify-between lg:w-3/5 xl:w-2/5 ${
+                    className={`btn-cta px-10 w-full flex items-center justify-between overflow-hidden lg:w-3/5 xl:w-2/5 ${
                       !hasAllRequiredFields()
                         ? "opacity-50 cursor-not-allowed"
                         : ""
@@ -637,7 +671,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     <img
                       src="/images/right-arrow.svg"
                       alt="Arrow"
-                      className="w-8 h-auto"
+                      className={`w-8 h-auto ${isSubmitting ? "btn-arrow-slide-out" : ""}`}
                     />
                   </button>
                 </div>
@@ -658,6 +692,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
         closePopup={closePopup}
         email={formDetails.email}
         setError={setError}
+        onVerified={() => setEmailVerified(true)}
       />
     </section>
   );
