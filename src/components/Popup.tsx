@@ -16,7 +16,7 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, children }) => {
       onClick={onClose} // close on backdrop click
     >
       <div
-        className="relative w-[340px] lg:w-[570px] max-w-md rounded-2xl bg-white px-5 py-[37px] shadow-2xl"
+        className="relative w-full mx-2 lg:w-[570px] max-w-md rounded-2xl bg-white px-5 py-[37px] shadow-2xl"
         onClick={(e) => e.stopPropagation()} // prevent backdrop close
       >
         {children}

@@ -402,7 +402,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="fullName"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -450,7 +450,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           htmlFor="dob"
                           className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                         >
@@ -498,7 +498,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     )}
 
                     {!errors.email && !emailVerified && (
-                      <p className="text-[0.6rem] sm:text-xs text-n-500 mt-1 absolute">
+                      <p className="text-[0.6rem] sm:text-xs text-n-500 mt-1">
                         We’ll send a verification link. Check your inbox or
                         spam/junk.
                       </p>
@@ -510,7 +510,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="email"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -519,7 +519,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     )}
 
                     {errors.email && (
-                      <p className="mt-1 text-base font-medium text-red-500 absolute">
+                      <p className="mt-1 text-base font-medium text-red-500">
                         {errors.email}
                       </p>
                     )}
@@ -545,7 +545,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="contactNumber"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
@@ -583,7 +583,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         htmlFor="institution"
                         className="
                         text-xl text-n-900
-                        absolute left-0 top-1/2 -translate-y-1/2 text-n-950
+                        absolute left-0 top-[12px] text-n-950
                         pointer-events-none
                       "
                       >
