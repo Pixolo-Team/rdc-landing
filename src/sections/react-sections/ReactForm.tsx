@@ -498,7 +498,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     )}
 
                     {!errors.email && !emailVerified && (
-                      <p className="text-[0.6rem] sm:text-xs text-n-500 mt-1">
+                      <p className="text-xs text-n-500 mt-1">
                         We’ll send a verification link. Check your inbox or
                         spam/junk.
                       </p>
