@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // CONPONENTS //
 import Popup from "../Popup";
@@ -11,6 +11,7 @@ type OtpPopupProps = {
   closePopup: () => void;
   email: string;
   setError: any;
+  onVerified: () => void;
 };
 
 /** Export the Otp Popup Component */
@@ -19,11 +20,23 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
   closePopup,
   email,
   setError,
+  onVerified,
 }) => {
   // Define States
   const [otp, setOtp] = useState<string>("");
   const [errors, setErrors] = useState<{ otp: string }>({ otp: "" });
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  // Lock/unlock page scroll while popup is open
+  useEffect(() => {
+    const root = document.documentElement;
+    if (showPopup) {
+      root.classList.add("overflow-y-hidden");
+    } else {
+      root.classList.remove("overflow-y-hidden");
+    }
+    return () => root.classList.remove("overflow-y-hidden");
+  }, [showPopup]);
 
   // Define Helper Functions
   /** Reset the errors */
@@ -66,6 +79,8 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
       const response = await verifyOtpRequest(trimmedEmail, code);
 
       if (response.status) {
+        // Notify parent that email is verified
+        onVerified();
         handleClose();
       } else {
         setErrors({
@@ -80,7 +95,7 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
     } finally {
       setIsLoading(false);
     }
-  }, [email, otp, setError]);
+  }, [email, otp, setError, onVerified]);
 
   return (
     <Popup isOpen={showPopup} onClose={handleClose}>
