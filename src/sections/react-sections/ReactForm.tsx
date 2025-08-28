@@ -487,20 +487,20 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                         type="button"
                         onClick={handleRequestOtp}
                         disabled={isLoading}
-                        className="absolute right-0 top-3 text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors disabled:opacity-50 cursor-pointer"
+                        className="absolute right-0 top-3.5 text-base font-medium underline text-sky-500 hover:text-sky-600 transition-colors disabled:opacity-50 cursor-pointer"
                       >
                         {isLoading ? "Sending..." : "Verify email"}
                       </button>
                     ) : (
-                      <span className="absolute right-2 top-3 text-base font-semibold text-green-600">
+                      <span className="absolute right-2 top-3.5 text-base font-semibold text-green-600">
                         Verified
                       </span>
                     )}
 
                     {!errors.email && !emailVerified && (
                       <p className="text-xs text-n-500 mt-1">
-                        We’ll send a verification link. Check your inbox or
-                        spam/junk.
+                        We’ve sent you a verification OTP. Please check your
+                        inbox or spam folder.
                       </p>
                     )}
 
@@ -661,7 +661,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     onClick={handleSubmit}
                     className={`btn-cta px-10 w-full flex items-center justify-between overflow-hidden lg:w-3/5 xl:w-2/5 ${
                       !hasAllRequiredFields()
-                        ? "opacity-50 cursor-not-allowed"
+                        ? "opacity-50 cursor-not-allowed hover:rotate-none"
                         : ""
                     }`}
                   >

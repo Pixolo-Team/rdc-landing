@@ -16,6 +16,7 @@ const { registrationSuccessDetails } = Astro.props as Props;
   class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm"
 >
   <div
+    id="ticketCard"
     class="relative w-[570px] max-w-md rounded-2xl bg-n-50 shadow-2xl py-7 lg:py-6"
   >
     <!-- Ticket Popup Header -->
@@ -41,7 +42,7 @@ const { registrationSuccessDetails } = Astro.props as Props;
     <!-- Ticket image + Details -->
     <div class="py-7 lg:py-6">
       <!-- Ticket top image -->
-      <div class="px-8 flex justify-center items-center">
+      <div class="px-8 flex justify-center items-center relative z-[999]">
         <img src="/images/ticket-top-bg.png" alt="" class="-mb-4 lg:w-[92%]" />
       </div>
       <!-- Basic Details with background -->
@@ -76,6 +77,15 @@ const { registrationSuccessDetails } = Astro.props as Props;
         {registrationSuccessDetails.confirmation_number}
       </p>
     </div>
+    <!-- Download Button (hidden in export) -->
+    <div class="text-center py-6">
+      <button
+        id="downloadTicketPng"
+        class="px-6 py-2 rounded-lg bg-red-500 text-n-50 font-semibold hover:bg-red-600 transition"
+      >
+        Download Ticket
+      </button>
+    </div>
   </div>
 </div>
 <script is:inline>
@@ -92,5 +102,38 @@ const { registrationSuccessDetails } = Astro.props as Props;
       wrapper.classList.remove("block");
       document.documentElement.classList.remove("overflow-y-hidden"); // optional: unlock scroll
     });
+  })();
+</script>
+
+<!-- html2canvas -->
+<script
+  src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"
+></script>
+
+<script is:inline>
+  (function () {
+    const downloadBtn = document.getElementById("downloadTicketPng");
+    const ticketCard = document.getElementById("ticketCard");
+
+    if (downloadBtn && ticketCard) {
+      downloadBtn.addEventListener("click", async () => {
+        // hide button before capture
+        downloadBtn.style.display = "none";
+
+        const canvas = await html2canvas(ticketCard, {
+          useCORS: true,
+          scale: 2,
+        });
+
+        // show button back
+        downloadBtn.style.display = "block";
+
+        // trigger download
+        const link = document.createElement("a");
+        link.download = "ticket.png";
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      });
+    }
   })();
 </script>
