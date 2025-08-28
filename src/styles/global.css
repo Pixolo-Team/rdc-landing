@@ -335,6 +335,11 @@ body {
   }
 }
 
+.no-delay {
+  transition-delay: 0s !important;
+  animation-delay: 0s !important;
+}
+
 .btn-arrow-slide-out {
   animation: arrow-slide-out-x 600ms ease-out forwards;
 }

@@ -19,7 +19,6 @@ const {
 <html lang="en" class="scroll-smooth">
   <!-- Head -->
   <head>
-    
     <meta charset="UTF-8" />
 
     <!-- Favicon -->
@@ -46,6 +45,18 @@ const {
     <script type="module" is:inline>
       import sal from "https://cdn.skypack.dev/sal.js";
       sal({ threshold: 0.1, once: true });
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DB1S5GND32"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-DB1S5GND32");
     </script>
   </body>
 </html>
