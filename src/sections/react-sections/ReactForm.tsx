@@ -156,6 +156,11 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
     if (!formDetails.dob) {
       newErrors.dob = "Please select your date of birth.";
+    } else {
+      const age = calculateAge(formDetails.dob);
+      if (age < 13) {
+        newErrors.dob = "You must be at least 13 years old.";
+      }
     }
 
     if (!formDetails.contactNumber.trim()) {
@@ -419,18 +424,6 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       value={formDetails.dob}
                       onChange={(e) => {
                         updateFormField("dob", e.target.value);
-                        // Run validation
-                        if (e.target.value) {
-                          const age = calculateAge(e.target.value);
-                          if (age < 13) {
-                            setErrors((prev) => ({
-                              ...prev,
-                              dob: "You must be at least 13 years old",
-                            }));
-                          } else {
-                            setErrors((prev) => ({ ...prev, dob: "" }));
-                          }
-                        }
                       }}
                       max={
                         new Date(
