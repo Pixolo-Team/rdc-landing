@@ -1,35 +1,44 @@
 ---
 const sectionContent = {
-    title: "Your Reliance Digital Referral Discount codes",
-    icon: "",
-    sub_title: "You'll also receive two single-use discount codes by email.",
-    content: "Redeem them online or in-store for exclusive offers.",
-    terms_url: "#"
+  title: "Your Reliance Digital Referral Discount codes",
+  icon: "",
+  sub_title: "You'll also receive two single-use discount codes by email.",
+  content: "Redeem them online or in-store for exclusive offers.",
+  terms_url: "https://www.reliancedigital.in/c/terms-of-use",
 };
 ---
-<section>
-    <div class="container mx-auto flex flex-col items-center justify-center px-8 py-20 gap-4">
-        <!-- Coupon/Ticket icon -->
-        <img src="/images/coupon-logo.svg" alt="ticket" class="w-18 md:w-26 rotate-45" />
-        <!-- Section Title Header -->
-        <h2
-            class="section-title"
-            data-sal="slide-up"
-            data-sal-delay="200"
-            data-sal-duration="300"
-        >
-            {sectionContent.title}
-        </h2>
-        <!-- Sub Title -->
-        <p class="sub-title text-2xl leading-snug">
-            {sectionContent.sub_title}
-        </p>
 
-        <!-- Second Subtitle -->
-        <p class="para-text text-lg leading-snug">
-            {sectionContent.content}
-        <br />
-        <a class="text-cyan-500 underline" href={sectionContent.terms_url}>Terms & conditions</a> apply.
-        </p>
-    </div>
+<section>
+  <div
+    class="container mx-auto flex flex-col items-center justify-center px-8 py-20 gap-4"
+  >
+    <!-- Coupon/Ticket icon -->
+    <img
+      src="/images/coupon-logo.svg"
+      alt="ticket"
+      class="w-18 md:w-26 rotate-45"
+    />
+    <!-- Section Title Header -->
+    <h2
+      class="section-title"
+      data-sal="slide-up"
+      data-sal-delay="200"
+      data-sal-duration="300"
+    >
+      {sectionContent.title}
+    </h2>
+    <!-- Sub Title -->
+    <p class="sub-title text-2xl leading-snug">
+      {sectionContent.sub_title}
+    </p>
+
+    <!-- Second Subtitle -->
+    <p class="para-text text-lg leading-snug">
+      {sectionContent.content}
+      <br />
+      <a class="text-cyan-500 underline" href={sectionContent.terms_url}
+        >Terms & conditions</a
+      > apply.
+    </p>
+  </div>
 </section>
