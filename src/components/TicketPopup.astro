@@ -130,7 +130,7 @@ const { registrationSuccessDetails } = Astro.props as Props;
 
         // trigger download
         const link = document.createElement("a");
-        link.download = "Masterclass Ticket.png";
+        link.download = "Masterclass-Ticket.png";
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
