@@ -206,6 +206,11 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   }, [formDetails, selectedCity, selectedLocation, selectedSlot, setError]);
 
   // ---------- Effects ---------- //
+  // Clear local storage on page load
+  useEffect(() => {
+    localStorage.removeItem("authToken");
+  }, []);
+
   // Load cities once from prop
   useEffect(() => {
     if (Array.isArray(catalog) && catalog.length > 0) {
