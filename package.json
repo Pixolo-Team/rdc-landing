@@ -17,7 +17,9 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "sal.js": "^0.8.5",
-    "tailwindcss": "^4.1.12"
+    "tailwindcss": "^4.1.12",
+    "tilt.js": "^1.2.1",
+    "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
     "prettier": "^3.6.2",

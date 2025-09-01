@@ -148,62 +148,49 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
   /** Validate the Form Inputs */
   const validateForm = useCallback((): string | null => {
-    let hasErrors = false;
+    const newErrors: Record<string, string> = {};
 
-    // Clear previous errors
-    setErrors((prev) => ({
-      ...prev,
-      fullName: "",
-      dob: "",
-      email: "",
-      contactNumber: "",
-      institution: "",
-      city: "",
-      location: "",
-      slot: "",
-    }));
-
-    // Validate each field
     if (!formDetails.fullName.trim()) {
-      setError("fullName", "Please enter your full name.");
-      hasErrors = true;
-    }
-    if (!formDetails.dob) {
-      setError("dob", "Please select your date of birth.");
-      hasErrors = true;
-    }
-    // Check if min age is 13
-    if (!formDetails.contactNumber.trim()) {
-      setError("contactNumber", "Please enter your mobile number.");
-      hasErrors = true;
-    }
-    // Email
-    if (!formDetails.email.trim()) {
-      setError("email", "Please enter your email.");
-      hasErrors = true;
-    } else if (!isValidEmail(formDetails.email)) {
-      setError("email", "Please enter a valid email address.");
-      hasErrors = true;
-    }
-    if (!formDetails.institution.trim()) {
-      setError("institution", "Please enter your institution.");
-      hasErrors = true;
-    }
-    if (!selectedCity) {
-      setError("city", "Please select a city.");
-      hasErrors = true;
-    }
-    if (!selectedLocation) {
-      setError("location", "Please select a location/center.");
-      hasErrors = true;
-    }
-    if (!selectedSlot) {
-      setError("slot", "Please select a slot.");
-      hasErrors = true;
+      newErrors.fullName = "Please enter your full name.";
     }
 
-    return hasErrors ? "Complete all required fields to proceed." : null;
-  }, [formDetails, selectedCity, selectedLocation, selectedSlot, setError]);
+    if (!formDetails.dob) {
+      newErrors.dob = "Please select your date of birth.";
+    }
+
+    if (!formDetails.contactNumber.trim()) {
+      newErrors.contactNumber = "Please enter your mobile number.";
+    }
+
+    if (!formDetails.email.trim()) {
+      newErrors.email = "Please enter your email.";
+    } else if (!isValidEmail(formDetails.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!formDetails.institution.trim()) {
+      newErrors.institution = "Please enter your institution.";
+    }
+
+    if (!selectedCity) {
+      newErrors.city = "Please select a city.";
+    }
+
+    if (!selectedLocation) {
+      newErrors.location = "Please select a location/center.";
+    }
+
+    if (!selectedSlot) {
+      newErrors.slot = "Please select a slot.";
+    }
+
+    // Update state once
+    setErrors((prev) => ({ ...prev, ...newErrors }));
+
+    return Object.keys(newErrors).length > 0
+      ? "Complete all required fields to proceed."
+      : null;
+  }, [formDetails, selectedCity, selectedLocation, selectedSlot, setErrors]);
 
   // ---------- Effects ---------- //
   // Clear local storage on page load

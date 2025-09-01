@@ -18,7 +18,34 @@ const sectionContent = {
 };
 ---
 
-<section class="container mx-auto py-20 text-center">
+<style>
+  .pulse {
+    display: inline-block;
+    animation: pulse 3.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+</style>
+
+<section
+  class="container mx-auto py-20 text-center"
+  data-sal="slide-up"
+  data-sal-delay="200"
+  data-sal-duration="200"
+>
   <!-- Outlined Title -->
   <h2
     class="select-none text-center text-[64px] font-bold leading-none uppercase -mb-[4%] md:-mb-[3%]
@@ -28,7 +55,7 @@ const sectionContent = {
            xl:text-[190px]"
     aria-hidden="true"
   >
-    {sectionContent.title}
+    <span class="pulse">{sectionContent.title}</span>
   </h2>
 
   <!-- Box - with 3 circles -->
@@ -42,7 +69,7 @@ const sectionContent = {
     {
       sectionContent.highlights.map((highlightItem) => (
         <div
-          class="relative flex items-center justify-center text-center
+          class="tilt-card relative flex items-center justify-center text-center
         lg:w-[46%] xl:w-auto"
         >
           {/* Circle */}
