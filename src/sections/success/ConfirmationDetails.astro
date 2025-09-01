@@ -55,28 +55,28 @@ const { hours: endH, minutes: endM } = parseTime(
   registrationSuccessDetails.end_time
 );
 
-const start = new Date(year, month, day, startH, startM);
-const end = new Date(year, month, day, endH, endM);
-
-function toGCalUTC(d: Date) {
+function formatLocalDateString(
+  year: number,
+  month: number,
+  day: number,
+  hours: number,
+  minutes: number
+) {
   const pad = (n: number) => String(n).padStart(2, "0");
   return (
-    d.getUTCFullYear() +
-    pad(d.getUTCMonth() + 1) +
-    pad(d.getUTCDate()) +
-    "T" +
-    pad(d.getUTCHours()) +
-    pad(d.getUTCMinutes()) +
-    pad(d.getUTCSeconds()) +
-    "Z"
+    year + pad(month + 1) + pad(day) + "T" + pad(hours) + pad(minutes) + "00"
   );
 }
 
+const startLocal = formatLocalDateString(year, month, day, startH, startM);
+const endLocal = formatLocalDateString(year, month, day, endH, endM);
+
 const params = new URLSearchParams({
   action: "TEMPLATE",
-  text: "AI Playground Masterclass by Microsoft and Reliance",
-  dates: `${toGCalUTC(start)}/${toGCalUTC(end)}`,
-  details: "Confirmation: " + registrationSuccessDetails.confirmation_number,
+  text: "AI PlAiground Masterclass by Microsoft and Reliance",
+  dates: `${startLocal}/${endLocal}`,
+  details:
+    "Registration Number: " + registrationSuccessDetails.confirmation_number,
   location: `${registrationSuccessDetails.location}, ${registrationSuccessDetails.city}`,
   ctz: "Asia/Kolkata",
 });
@@ -95,35 +95,35 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
     <div class="flex flex-col w-[94%] md:mb-4 lg:mb-12 lg:flex-row">
       <!-- Left side - Model Image section -->
       <div
-        class="relative bg-n-50 flex justify-center items-end pt-12 z-10 rounded-tl-2xl rounded-tr-2xl lg:rounded-bl-2xl lg:rounded-tr-[0px] lg:w-1/2"
+        class="relative bg-n-50 flex justify-center items-end pt-8 z-10 rounded-tl-2xl rounded-tr-2xl lg:rounded-bl-2xl lg:rounded-tr-[0px] lg:w-1/2"
       >
         <img
           src="/images/success-page-image.png"
           alt="model-img"
-          class="w-[72%] object-contain lg:w-[90%] -mb-8"
+          class="w-[90%] max-h-[600px] object-contain -mb-8"
         />
       </div>
 
       <!-- Right side - Details section -->
       <div
-        class="relative bg-red-500 flex flex-col gap-10 py-18 rounded-br-2xl rounded-bl-2xl md:py-22 lg:rounded-bl-[0px] lg:rounded-tr-2xl lg:w-1/2 lg:justify-between"
+        class="relative bg-red-500 flex flex-col gap-10 py-4 rounded-br-2xl rounded-bl-2xl lg:rounded-bl-[0px] lg:rounded-tr-2xl lg:w-1/2 lg:justify-between"
       >
         <div
-          class="flex flex-col w-full gap-10 px-8 md:gap-4 xl:gap-6 md:px-12"
+          class="flex flex-col w-full gap-6 mb-2 md:mb-0 px-8 md:gap-4 xl:gap-6 md:px-12"
         >
           <!-- Title -->
           <p
-            class="sub-title text-n-50 text-center md:text-left md:pb-10 lg:pt-10 md:text-4xl xl:text-5xl"
+            class="sub-title text-n-50 text-center md:text-left md:pb-5 pt-10 md:text-3xl xl:text-4xl"
           >
             Your booking details:
           </p>
 
           <!-- Booking Values -->
           <div
-            class="flex flex-col gap-6 text-2xl text-n-50 font-semibold lg:gap-8"
+            class="flex flex-col gap-4 text-2xl text-n-50 font-semibold lg:gap-8"
           >
             <!-- Name -->
-            <div class="flex md:text-3xl">
+            <div class="flex md:text-2xl">
               <div class="min-w-[30%] flex justify-between">
                 <p>Name</p>
                 <span>:</span>
@@ -134,7 +134,7 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
             </div>
 
             <!-- Session -->
-            <div class="flex text-2xl text-n-50 font-semibold md:text-3xl">
+            <div class="flex text-2xl text-n-50 font-semibold md:text-2xl">
               <div class="min-w-[30%] flex justify-between">
                 <p>Session</p>
                 <span>:</span>
@@ -145,7 +145,7 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
             </div>
 
             <!-- Center -->
-            <div class="flex text-2xl text-n-50 font-semibold md:text-3xl">
+            <div class="flex text-2xl text-n-50 font-semibold md:text-2xl">
               <div class="min-w-[30%] flex justify-between">
                 <p>Center</p>
                 <span>:</span>
@@ -162,9 +162,9 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
           class="bg-red-700 text-n-50 px-5 py-5 w-[90%] self-start rounded-tr-2xl rounded-br-2xl"
         >
           <p class="para-text text-n-50 text-left">
-            Masterclass Confirmation Number
+            Masterclass Registration Number
           </p>
-          <p class="text-4xl md:text-5xl font-semibold tracking-wider">
+          <p class="text-3xl md:text-4xl font-semibold tracking-wider">
             {registrationSuccessDetails.confirmation_number}
           </p>
         </div>

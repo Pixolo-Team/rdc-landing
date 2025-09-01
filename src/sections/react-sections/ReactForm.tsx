@@ -22,7 +22,7 @@ import { registerRequest } from "../../services/api/register.api.service";
 import { INITIAL_FORM } from "../../constants/app.constant";
 
 // UTILS //
-import { isValidEmail } from "../../utils/validation.util";
+import { calculateAge, isValidEmail } from "../../utils/validation.util";
 
 // Props for this Component
 type FormProps = {
@@ -425,7 +425,21 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       placeholder=" "
                       aria-label="Date of Birth"
                       value={formDetails.dob}
-                      onChange={(e) => updateFormField("dob", e.target.value)}
+                      onChange={(e) => {
+                        updateFormField("dob", e.target.value);
+                        // Run validation
+                        if (e.target.value) {
+                          const age = calculateAge(e.target.value);
+                          if (age < 13) {
+                            setErrors((prev) => ({
+                              ...prev,
+                              dob: "You must be at least 13 years old",
+                            }));
+                          } else {
+                            setErrors((prev) => ({ ...prev, dob: "" }));
+                          }
+                        }
+                      }}
                       max={
                         new Date(
                           new Date().setFullYear(new Date().getFullYear() - 13),
