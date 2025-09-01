@@ -11,7 +11,7 @@ const sectionContent = {
     {
       icon: "/images/ticket-logo.svg",
       alt: "Ticket",
-      text: "Receive your ticket + Masterclass Confirmation Number by email",
+      text: "Receive your ticket + Masterclass Registration Number by email",
     },
     {
       icon: "/images/coupon-logo.svg",
@@ -41,7 +41,9 @@ const sectionContent = {
     </h2>
 
     <!-- Box Item list -->
-    <div class="flex flex-col gap-4 w-full md:flex-row md:flex-wrap lg:flex-nowrap">
+    <div
+      class="flex flex-col gap-4 w-full md:flex-row md:flex-wrap lg:flex-nowrap"
+    >
       {
         sectionContent.boxItemList.map((boxItem) => (
           <div
@@ -57,9 +59,7 @@ const sectionContent = {
             <img src={boxItem.icon} alt={boxItem.alt} class="h-14 w-auto" />
             <div class="w-full sm:w-2/3 md:w-3/4 lg:w-full">
               {/* Main Text */}
-              <p class="para-text">
-                {boxItem.text}
-              </p>
+              <p class="para-text">{boxItem.text}</p>
               {/* Subtext optional */}
               {boxItem.subText && (
                 <p class="text-center text-n-700 text-xl font-medium leading-snug pt-2 md:pt-4">

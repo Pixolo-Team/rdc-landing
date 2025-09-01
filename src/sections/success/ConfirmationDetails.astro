@@ -55,28 +55,28 @@ const { hours: endH, minutes: endM } = parseTime(
   registrationSuccessDetails.end_time
 );
 
-const start = new Date(year, month, day, startH, startM);
-const end = new Date(year, month, day, endH, endM);
-
-function toGCalUTC(d: Date) {
+function formatLocalDateString(
+  year: number,
+  month: number,
+  day: number,
+  hours: number,
+  minutes: number
+) {
   const pad = (n: number) => String(n).padStart(2, "0");
   return (
-    d.getUTCFullYear() +
-    pad(d.getUTCMonth() + 1) +
-    pad(d.getUTCDate()) +
-    "T" +
-    pad(d.getUTCHours()) +
-    pad(d.getUTCMinutes()) +
-    pad(d.getUTCSeconds()) +
-    "Z"
+    year + pad(month + 1) + pad(day) + "T" + pad(hours) + pad(minutes) + "00"
   );
 }
 
+const startLocal = formatLocalDateString(year, month, day, startH, startM);
+const endLocal = formatLocalDateString(year, month, day, endH, endM);
+
 const params = new URLSearchParams({
   action: "TEMPLATE",
-  text: "AI Playground Masterclass by Microsoft and Reliance",
-  dates: `${toGCalUTC(start)}/${toGCalUTC(end)}`,
-  details: "Confirmation: " + registrationSuccessDetails.confirmation_number,
+  text: "AI PlAiground Masterclass by Microsoft and Reliance",
+  dates: `${startLocal}/${endLocal}`,
+  details:
+    "Registration Number: " + registrationSuccessDetails.confirmation_number,
   location: `${registrationSuccessDetails.location}, ${registrationSuccessDetails.city}`,
   ctz: "Asia/Kolkata",
 });
@@ -162,7 +162,7 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
           class="bg-red-700 text-n-50 px-5 py-5 w-[90%] self-start rounded-tr-2xl rounded-br-2xl"
         >
           <p class="para-text text-n-50 text-left">
-            Masterclass Confirmation Number
+            Masterclass Registration Number
           </p>
           <p class="text-3xl md:text-4xl font-semibold tracking-wider">
             {registrationSuccessDetails.confirmation_number}
