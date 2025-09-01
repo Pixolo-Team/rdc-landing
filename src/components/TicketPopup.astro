@@ -82,6 +82,7 @@ const { registrationSuccessDetails } = Astro.props as Props;
       <button
         id="downloadTicketPng"
         class="px-6 py-2 rounded-lg bg-red-500 text-n-50 font-semibold hover:bg-red-600 transition"
+        data-registration-number={registrationSuccessDetails.confirmation_number}
       >
         Download Ticket
       </button>
@@ -114,6 +115,9 @@ const { registrationSuccessDetails } = Astro.props as Props;
   (function () {
     const downloadBtn = document.getElementById("downloadTicketPng");
     const ticketCard = document.getElementById("ticketCard");
+    const registrationNumber = downloadBtn.getAttribute(
+      "data-registration-number"
+    );
 
     if (downloadBtn && ticketCard) {
       downloadBtn.addEventListener("click", async () => {
@@ -130,7 +134,7 @@ const { registrationSuccessDetails } = Astro.props as Props;
 
         // trigger download
         const link = document.createElement("a");
-        link.download = "Masterclass-Ticket.png";
+        link.download = `Masterclass-Ticket-${registrationNumber}.png`;
         link.href = canvas.toDataURL("image/png");
         link.click();
       });
