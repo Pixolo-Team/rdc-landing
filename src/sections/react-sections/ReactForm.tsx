@@ -198,7 +198,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   // ---------- Effects ---------- //
   // Clear local storage on page load
   useEffect(() => {
-    localStorage.removeItem("authToken");
+    localStorage.setItem("authToken", "abc");
   }, []);
 
   // Load cities once from prop
@@ -469,7 +469,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     />
 
                     {/* Absolute button inside input container */}
-                    {!emailVerified ? (
+                    {/* {!emailVerified ? (
                       <button
                         type="button"
                         onClick={handleRequestOtp}
@@ -482,7 +482,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       <span className="absolute right-2 top-3.5 text-base font-semibold text-green-600">
                         Verified
                       </span>
-                    )}
+                    )} */}
 
                     {!errors.email && !emailVerified && (
                       <p className="text-xs text-n-500 mt-1">
