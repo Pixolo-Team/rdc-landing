@@ -5,7 +5,9 @@ const sectionContent = {
   what_to_expect: [
     { text: "When to use Copilot and how to craft a prompt" },
     { text: "Prompt you can use across subjects and projects" },
-    { text: "Guided demos + quick try-it-yourself practise" },
+    {
+      text: "Guided demos + quick try-it-yourself practise",
+    },
   ],
 };
 ---
@@ -26,7 +28,7 @@ const sectionContent = {
   >
     {
       sectionContent.what_to_expect.map((expectItem) => (
-        <div class="bg-[url('/images/paper-bg.png')] [background-size:100%_100%] bg-center bg-no-repeat px-6 py-8 text-center sm:w-2/3 sm:px-11 lg:w-[50%] xl:w-1/3">
+        <div class="tilt-card bg-[url('/images/paper-bg.png')] [background-size:100%_100%] bg-center bg-no-repeat px-6 py-8 text-center sm:w-2/3 sm:px-11 lg:w-[50%] xl:w-1/3">
           <p class="para-text">{expectItem.text}</p>
         </div>
       ))

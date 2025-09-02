@@ -147,63 +147,53 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   }, []);
 
   /** Validate the Form Inputs */
-  const validateForm = useCallback((): string | null => {
-    let hasErrors = false;
+  const validateForm = useCallback((): boolean => {
+    const newErrors: Record<string, string> = {};
 
-    // Clear previous errors
-    setErrors((prev) => ({
-      ...prev,
-      fullName: "",
-      dob: "",
-      email: "",
-      contactNumber: "",
-      institution: "",
-      city: "",
-      location: "",
-      slot: "",
-    }));
-
-    // Validate each field
     if (!formDetails.fullName.trim()) {
-      setError("fullName", "Please enter your full name.");
-      hasErrors = true;
-    }
-    if (!formDetails.dob) {
-      setError("dob", "Please select your date of birth.");
-      hasErrors = true;
-    }
-    // Check if min age is 13
-    if (!formDetails.contactNumber.trim()) {
-      setError("contactNumber", "Please enter your mobile number.");
-      hasErrors = true;
-    }
-    // Email
-    if (!formDetails.email.trim()) {
-      setError("email", "Please enter your email.");
-      hasErrors = true;
-    } else if (!isValidEmail(formDetails.email)) {
-      setError("email", "Please enter a valid email address.");
-      hasErrors = true;
-    }
-    if (!formDetails.institution.trim()) {
-      setError("institution", "Please enter your institution.");
-      hasErrors = true;
-    }
-    if (!selectedCity) {
-      setError("city", "Please select a city.");
-      hasErrors = true;
-    }
-    if (!selectedLocation) {
-      setError("location", "Please select a location/center.");
-      hasErrors = true;
-    }
-    if (!selectedSlot) {
-      setError("slot", "Please select a slot.");
-      hasErrors = true;
+      newErrors.fullName = "Please enter your full name.";
     }
 
-    return hasErrors ? "Complete all required fields to proceed." : null;
-  }, [formDetails, selectedCity, selectedLocation, selectedSlot, setError]);
+    if (!formDetails.dob) {
+      newErrors.dob = "Please select your date of birth.";
+    } else {
+      const age = calculateAge(formDetails.dob);
+      if (age < 13) {
+        newErrors.dob = "You must be at least 13 years old.";
+      }
+    }
+
+    if (!formDetails.contactNumber.trim()) {
+      newErrors.contactNumber = "Please enter your mobile number.";
+    }
+
+    if (!formDetails.email.trim()) {
+      newErrors.email = "Please enter your email.";
+    } else if (!isValidEmail(formDetails.email)) {
+      newErrors.email = "Please enter a valid email address.";
+    }
+
+    if (!formDetails.institution.trim()) {
+      newErrors.institution = "Please enter your institution.";
+    }
+
+    if (!selectedCity) {
+      newErrors.city = "Please select a city.";
+    }
+
+    if (!selectedLocation) {
+      newErrors.location = "Please select a location/center.";
+    }
+
+    if (!selectedSlot) {
+      newErrors.slot = "Please select a slot.";
+    }
+
+    // Update state once
+    setErrors((prev) => ({ ...prev, ...newErrors }));
+
+    return Object.keys(newErrors).length > 0;
+  }, [formDetails, selectedCity, selectedLocation, selectedSlot, setErrors]);
 
   // ---------- Effects ---------- //
   // Clear local storage on page load
@@ -303,10 +293,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       e.preventDefault();
 
       const validationError = validateForm();
-      if (validationError) {
-        setError("general", validationError);
-        return;
-      }
+      if (validationError) return;
 
       // Check if email is verified
       const token = localStorage.getItem("authToken");
@@ -426,24 +413,12 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   <div className="w-full lg:basis-[40%] relative">
                     <input
                       id="dob"
-                      type={dobInputType}
+                      type={"date"}
                       placeholder=" "
                       aria-label="Date of Birth"
                       value={formDetails.dob}
                       onChange={(e) => {
                         updateFormField("dob", e.target.value);
-                        // Run validation
-                        if (e.target.value) {
-                          const age = calculateAge(e.target.value);
-                          if (age < 13) {
-                            setErrors((prev) => ({
-                              ...prev,
-                              dob: "You must be at least 13 years old",
-                            }));
-                          } else {
-                            setErrors((prev) => ({ ...prev, dob: "" }));
-                          }
-                        }
                       }}
                       max={
                         new Date(
@@ -452,13 +427,6 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           .toISOString()
                           .split("T")[0]
                       }
-                      onFocus={(e) => {
-                        // Switch to date
-                        setDobInputType("date");
-                      }}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.value) setDobInputType("text");
-                      }}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
 
@@ -470,7 +438,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           className="
                         text-xl text-n-900
                         absolute left-0 top-[12px] text-n-950
-                        pointer-events-none
+                        pointer-events-none bg-n-50
                       "
                         >
                           Date of Birth <span className="text-red-500">*</span>
