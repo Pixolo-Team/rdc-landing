@@ -362,7 +362,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
         {/* Centered overlay container */}
         <div className="container mx-auto flex justify-center py-22">
           {/* Card shell: neutral surface, rounded, shadow */}
-          <div className="flex flex-col gap-10 w-11/12 bg-n-50/98 rounded-2xl shadow-xl px-10 py-12 md:px-14 md:w-5/6 lg:px-20">
+          <div className="flex flex-col gap-10 w-11/12 bg-n-50 rounded-2xl shadow-xl px-10 py-12 md:px-14 md:w-5/6 lg:px-20">
             {/* Form: row on lg+, stacked below */}
             <h2 className="section-title">{"Register Now"}</h2>
 
