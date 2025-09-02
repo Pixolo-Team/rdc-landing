@@ -413,7 +413,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                   <div className="w-full lg:basis-[40%] relative">
                     <input
                       id="dob"
-                      type={dobInputType}
+                      type={"date"}
                       placeholder=" "
                       aria-label="Date of Birth"
                       value={formDetails.dob}
@@ -427,13 +427,6 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           .toISOString()
                           .split("T")[0]
                       }
-                      onFocus={(e) => {
-                        // Switch to date
-                        setDobInputType("date");
-                      }}
-                      onBlur={(e) => {
-                        if (!e.currentTarget.value) setDobInputType("text");
-                      }}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
 
@@ -445,7 +438,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                           className="
                         text-xl text-n-900
                         absolute left-0 top-[12px] text-n-950
-                        pointer-events-none
+                        pointer-events-none bg-n-50
                       "
                         >
                           Date of Birth <span className="text-red-500">*</span>
