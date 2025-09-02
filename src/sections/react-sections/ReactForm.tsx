@@ -147,7 +147,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   }, []);
 
   /** Validate the Form Inputs */
-  const validateForm = useCallback((): string | null => {
+  const validateForm = useCallback((): boolean => {
     const newErrors: Record<string, string> = {};
 
     if (!formDetails.fullName.trim()) {
@@ -192,9 +192,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
     // Update state once
     setErrors((prev) => ({ ...prev, ...newErrors }));
 
-    return Object.keys(newErrors).length > 0
-      ? "Complete all required fields to proceed."
-      : null;
+    return Object.keys(newErrors).length > 0;
   }, [formDetails, selectedCity, selectedLocation, selectedSlot, setErrors]);
 
   // ---------- Effects ---------- //
@@ -295,10 +293,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       e.preventDefault();
 
       const validationError = validateForm();
-      if (validationError) {
-        setError("general", validationError);
-        return;
-      }
+      if (validationError) return;
 
       // Check if email is verified
       const token = localStorage.getItem("authToken");
