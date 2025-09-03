@@ -24,7 +24,7 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
 }) => {
   // Define States
   const [otp, setOtp] = useState<string>("");
-  const [errors, setErrors] = useState<{ otp: string }>({ otp: "" });
+  const [otpError, setOtpError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Lock/unlock page scroll while popup is open
@@ -35,16 +35,17 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
     } else {
       root.classList.remove("overflow-y-hidden");
     }
-    return () => root.classList.remove("overflow-y-hidden");
+    return () => {
+      root.classList.remove("overflow-y-hidden");
+      setOtpError("");
+      setOtp("");
+    };
   }, [showPopup]);
 
   // Define Helper Functions
   /** Reset the errors */
   const resetErrors = () => {
-    setErrors;
-    ({
-      otp: "",
-    });
+    setError();
   };
 
   /** Handle Close Popup */
@@ -66,9 +67,7 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
     const code = otp.trim();
 
     if (!trimmedEmail || !code) {
-      setErrors({
-        otp: "You need to enter an OTP",
-      });
+      setOtpError("You need to enter an OTP");
       return;
     }
 
@@ -83,15 +82,11 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
         onVerified();
         handleClose();
       } else {
-        setErrors({
-          otp: response.message,
-        });
+        setOtpError(response.message);
       }
     } catch (err) {
       console.error(err);
-      setErrors({
-        otp: "Error Occured. Please try again.",
-      });
+      setOtpError("Error Occured. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -122,9 +117,9 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
             maxLength={6}
             onChange={(e) => setOtp(e.target.value)}
           />
-          {errors.otp && (
+          {otpError && (
             <p className="mt-1 text-base font-medium text-red-500">
-              {errors.otp}
+              {otpError}
             </p>
           )}
         </div>
