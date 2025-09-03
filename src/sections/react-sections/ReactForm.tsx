@@ -486,8 +486,8 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
                     {!errors.email && !emailVerified && (
                       <p className="text-xs text-n-500 mt-1">
-                        We’ve sent you a verification OTP. Please check your
-                        inbox or spam folder.
+                        Enter a valid email to get your coupons and Drop Kit
+                        details.
                       </p>
                     )}
 
