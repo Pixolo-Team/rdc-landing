@@ -214,12 +214,6 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
       defer></script>
 
     <script is:inline>
-      // Auto-download on page load
-      window.addEventListener("load", async () => {
-
-        
-        
-      });
 
       // Show popup on button click
       document.addEventListener("DOMContentLoaded", () => {
@@ -237,6 +231,8 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
         if (!popup || !ticketCard) return;
 
         let showTicket = function(){
+          // hide button before capture
+          downloadBtn.style.display = "none";
           // Show off-screen
           popup.classList.remove("hidden");
           popup.classList.add(
@@ -267,8 +263,6 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
 
         /** Download the Ticket using HTML 2 Canvas */
         let downloadTitcket = async function(){
-          // hide button before capture
-          downloadBtn.style.display = "none";
           try {
             // Capture ticket as canvas
             const canvas = await window.html2canvas(ticketCard, {
