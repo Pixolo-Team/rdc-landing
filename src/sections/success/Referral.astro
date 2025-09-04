@@ -1,11 +1,21 @@
 ---
+import CouponCode from "../../components/CouponCode.astro";
+import type { SuccessRegistrationResponseData } from "../../types/form";
+
 const sectionContent = {
   title: "Your Reliance Digital Referral Discount codes",
   icon: "",
-  sub_title: "You'll also receive two single-use discount codes by email.",
+  sub_title: "You'll also receive the two single-use discount codes by email.",
   content: "Redeem them online or in-store for exclusive offers.",
   terms_url: "https://www.reliancedigital.in/c/terms-of-use",
 };
+
+// INTERFACES //
+interface Props {
+  registrationSuccessDetails: SuccessRegistrationResponseData | null;
+}
+
+const { registrationSuccessDetails } = Astro.props as Props;
 ---
 
 <section>
@@ -31,6 +41,29 @@ const sectionContent = {
     <p class="sub-title text-2xl leading-snug">
       {sectionContent.sub_title}
     </p>
+
+    <!-- Coupon Codes Details -->
+    {
+      registrationSuccessDetails && (
+        // Coupon Codes Details
+        <div class="flex flex-col lg:flex-row my-3 gap-5 lg:gap-0 items-center">
+          {/* Discount Coupon */}
+          <CouponCode
+            label="Discount Coupon"
+            couponCode={registrationSuccessDetails?.discount_coupon}
+          />
+
+          {/* Divider */}
+          <span class="hidden w-px self-stretch bg-blue-500 lg:block" />
+
+          {/* Referral Code */}
+          <CouponCode
+            label="Referral Code"
+            couponCode={registrationSuccessDetails?.referral_coupon}
+          />
+        </div>
+      )
+    }
 
     <!-- Second Subtitle -->
     <p class="para-text text-lg leading-snug">

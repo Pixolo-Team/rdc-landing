@@ -71,6 +71,34 @@ const { registrationSuccessDetails } = Astro.props as Props;
         </div>
       </div>
     </div>
+
+    <!-- Coupon Codes Details -->
+    <div id="coupons" class="flex justify-evenly items-center mb-4">
+      {/* Discount Coupon */}
+      <div class="text-center self-center">
+        {/* Label */}
+        <p class="text-xl font-semibold mb-2 text-[#1d376c]">Discount Coupon</p>
+        {/* Code */}
+        <p
+          class="text-xl font-semibold text-red-500 border-2 border-red-500 py-2 px-4 text-center"
+        >
+          {registrationSuccessDetails?.discount_coupon}
+        </p>
+      </div>
+
+      {/* Referral Code */}
+      <div class="text-center self-center">
+        {/* Label */}
+        <p class="text-xl font-semibold mb-2 text-[#1d376c]">Referral Code</p>
+        {/* Code */}
+        <p
+          class="text-xl font-semibold text-red-500 border-2 border-red-500 py-2 px-4 text-center"
+        >
+          {registrationSuccessDetails?.referral_coupon}
+        </p>
+      </div>
+    </div>
+
     <!-- Ticket Confirmation Number -->
     <div>
       <p class="font-medium text-4xl text-center">
@@ -113,6 +141,8 @@ const { registrationSuccessDetails } = Astro.props as Props;
 
 <script is:inline>
   (function () {
+
+    // Select the Elements
     const downloadBtn = document.getElementById("downloadTicketPng");
     const ticketCard = document.getElementById("ticketCard");
     const registrationNumber = downloadBtn.getAttribute(
@@ -120,6 +150,8 @@ const { registrationSuccessDetails } = Astro.props as Props;
     );
 
     if (downloadBtn && ticketCard) {
+
+      // On click on Download Button
       downloadBtn.addEventListener("click", async () => {
         // hide button before capture
         downloadBtn.style.display = "none";
