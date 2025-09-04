@@ -19,6 +19,8 @@ export type SuccessRegistrationResponseData = {
   confirmation_number: string;
   start_time: string;
   end_time: string;
+  discount_coupon: string;
+  referral_coupon: string;
 };
 
 // Data Type of the Form
