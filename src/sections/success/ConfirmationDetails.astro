@@ -204,25 +204,68 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
       <TicketPopup registrationSuccessDetails={registrationSuccessDetails} />
     </div>
 
+    <!-- html2canvas -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"
+      defer></script>
+
     <script is:inline>
-      (function () {
+      // Auto-download on page load
+      window.addEventListener("load", async () => {
+        const popup = document.getElementById("ticketPopup");
+        const ticketCard = document.getElementById("ticketCard");
+        if (!popup || !ticketCard) return;
+
+        // Show off-screen
+        popup.classList.remove("hidden");
+        popup.classList.add(
+          "block",
+          "fixed",
+          "z-[-999999]",
+          "left-[-1000000px]",
+          "top-0",
+          "opacity-0",
+          "pointer-events-none"
+        );
+
+        try {
+          // Capture ticket as canvas
+          const canvas = await window.html2canvas(ticketCard, {
+            useCORS: true,
+            scale: 2,
+            backgroundColor: null,
+          });
+
+          // Reg No for filename
+          const regNo =
+            document
+              .getElementById("downloadTicketPng")
+              ?.getAttribute("data-registration-number") || "ticket";
+
+          // Trigger download
+          const link = document.createElement("a");
+          link.download = `Masterclass-Ticket-${regNo}.png`;
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        } finally {
+          // hide again after download
+          popup.className = "hidden";
+        }
+      });
+
+      // Show popup on button click
+      document.addEventListener("DOMContentLoaded", () => {
         const openBtn = document.getElementById("viewTicket");
         const popup = document.getElementById("ticketPopup");
-
         if (!openBtn || !popup) return;
 
-        // Ensure hidden at start
-        popup.classList.add("hidden");
-        popup.classList.remove("block");
-
-        // Open on click
         openBtn.addEventListener("click", (e) => {
           e.preventDefault();
           popup.classList.remove("hidden");
-          popup.classList.add("block"); // show
-          document.documentElement.classList.add("overflow-y-hidden"); // optional: lock scroll
+          popup.classList.add("block");
+          document.documentElement.classList.add("overflow-y-hidden");
         });
-      })();
+      });
     </script>
   </div>
 </section>
