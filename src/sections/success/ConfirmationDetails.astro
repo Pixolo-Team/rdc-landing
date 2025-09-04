@@ -183,6 +183,11 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
       <button id="viewTicket" type="submit" class="btn-cta w-[70%] lg:w-[50%]">
         View My Ticket
       </button>
+      <!-- Download Ticket -->
+       <!-- View My Ticket Button -->
+      <button id="downloadTicket" type="submit" class="btn-cta w-[70%] lg:w-[50%]">
+        Download Ticket
+      </button>
       <!-- Add to Calendar Button -->
       <a
         id="gcalBtn"
@@ -212,59 +217,116 @@ const gcalLink = `https://calendar.google.com/calendar/render?${params.toString(
     <script is:inline>
       // Auto-download on page load
       window.addEventListener("load", async () => {
-        const popup = document.getElementById("ticketPopup");
-        const ticketCard = document.getElementById("ticketCard");
-        if (!popup || !ticketCard) return;
 
-        // Show off-screen
-        popup.classList.remove("hidden");
-        popup.classList.add(
-          "block",
-          "fixed",
-          "z-[-999999]",
-          "left-[-1000000px]",
-          "top-0",
-          "opacity-0",
-          "pointer-events-none"
-        );
-
-        try {
-          // Capture ticket as canvas
-          const canvas = await window.html2canvas(ticketCard, {
-            useCORS: true,
-            scale: 2,
-            backgroundColor: null,
-          });
-
-          // Reg No. for filename
-          const regNo =
-            document
-              .getElementById("downloadTicketPng")
-              ?.getAttribute("data-registration-number") || "ticket";
-
-          // Trigger download
-          const link = document.createElement("a");
-          link.download = `Masterclass-Ticket-${regNo}.png`;
-          link.href = canvas.toDataURL("image/png");
-          link.click();
-        } finally {
-          // hide again after download
-          popup.className = "hidden";
-        }
+        
+        
       });
 
       // Show popup on button click
       document.addEventListener("DOMContentLoaded", () => {
-        const openBtn = document.getElementById("viewTicket");
+
+
+        // Select the DOM Elements
+        const downloadBtn = document.getElementById("downloadTicketPng");
         const popup = document.getElementById("ticketPopup");
+        const ticketCard = document.getElementById("ticketCard");
+
+        const openBtn = document.getElementById("viewTicket");
+        const downloadTicketBtn = document.getElementById("downloadTicket");
+
+        // If no Popup Found - stop here
+        if (!popup || !ticketCard) return;
+
+        let showTicket = function(){
+          // Show off-screen
+          popup.classList.remove("hidden");
+          popup.classList.add(
+            "block",
+            "fixed",
+            "z-[-999999]",
+            "left-[-1000000px]",
+            "top-0",
+            "opacity-0",
+            "pointer-events-none"
+          );
+        };
+
+        let hideTicket = function(){
+          // Show off-screen
+          downloadBtn.style.display = "block";
+          popup.classList.add("hidden");
+          popup.classList.remove(
+            "block",
+            "fixed",
+            "z-[-999999]",
+            "left-[-1000000px]",
+            "top-0",
+            "opacity-0",
+            "pointer-events-none"
+          );
+        };
+
+        /** Download the Ticket using HTML 2 Canvas */
+        let downloadTitcket = async function(){
+          // hide button before capture
+          downloadBtn.style.display = "none";
+          try {
+            // Capture ticket as canvas
+            const canvas = await window.html2canvas(ticketCard, {
+              useCORS: true,
+              scale: 2,
+              backgroundColor: null,
+            });
+
+            // Reg No. for filename
+            const regNo =
+              document
+                .getElementById("downloadTicketPng")
+                ?.getAttribute("data-registration-number") || "ticket";
+
+            // Trigger download
+            const link = document.createElement("a");
+            link.download = `Masterclass-Ticket-${regNo}.png`;
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+          } finally {
+            // hide again after download
+            popup.className = "hidden";
+          }
+        };
+
+        // SHOW - DOWNLOAD - HIDE
+        showTicket();
+        downloadTitcket();
+        setTimeout(function(){
+          hideTicket();
+        }, 1000);
+
+        // Select the Elements
+        
+
+        // If no element found - then stop here
         if (!openBtn || !popup) return;
 
+        // On click of the "View Ticket" button
         openBtn.addEventListener("click", (e) => {
           e.preventDefault();
           popup.classList.remove("hidden");
           popup.classList.add("block");
           document.documentElement.classList.add("overflow-y-hidden");
         });
+
+        // On click of the "View Ticket" button
+        downloadTicketBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          // SHOW - DOWNLOAD -HIDE
+          showTicket();
+          downloadTitcket();
+          setTimeout(function(){
+            hideTicket();
+          }, 1000);
+        });
+
       });
     </script>
   </div>
