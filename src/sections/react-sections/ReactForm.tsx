@@ -204,7 +204,10 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   // Load cities once from prop
   useEffect(() => {
     if (Array.isArray(catalog) && catalog.length > 0) {
-      setCities(catalog);
+      const filtered = catalog.filter(
+        (c) => (c?.name || "").toLowerCase() !== "hyderabad",
+      );
+      setCities(filtered);
     } else {
       setCities([]);
     }
