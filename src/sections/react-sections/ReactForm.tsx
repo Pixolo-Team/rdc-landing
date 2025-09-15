@@ -208,7 +208,9 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       const filtered = catalog.filter(
         (city) =>
           city.name?.toLowerCase() === "kolkata" ||
-          city.name?.toLowerCase() === "ahemdabad",
+          city.name?.toLowerCase() === "ahemdabad" ||
+          city.name?.toLowerCase() === "pune" ||
+          city.name?.toLowerCase() === "mumbai",
       );
       setCities(filtered);
     } else {
