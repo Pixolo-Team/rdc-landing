@@ -204,15 +204,8 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
   // Load cities once from prop
   useEffect(() => {
     if (Array.isArray(catalog) && catalog.length > 0) {
-      // Filter only Kolkata and Ahemdabad
-      const filtered = catalog.filter(
-        (city) =>
-          city.name?.toLowerCase() === "kolkata" ||
-          city.name?.toLowerCase() === "ahemdabad" ||
-          city.name?.toLowerCase() === "pune" ||
-          city.name?.toLowerCase() === "mumbai",
-      );
-      setCities(filtered);
+      // Set cities state
+      setCities(catalog);
     } else {
       setCities([]);
     }
