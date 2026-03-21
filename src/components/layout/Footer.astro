@@ -1,7 +1,12 @@
 ---
+import { Image } from "astro:assets";
+
 const sectionContent = {
-  contact_number: "+91-7774047272",
+  contact_number: "+91-93250-99635",
   email: "support@reliancedigitalcommunity.com",
+  title: "Galaxy AI Navigator Labs",
+  description:
+    "A collaboration between Samsung and Reliance Digital to pioneer AI literacy in India.",
   year: new Date().getFullYear(),
   facebook_url: "https://m.facebook.com/reliancedigital/",
   x_url: "https://x.com/RelianceDigital",
@@ -12,9 +17,17 @@ const sectionContent = {
 
 <footer class="bg-n-50 pt-12 xl:pt-24">
   <div class="container mx-auto py-12 lg:py-2">
-    <div class="flex flex-col gap-16 items-center md:gap-13 lg:gap-10">
+    <div class="flex flex-col gap-16 items-start md:gap-13 lg:gap-10">
+
+      <div class="flex w-full flex-col max-w-[500px] items-centre gap-2.5 text-left lg:px-8">
+        <p class="text-n-950 text-[28px] font-semibold sm:text-3xl lg:text-2xl;">{sectionContent.title}</p>
+        <p class="primary-font text-base font-normal text-n-900">
+          {sectionContent.description}
+        </p>
+      </div>
+
       <div
-        class="flex flex-col gap-16 items-center md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-start"
+        class="flex flex-col gap-16 items-center md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-end"
       >
         <!-- Support -->
         <div class="flex flex-col gap-5 lg:items-start">
@@ -44,20 +57,26 @@ const sectionContent = {
           </div>
         </div>
 
-        <!-- Partners -->
-        <div class="flex flex-col items-center gap-12">
+       
           <!-- Certification Partner -->
-          <div class="flex flex-col items-center gap-5 lg:items-start">
-            <p class="para-text">Certification Partner</p>
-            <img
-              src="/images/ai-school-logo.png"
-              alt="THE AI SCHOOL"
-              class="w-[250px]"
-              loading="lazy"
-              decoding="async"
-            />
+          <div class="flex flex-col items-center gap-5 lg:self-end lg:items-start lg:pb-1">
+            <div
+              class="relative flex items-center gap-2.5 md:gap-3"
+            >
+              <p class="primary-font text-n-900 text-[29px] leading-none font-bold md:text-[44px]">
+                Galaxy AI
+              </p>
+
+              <Image
+                src="/images/stars.svg"
+                alt=""
+                width={44}
+                height={44}
+                class="h-7 w-7 md:h-11 md:w-11"
+                aria-hidden="true"
+              />
+            </div>
           </div>
-        </div>
       </div>
 
       <!-- Footer Bottom -->
@@ -88,7 +107,7 @@ const sectionContent = {
                 aria-label="Facebook"
                 class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/facebook.svg" class="w-full" />
+                <img src="/icons/facebook.svg" class="experience-card-icon w-full" />
               </a>
 
               <!-- X -->
@@ -98,7 +117,7 @@ const sectionContent = {
                 aria-label="X"
                 class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/x.svg" class="w-full" />
+                <img src="/icons/x.svg" class="experience-card-icon w-full" />
               </a>
 
               <!-- Insta -->
@@ -108,7 +127,7 @@ const sectionContent = {
                 aria-label="Insta"
                 class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/insta.svg" class="w-full" />
+                <img src="/icons/insta.svg" class="experience-card-icon w-full" />
               </a>
             </div>
 

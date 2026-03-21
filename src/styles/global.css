@@ -385,7 +385,7 @@ body {
 * {
   scrollbar-width: thin;
   scroll-behavior: smooth;
-  scrollbar-color: var(--color-red-500) var(--color-n-200);
+  scrollbar-color: var(--color-n-500) var(--color-n-200);
 }
 
 /* WebKit (Chrome, Edge, Safari) */
@@ -411,12 +411,12 @@ body {
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   * {
-    scrollbar-color: var(--color-cyan-500) var(--color-n-900);
+    scrollbar-color: var(--color-n-900) var(--color-n-900);
   }
 }
 
 .dark * {
-  scrollbar-color: var(--color-cyan-500) var(--color-n-900);
+  scrollbar-color: var(--color-n-900) var(--color-n-900);
 }
 
 @media (prefers-color-scheme: dark) {
