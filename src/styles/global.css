@@ -488,6 +488,10 @@ body {
   display: none;
 }
 
+.experience-card-icon {
+  transition: filter 200ms ease;
+}
+
 @media (prefers-color-scheme: dark) {
   .certificate-video-light {
     display: none;
@@ -495,6 +499,10 @@ body {
 
   .certificate-video-dark {
     display: block;
+  }
+
+  .experience-card-icon {
+    filter: brightness(0) invert(1);
   }
 }
 

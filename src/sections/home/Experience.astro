@@ -3,7 +3,7 @@ import ExperienceCard from "../../components/ExperienceCard.astro";
 import { experienceCards } from "../../data/experience-data";
 ---
 
-<section class="bg-n-50">
+<section>
   <div class="container mx-auto px-5 sm:px-6 lg:px-8">
     <div class="flex flex-col items-center gap-11 py-16 sm:gap-14 sm:py-20 md:gap-16 lg:py-28">
       <div class="flex w-full flex-col items-center gap-1 text-center md:gap-0.5">
@@ -15,7 +15,7 @@ import { experienceCards } from "../../data/experience-data";
         </h2>
       </div>
 
-      <div class="grid w-full items-start gap-5 sm:gap-6 md:grid-cols-2 xl:max-w-[1436px] xl:grid-cols-4">
+      <div class="grid w-full grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:max-w-[1436px]">
         {experienceCards.map((experienceCardsItem) => (
           <ExperienceCard {...experienceCardsItem} />
         ))}
