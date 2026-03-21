@@ -4,9 +4,9 @@ export type RegisterRequestPayload = {
   email: string;
   phone: string;
   institution: string;
-  city_id: number;
-  location_id: number;
-  appointment_id: number;
+  city_id: string;
+  location_id: string;
+  appointment_id: string;
 };
 
 export type SuccessRegistrationResponseData = {
