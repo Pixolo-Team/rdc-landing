@@ -7,7 +7,8 @@ import RootLayout from "../layouts/RootLayout.astro";
 import About from "../sections/home/about.astro";
 import Certificate from "../sections/home/Certificate.astro";
 import Experience from "../sections/home/Experience.astro";
-import Faq from "../sections/Faq.astro";
+import Faq from "../sections/home/Faq.astro";
+import Highlights from "../sections/home/Highlights.astro"
 
 export const prerender = true;
 ---
@@ -23,6 +24,8 @@ export const prerender = true;
 
   <!-- Certificate section -->
   <Certificate />
+
+  <Highlights />
 
   <!-- FAQ section -->
   <Faq />
