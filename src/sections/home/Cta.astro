@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import ctaBackground from "../../assets/cta-banner.png";
 ---
 
 <section class="bg-n-50">
@@ -14,12 +12,15 @@ import ctaBackground from "../../assets/cta-banner.png";
     >
       <!-- Background artwork from Figma -->
       <div class="absolute inset-0 -z-10">
-        <Image
-          src={ctaBackground}
+        <img
+          src="/images/cta-mobile.png"
           alt=""
-          width={1380}
-          height={343}
-          class="h-full w-full object-cover object-[62%_center] md:object-center"
+          class="h-full w-full object-cover object-bottom md:hidden"
+        />
+        <img
+          src="/images/cta-desktop.png"
+          alt=""
+          class="hidden h-full w-full object-cover object-bottom md:block"
         />
       </div>
 
@@ -32,9 +33,9 @@ import ctaBackground from "../../assets/cta-banner.png";
           data-sal-delay="120"
           data-sal-duration="650"
         >
-          <h2 class="primary-font text-2xl leading-none font-bold md:text-5xl">
+          <p class="primary-font text-2xl leading-none font-bold md:text-5xl">
             Limited Seats. High Demand !
-          </h2>
+          </p>
           <p class="primary-font text-sm leading-[1.25] font-medium md:text-xl">
             Each session has limited seats for hands-on experience. Registrations are filling fast
             across all urban centers.
@@ -50,7 +51,7 @@ import ctaBackground from "../../assets/cta-banner.png";
         >
           <a
             href="#registerForm"
-            class="primary-font rounded-[32px] bg-n-50 px-5 py-3 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-xl"
+            class="primary-font rounded-3xl bg-n-50 px-5 py-3 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-xl"
           >
             Register Now
           </a>
