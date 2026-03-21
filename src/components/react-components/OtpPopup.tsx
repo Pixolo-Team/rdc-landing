@@ -4,7 +4,8 @@ import { useCallback, useEffect, useState } from "react";
 import Popup from "../Popup";
 
 // SERVICES //
-import { verifyOtpRequest } from "../../services/api/auth.api.service";
+// NOTE: API calls are intentionally disabled for UI-only work.
+const API_DISABLED = true;
 
 type OtpPopupProps = {
   showPopup: boolean;
@@ -74,16 +75,14 @@ export const OtpPopup: React.FC<OtpPopupProps> = ({
     try {
       setIsLoading(true);
 
-      // Make the API Call
-      const response = await verifyOtpRequest(trimmedEmail, code);
-
-      if (response.status) {
-        // Notify parent that email is verified
+      if (API_DISABLED) {
+        // UI-only mode: skip API and treat as verified
         onVerified();
         handleClose();
-      } else {
-        setOtpError(response.message);
+        return;
       }
+
+      setOtpError("API is currently disabled.");
     } catch (err) {
       console.error(err);
       setOtpError("Error Occured. Please try again.");

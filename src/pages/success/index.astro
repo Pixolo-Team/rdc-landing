@@ -3,7 +3,7 @@
 import type { SuccessRegistrationResponseData } from "../../types/form";
 
 // API SERVICES //
-import { getRegistrationSuccessById } from "../../services/api/register.api.service";
+// NOTE: API calls are intentionally disabled for UI-only work.
 
 // OTHERS //
 import RootLayout from "../../layouts/RootLayout.astro";
@@ -16,20 +16,7 @@ import Referral from "../../sections/success/Referral.astro";
 export const prerender = false; // 🚀 SSR only
 
 let registrationSuccessDetails: SuccessRegistrationResponseData | null = null;
-const registrationId = Astro.url.searchParams.get("registration_id");
-
-if (registrationId) {
-  try {
-    const res = await getRegistrationSuccessById(registrationId);
-
-    if (res?.status && res?.data) {
-      registrationSuccessDetails = res.data;
-      console.log(registrationSuccessDetails);
-    }
-  } catch (e) {
-    registrationSuccessDetails = null;
-  }
-}
+// const registrationId = Astro.url.searchParams.get("registration_id");
 ---
 
 <RootLayout>

@@ -2,52 +2,52 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* DIN Medium */
+/* DIN Medium 
 @font-face {
   font-family: "PrimaryFont";
   src: url("/fonts/DINPRO-MEDIUM.OTF") format("opentype");
   font-weight: 500;
 }
 
-/* DIN Semi-Bold */
+/* DIN Semi-Bold 
 @font-face {
   font-family: "PrimaryFont";
   src: url("/fonts/DIN-Bold.otf") format("opentype");
   font-weight: 600;
 }
 
-/* DIN Bold */
+/* DIN Bold 
 @font-face {
   font-family: "PrimaryFont";
   src: url("/fonts/DIN-2014_Bold.otf") format("opentype");
   font-weight: 700;
 }
 
-/* DIN Extra-Bold */
+/* DIN Extra-Bold 
 @font-face {
   font-family: "PrimaryFont";
   src: url("/fonts/DIN-2014_Extra-Bold.otf") format("opentype");
   font-weight: 800;
-}
+} */
 
 
 /* SamsungSharpSans Medium */
 @font-face {
-  font-family: "SecondaryFont";
+  font-family: "PrimaryFont";
   src: url("/fonts/SamsungSharpSans-Medium.ttf") format("truetype");
   font-weight: 500;
 }
 
 /* SamsungSharpSans Bold */
 @font-face {
-  font-family: "SecondaryFont";
+  font-family: "PrimaryFont";
   src: url("/fonts/SamsungSharpSans-Bold.ttf") format("truetype");
   font-weight: 700;
 }
 
 /* SamsungSharpSans Regular */
 @font-face {
-  font-family: "SecondaryFont";
+  font-family: "PrimaryFont";
   src: url("/fonts/SamsungSharpSans-Regular.ttf") format("truetype");
   font-weight: 400;
 }
@@ -439,4 +439,29 @@ body {
 .pulse {
   display: inline-block;
   animation: pulse-animation 3.5s ease-in-out infinite;
+}
+
+/* Fade in from bottom on load */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 700ms ease-out both;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
 }

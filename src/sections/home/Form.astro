@@ -1,13 +1,10 @@
 ---
-
-import { getAppointmentsCatalogRequest } from "../../services/api/dropdowns.api.service";
+// NOTE: API calls are intentionally disabled for UI-only work.
+const catalogItems = [];
 
 // REACT ISLANDS //
 import { ReactForm } from "../react-sections/ReactForm";
 
-// DATA //
-const catalog = await getAppointmentsCatalogRequest();
-const catalogItems = catalog.data;
 ---
 
 <ReactForm client:visible catalog={catalogItems} />

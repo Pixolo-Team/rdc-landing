@@ -15,8 +15,8 @@ import StyledSelect from "../../components/StyledSelect";
 import { OtpPopup } from "../../components/react-components/OtpPopup";
 
 // API SERVICES //
-import { otpRequest } from "../../services/api/auth.api.service";
-import { registerRequest } from "../../services/api/register.api.service";
+// NOTE: API calls are intentionally disabled for UI-only work.
+const API_DISABLED = true;
 
 // CONSTANTS //
 import { INITIAL_FORM } from "../../constants/app.constant";
@@ -271,15 +271,15 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
     clearError("email");
     try {
       setIsLoading(true);
-      const response = await otpRequest(email);
-
-      if (response.status) {
+      if (API_DISABLED) {
+        // UI-only mode: open OTP popup without backend
         setOtpSent(true);
         setShowPopup(true);
-        setEmailVerified(false); // reset verified state when sending a new OTP
-      } else {
-        setError("email", response.message || "Failed to send OTP");
+        setEmailVerified(false);
+        return;
       }
+
+      setError("email", "API is currently disabled.");
     } catch (err) {
       console.error(err);
       setError("email", "Error sending OTP. Please try again.");
@@ -309,26 +309,13 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       try {
         setIsSubmitting(true);
 
-        const payload = {
-          full_name: formDetails.fullName.trim(),
-          dob: formDetails.dob,
-          email: formDetails.email.trim(),
-          contact_number: formDetails.contactNumber.trim(),
-          institution: formDetails.institution.trim(),
-          city_id: selectedCity,
-          location_id: selectedLocation,
-          appointment_id: selectedSlot,
-        };
-
-        const response = await registerRequest(payload);
-
-        if (response.status) {
-          setError("general", "Registration successful!");
-          resetAll();
-          window.location.href = `/success?registration_id=${response.data.registration_id}`;
-        } else {
-          setError("general", response.message || "Registration failed");
+        if (API_DISABLED) {
+          // UI-only mode: mock success without backend
+          setError("general", "Mock submit successful (API disabled).");
+          setIsSubmitting(false);
+          return;
         }
+        setError("general", "API is currently disabled.");
       } catch (err) {
         console.error(err);
         setError("general", "Error during registration. Please try again.");
