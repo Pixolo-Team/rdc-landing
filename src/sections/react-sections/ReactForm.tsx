@@ -306,14 +306,14 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       if (validationError) return;
 
       // Check if email is verified
-      const token = localStorage.getItem("authToken");
-      if (!token) {
-        setError(
-          "general",
-          "Please verify your email first before submitting.",
-        );
-        return;
-      }
+      // const token = localStorage.getItem("authToken");
+      // if (!token) {
+      //   setError(
+      //     "general",
+      //     "Please verify your email first before submitting.",
+      //   );
+      //   return;
+      // }
 
       try {
         setIsSubmitting(true);
@@ -324,11 +324,14 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
           email: formDetails.email.trim(),
           phone: formDetails.contactNumber.trim(),
           institution: formDetails.institution.trim(),
-          city_id: Number(selectedCity),
-          location_id: Number(selectedLocation),
-          appointment_id: Number(selectedSlot),
+          city_id: selectedCity,
+          location_id: selectedLocation,
+          appointment_id: selectedSlot,
         };
 
+        console.log(payload);
+
+        // Send the Data to Supabase
         const response = await submitRegistration(payload);
 
         setError("general", "Registration successful!");

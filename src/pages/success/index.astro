@@ -9,9 +9,7 @@ import type { SuccessRegistrationResponseData } from "../../types/form";
 import RootLayout from "../../layouts/RootLayout.astro";
 
 // SECTIONS //
-import ConfirmationDetails from "../../sections/success/ConfirmationDetails.astro";
 import BookingConfirmed from "../../sections/success/BookingConfirmed.astro";
-import Referral from "../../sections/success/Referral.astro";
 
 export const prerender = false; // 🚀 SSR only
 
@@ -21,20 +19,4 @@ let registrationSuccessDetails: SuccessRegistrationResponseData | null = null;
 
 <RootLayout>
   <BookingConfirmed />
-
-  {
-    registrationSuccessDetails ? (
-      <ConfirmationDetails
-        registrationSuccessDetails={registrationSuccessDetails}
-      />
-    ) : (
-      <section class="container mx-auto px-4 py-10">
-        <p class="para-text">
-          We could not find your booking details. Please check your link.
-        </p>
-      </section>
-    )
-  }
-
-  <Referral registrationSuccessDetails={registrationSuccessDetails} />
 </RootLayout>
