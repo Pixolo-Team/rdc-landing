@@ -1,10 +1,20 @@
 ---
-// NOTE: API calls are intentionally disabled for UI-only work.
-const catalogItems = [];
+// LIBS //
+import { supabase } from "../../lib/supabase";
+
+// TYPES //
+import type { CatalogResponseData } from "../../types/dropdown";
 
 // REACT ISLANDS //
 import { ReactForm } from "../react-sections/ReactForm";
 
+const { data, error } = await supabase.rpc("get_catalog");
+
+if (error) {
+  console.error("Catalog fetch failed:", error.message);
+}
+
+const catalog: CatalogResponseData = data ?? { items: [] };
 ---
 
-<ReactForm client:visible catalog={catalogItems} />
+<ReactForm client:visible catalog={catalog} />
