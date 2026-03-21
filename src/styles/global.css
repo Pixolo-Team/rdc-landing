@@ -30,7 +30,6 @@
   font-weight: 800;
 } */
 
-
 /* SamsungSharpSans Medium */
 @font-face {
   font-family: "PrimaryFont";
@@ -59,11 +58,10 @@
   font-weight: 700;
 }
 
-
-
 /* Apply globally */
 body {
   font-family: "PrimaryFont", sans-serif;
+  letter-spacing: 1px;
 }
 
 @theme inline {
@@ -93,8 +91,6 @@ body {
   --color-n-900: var(--color-n-900);
   --color-n-950: var(--color-n-950);
 }
-
-
 
 :root {
   color-scheme: light dark;
@@ -113,31 +109,30 @@ body {
   --color-cyan-500: #1ba7e0;
 
   /* Blue Color Range */
-  --color-blue-50: #FFFFFF;
-  --color-blue-100: #C2DEFF;
-  --color-blue-200: #99C9FF;
-  --color-blue-300: #70B3FF;
-  --color-blue-400: #479DFF;
-  --color-blue-500: #2189FF;
-  --color-blue-600: #0072F5;
-  --color-blue-700: #005FCC;
-  --color-blue-800: #004CA3;
-  --color-blue-900: #00397A;
+  --color-blue-50: #ffffff;
+  --color-blue-100: #c2deff;
+  --color-blue-200: #99c9ff;
+  --color-blue-300: #70b3ff;
+  --color-blue-400: #479dff;
+  --color-blue-500: #2189ff;
+  --color-blue-600: #0072f5;
+  --color-blue-700: #005fcc;
+  --color-blue-800: #004ca3;
+  --color-blue-900: #00397a;
   --color-blue-950: #001329;
 
   /* Indigo Color Range */
-  --color-indigo-50: #ECECFE;
-  --color-indigo-100: #D9D9FC;
-  --color-indigo-200: #C6C6FB;
-  --color-indigo-300: #9A9AF8;
-  --color-indigo-400: #9DA3FB;
-  --color-indigo-500: #747CF9;
-  --color-indigo-600:#626CF8;
-  --color-indigo-700: #3B57FE;
-  --color-indigo-800: #2041FE;
-  --color-indigo-900: #011FCB;
+  --color-indigo-50: #ececfe;
+  --color-indigo-100: #d9d9fc;
+  --color-indigo-200: #c6c6fb;
+  --color-indigo-300: #9a9af8;
+  --color-indigo-400: #9da3fb;
+  --color-indigo-500: #747cf9;
+  --color-indigo-600: #626cf8;
+  --color-indigo-700: #3b57fe;
+  --color-indigo-800: #2041fe;
+  --color-indigo-900: #011fcb;
   --color-indigo-950: #011065;
-
 
   --color-red-50: #fffafa;
   --color-red-500: #e32729;
@@ -172,8 +167,6 @@ body {
   --color-n-900: var(--color-slate-100);
   --color-n-950: var(--color-slate-50);
 }
-
-
 
 @layer components {
   .primary-font {
