@@ -5,7 +5,8 @@ export type FaqDataItem = {
 };
 
 export const faqSectionContent = {
-  title: "Frequenly Asked Questions",
+  eyebrow: "Q & A",
+  title: "Frequently Asked Questions",
   faqItemList: [
     {
       title: "Do I need to know Copilot already?",
