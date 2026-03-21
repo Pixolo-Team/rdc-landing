@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import SectionHeader from "../../components/SectionHeader.astro";
 
 ---
 
@@ -17,16 +18,10 @@ import { Image } from "astro:assets";
   <!-- Text Section -->
     <div class="fade-in-up mx-auto max-w-[858px] flex flex-col items-center gap-12 text-center sm:gap-14 lg:gap-16">
 
-      <!-- Title  -->
-      <div
-        class="flex w-full flex-col items-center gap-1">
-        <p class="font-medium text-xs tracking-tight text-blue-500 sm:text-base" >
-          MEET YOUR NEW AI PHONE
-        </p>
-        <p class="font-bold text-3xl leading-none tracking-[-0.04em] text-n-900 md:text-5xl lg:text-5xl" >
-          Built for the way you live and learn.
-        </p>
-      </div>
+      <SectionHeader
+        eyebrow="MEET YOUR NEW AI PHONE"
+        title="Built for the way you live and learn."
+      />
 
       <!-- Body Text -->
       <p
@@ -46,6 +41,7 @@ import { Image } from "astro:assets";
             alt=""
             width={189}
             height={44}
+            class="experience-card-icon"
           />
         </div>
       </div>
