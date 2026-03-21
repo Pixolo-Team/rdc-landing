@@ -3,6 +3,7 @@
 import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
+import Hero from "../sections/home/Hero.astro";
 import About from "../sections/home/about.astro";
 import Form from "../sections/home/Form.astro";
 import Certificate from "../sections/home/Certificate.astro";
@@ -17,6 +18,8 @@ export const prerender = true;
 
 <!-- Root Layout  -->
 <RootLayout>
+  <!-- Hero section -->
+  <Hero />
   
   <!-- About section -->
   <About />

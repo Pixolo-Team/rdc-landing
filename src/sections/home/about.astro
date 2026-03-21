@@ -1,49 +1,103 @@
 ---
 import { Image } from "astro:assets";
-import SectionHeader from "../../components/SectionHeader.astro";
-
+import SvgIcon from "../../components/SvgIcon.astro";
 ---
 
 <section
-  class="container relative mx-auto overflow-hidden py-20 sm:py-24 lg:py-28 xl:py-36"
+  class="about-section relative overflow-hidden bg-[radial-gradient(circle_at_18%_58%,var(--color-n-800)_0%,var(--color-n-900)_18%,var(--color-n-950)_44%,var(--color-n-950)_100%)] py-26 px-5 sm:py-24 lg:py-28 xl:py-36"
 >
+<div class="container mx-auto">
+
+  <!-- Mobile Image -->
   <Image
     src="/images/mobile.png"
     alt=""
     width={380}
     height={840}
-    class="pointer-events-none absolute hidden lg:block"
+    class="about-phone-artwork pointer-events-none absolute bottom-0 hidden origin-bottom xl:block"
   />
 
   <!-- Text Section -->
-    <div class="fade-in-up mx-auto max-w-[858px] flex flex-col items-center gap-12 text-center sm:gap-14 lg:gap-16">
-
-      <SectionHeader
-        eyebrow="MEET YOUR NEW AI PHONE"
-        title="Built for the way you live and learn."
-      />
+    <div class="mx-auto max-w-[858px] flex flex-col items-center gap-12 text-center sm:gap-14 lg:gap-16">
+      <div
+        class="flex w-full flex-col items-center gap-1 text-center md:gap-0.5"
+        data-sal="slide-up"
+        data-sal-delay="0"
+        data-sal-duration="550"
+      >
+        <p class="primary-font text-sm font-medium text-blue-500 md:text-base">
+          MEET YOUR NEW AI PHONE
+        </p>
+        <h2 class="primary-font text-n-50 text-3xl font-bold leading-tight sm:text-4xl md:max-w-[500px] lg:text-5xl">
+          Built for the way you live and learn.
+        </h2>
+      </div>
 
       <!-- Body Text -->
       <p
-        class="max-w-[220px] text-2xl font-bold leading-[1.5] text-n-800 sm:max-w-[280px] sm:text-lg lg:max-w-none lg:text-3xl"
-        style="font-family: 'SecondaryFont', sans-serif;"
+        class="primary-font text-lg font-medium leading-[1.5] text-n-50 md:text-xl md:max-w-[600px] lg:max-w-[700px] lg:text-3xl"
+        data-sal="slide-up"
+        data-sal-delay="180"
+        data-sal-duration="550"
       >
         This isn’t a demo. It’s a hands-on AI experience. In 60–90 minutes, you’ll learn how to
         actually use AI in your daily life, from notes to content to productivity.
       </p>
 
-      <div
-        class="relative h-[44px] w-[189px] shrink-0"
-      >
-        <div class="absolute" aria-hidden="true">
-          <Image
-            src="/images/guide-galaxy-logo.svg"
-            alt=""
-            width={189}
-            height={44}
-            class="experience-card-icon"
-          />
+      <!-- Hashtag -->
+        <div
+          class="w-36 md:w-50"
+          aria-hidden="true"
+          data-sal="slide-up"
+          data-sal-delay="360"
+          data-sal-duration="550"
+        >
+          <SvgIcon name="hashtag" width="100%" height="100%" color="var(--color-n-50)" />
         </div>
-      </div>
+    </div>
     </div>
 </section>
+
+  <script is:inline>
+  const initAboutPhoneRotation = () => {
+    const section = document.querySelector(".about-section");
+    const artwork = document.querySelector(".about-phone-artwork");
+
+    if (!(section instanceof HTMLElement) || !(artwork instanceof HTMLElement)) return;
+
+    const updateRotation = () => {
+      if (window.innerWidth < 1280) {
+        artwork.style.transform = "";
+        return;
+      }
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+      const clamped = Math.max(0, Math.min(1, progress));
+      const rotation = -6 + clamped * 12;
+      artwork.style.transform = `rotate(${rotation.toFixed(2)}deg)`;
+    };
+
+    updateRotation();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateRotation();
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAboutPhoneRotation, { once: true });
+  } else {
+    initAboutPhoneRotation();
+  }
+</script>

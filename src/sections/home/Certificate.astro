@@ -1,11 +1,13 @@
 ---
 import { Image } from "astro:assets";
+import galaxyAiLogoDark from "../../assets/galaxy-ai-logo-dark.svg";
+import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
 ---
 
 <section class="relative overflow-hidden bg-n-100">
   <div class="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
     <video
-      class="certificate-video-light absolute inset-0 h-full w-full object-cover opacity-90"
+      class="certificate-video-light pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
       autoplay
       muted
       loop
@@ -16,7 +18,7 @@ import { Image } from "astro:assets";
     </video>
 
     <video
-      class="certificate-video-dark absolute inset-0 h-full w-full object-cover opacity-90"
+      class="certificate-video-dark pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
       autoplay
       muted
       loop
@@ -26,14 +28,16 @@ import { Image } from "astro:assets";
       <source src="/videos/certificate-bg-dark.mp4" type="video/mp4" />
     </video>
 
+    <!-- Overlay to fade video -->
+    <div class="absolute inset-0 bg-n-100/72"></div>
   </div>
 
   <!-- Container -->
-  <div class="container relative z-10 mx-auto px-5 md:px-0">
-    <div class="flex flex-col items-center gap-8 pb-28 pt-20 md:gap-10">
+  <div class="container relative z-10 mx-auto px-5 md:px-10">
+    <div class="flex flex-col items-center gap-8 pb-28 pt-20 md:gap-14 md:py-30">
 
       <!-- Intro copy and certificate prompt -->
-      <div class="flex flex-col items-center gap-5">
+      <div class="flex flex-col items-center gap-7">
 
         <!-- Eyebrow and Galaxy AI wordmark -->
         <div class="flex flex-col items-center gap-0.5 text-center">
@@ -45,31 +49,33 @@ import { Image } from "astro:assets";
             Hey
           </p>
 
+          <!-- Galaxy AI Logo -->
           <div
             class="relative flex items-center gap-2.5 md:gap-3"
             data-sal="zoom-in"
             data-sal-delay="100"
             data-sal-duration="600"
           >
-          
-            <p class="primary-font text-n-900 text-[29px] leading-none font-bold md:text-[44px]">
-              Galaxy AI
-            </p>
 
+            <!-- Light Logo -->
             <Image
-              src="/images/stars.svg"
-              alt=""
-              width={44}
-              height={44}
-              class="h-7 w-7 md:h-11 md:w-11"
-              aria-hidden="true"
+              src={galaxyAiLogoLight}
+              alt="Galaxy AI"
+              class="show-in-light hide-in-dark w-[190px] h-auto md:w-[240px]"
+            />
+
+            <!-- Dark Logo -->
+            <Image
+              src={galaxyAiLogoDark}
+              alt="Galaxy AI"
+              class="hide-in-light show-in-dark w-[190px] h-auto md:w-[240px]"
             />
           </div>
         </div>
 
         <!-- Prompt line -->
         <p
-          class="primary-font max-w-[180px] text-center text-lg leading-[1.5] font-bold text-n-900 md:max-w-none md:text-2xl"
+          class="primary-font text-center text-lg leading-[1.5] font-bold text-n-900 md:max-w-none md:text-3xl"
           data-sal="slide-up"
           data-sal-delay="200"
           data-sal-duration="600"
@@ -80,14 +86,14 @@ import { Image } from "astro:assets";
 
       <!-- Certificate message card -->
       <div
-        class=" rounded-4xl border border-white bg-transparent px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[768px] md:px-28 md:py-24 lg:max-w-[998px]"
+        class="rounded-4xl border border-indigo-500 bg-transparent px-9 py-12 shadow-[0px_8px_24px_0px_rgba(14,23,43,0.14)] md:max-w-[768px] md:px-28 md:py-24 lg:max-w-[998px]"
         data-sal="fade-up"
         data-sal-delay="250"
         data-sal-duration="700"
       >
         
         <!-- Message body -->
-        <p class="text-center text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
+        <p class="text-left text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-3xl">
           At the end of the Lab, you will earn an Official Galaxy AI Certificate from Samsung and
           Reliance Digital to strengthen your profile.
         </p>

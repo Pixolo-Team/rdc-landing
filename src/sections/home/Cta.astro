@@ -3,40 +3,26 @@
 
 <section class="bg-n-50">
   <!-- Container -->
-  <div class="container mx-auto px-5 py-32 md:px-0">
+  <div class="container mx-auto px-5 py-16">
     <!-- CTA banner wrapper -->
     <div
-      class="relative isolate overflow-hidden rounded-3xl px-8 py-8 md:h-[340px] md:px-8 md:py-8"
+      class="relative isolate overflow-hidden rounded-3xl bg-[url('/images/cta-mobile.png')] bg-cover bg-bottom px-6 py-8 md:h-[900px] md:px-12 md:py-12 lg:h-[300px] lg:bg-[url('/images/cta-desktop.png')] lg:py-10 lg:bg-right xl:h-[425px] xl:py-16 xl:px-12"
       data-sal="zoom-in"
       data-sal-duration="700"
     >
-      <!-- Background artwork from Figma -->
-      <div class="absolute inset-0 -z-10">
-        <img
-          src="/images/cta-mobile.png"
-          alt=""
-          class="h-full w-full object-cover object-bottom md:hidden"
-        />
-        <img
-          src="/images/cta-desktop.png"
-          alt=""
-          class="hidden h-full w-full object-cover object-bottom md:block"
-        />
-      </div>
-
       <!-- CTA content -->
-      <div class="flex min-h-[423px] flex-col items-start gap-11 md:min-h-0 md:w-[700px] md:justify-center md:gap-5">
+      <div class="flex min-h-[450px] flex-col items-start gap-11 md:gap-14 md:min-h-[550px] lg:min-h-0 lg:justify-center lg:gap-10 xl:gap-16">
         <!-- Copy block -->
         <div
-          class="flex w-full flex-col items-start gap-3 text-blue-50"
+          class="flex w-full flex-col items-start gap-2 text-blue-50"
           data-sal="slide-right"
           data-sal-delay="120"
           data-sal-duration="650"
         >
-          <p class="primary-font text-2xl leading-none font-bold md:text-5xl">
+          <p class="primary-font text-2xl leading-tight font-bold md:text-5xl">
             Limited Seats. High Demand !
           </p>
-          <p class="primary-font text-sm leading-[1.25] font-medium md:text-xl">
+          <p class="primary-font text-sm leading-normal font-medium md:text-xl lg:max-w-3/4 xl:max-w-2/4">
             Each session has limited seats for hands-on experience. Registrations are filling fast
             across all urban centers.
           </p>
@@ -51,7 +37,7 @@
         >
           <a
             href="#registerForm"
-            class="primary-font rounded-3xl bg-n-50 px-5 py-3 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-xl"
+            class="secondary-font rounded-full bg-n-50 px-6 py-4 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-2xl xl:text-3xl xl:px-9 xl:py-5"
           >
             Register Now
           </a>

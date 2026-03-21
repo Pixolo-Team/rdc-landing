@@ -192,289 +192,79 @@ body {
   .para-text {
     @apply text-2xl/8 text-n-950 font-medium text-center sm:text-[28px]/10 lg:text-2xl;
   }
-
-  .select-common-class {
-    @apply w-full border-0 border-b-2 border-n-300
-      bg-transparent appearance-none
-      focus:outline-none focus:border-sky-500
-      text-n-900 text-base p-2 pr-8
-      disabled:border-n-200 disabled:text-n-400;
-  }
-
-  .select-icon {
-    @apply pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400;
-  }
-}
-
-/* ANIMATIONS */
-@property --rot {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-@property --jit {
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
-
-.dash-loop .dash-line {
-  /* tuneables */
-  --dash: 8px; /* dash length */
-  --gap: 17px; /* gap length */
-  --speed: 1.2s; /* cycle duration */
-
-  animation: dash-move var(--speed) linear infinite;
-  will-change: stroke-dashoffset;
-}
-
-@keyframes dash-move {
-  /* shift by one full dash+gap so the pattern loops seamlessly */
-  to {
-    stroke-dashoffset: calc(-1 * (var(--dash) + var(--gap)));
-  }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .dash-loop {
-    animation: none;
-  }
-}
-
-/* Upright rocket: gentle sway + occasional vibration burst (rotate-only) */
-.rocket-flight {
-  /* tweakables */
-  --amp: 1.1deg; /* base sway amplitude */
-  --dur: 1s; /* base sway cycle */
-  --burst-amp: 0.45deg; /* vibration amplitude for bursts */
-  --burst-period: 7s; /* time between bursts */
-
-  transform-origin: bottom center; /* pivot around the engine nozzle */
-  transform: rotate(var(--rot)) rotate(var(--jit));
-  animation:
-    rocket-sway var(--dur) linear infinite alternate,
-    rocket-burst var(--burst-period) ease-in-out infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* Base: smooth, linear sway (like constant thrust corrections) */
-@keyframes rocket-sway {
-  from {
-    --rot: calc(var(--amp) * -1);
-  }
-  to {
-    --rot: var(--amp);
-  }
-}
-
-/* Burst: a short, subtle vibration near the end of each period */
-@keyframes rocket-burst {
-  0%,
-  80% {
-    --jit: 0deg;
-  }
-  83% {
-    --jit: calc(var(--burst-amp) * -1);
-  }
-  85% {
-    --jit: var(--burst-amp);
-  }
-  87% {
-    --jit: calc(var(--burst-amp) * -0.6);
-  }
-  89% {
-    --jit: calc(var(--burst-amp) * 0.6);
-  }
-  91% {
-    --jit: calc(var(--burst-amp) * -0.3);
-  }
-  93%,
-  100% {
-    --jit: 0deg;
-  }
-}
-
-/* Reduced motion: keep it still */
-@media (prefers-reduced-motion: reduce) {
-  .rocket-flight {
-    animation: none;
-    transform: none;
-  }
-}
-
-/* Register animatable custom props (smooth interpolation) */
-@property --rot {
-  syntax: "<angle>";
-  initial-value: 0turn;
-  inherits: false;
-}
-@property --tx {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: false;
-}
-@property --ty {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: false;
-}
-
-/* One class: slow spin + subtle drift */
-.space-float-spin {
-  /* tweakables */
-  --spin-dur: 64s; /* bigger = slower rotation */
-  --drift-dur: 24s; /* drift loop duration */
-  --dx: 10px; /* drift x distance */
-  --dy: 6px; /* drift y distance */
-
-  transform-origin: center center;
-  transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
-  animation:
-    spin-vars var(--spin-dur) linear infinite,
-    drift-vars var(--drift-dur) ease-in-out infinite;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-/* rotates --rot from 0 → 1 turn */
-@keyframes spin-vars {
-  from {
-    --rot: 0turn;
-  }
-  to {
-    --rot: -1turn;
-  }
-}
-
-/* drifts --tx/--ty around a gentle box/ellipse path */
-@keyframes drift-vars {
-  0% {
-    --tx: 0px;
-    --ty: 0px;
-  }
-  25% {
-    --tx: var(--dx);
-    --ty: 0px;
-  }
-  50% {
-    --tx: var(--dx);
-    --ty: var(--dy);
-  }
-  75% {
-    --tx: 0px;
-    --ty: var(--dy);
-  }
-  100% {
-    --tx: 0px;
-    --ty: 0px;
-  }
-}
-
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .space-float-spin {
-    animation: none;
-    transform: none;
-  }
 }
 
 /* Scrollbar styling */
 /* Firefox */
-* {
+html {
   scrollbar-width: thin;
   scroll-behavior: smooth;
+  overflow-y: auto;
   scrollbar-color: var(--color-n-500) var(--color-n-200);
 }
 
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 /* WebKit (Chrome, Edge, Safari) */
-*::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
-*::-webkit-scrollbar-track {
+html::-webkit-scrollbar-track {
   background: var(--color-n-200);
 }
 
-*::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
   background-color: var(--color-blue-500);
   border-radius: 8px;
   border: 2px solid var(--color-n-200);
 }
 
-*::-webkit-scrollbar-thumb:hover {
+html::-webkit-scrollbar-thumb:hover {
   background-color: var(--color-cyan-500);
 }
 
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
-  * {
+  html {
     scrollbar-color: var(--color-n-900) var(--color-n-900);
   }
 }
 
-.dark * {
+.dark {
   scrollbar-color: var(--color-n-900) var(--color-n-900);
 }
 
 @media (prefers-color-scheme: dark) {
-  *::-webkit-scrollbar-track {
+  html::-webkit-scrollbar-track {
     background: var(--color-n-900);
   }
 }
 
-.dark *::-webkit-scrollbar-track {
+.dark::-webkit-scrollbar-track {
   background: var(--color-n-900);
 }
 
 @media (prefers-color-scheme: dark) {
-  *::-webkit-scrollbar-thumb {
+  html::-webkit-scrollbar-thumb {
     border-color: var(--color-n-900);
   }
 }
 
-.dark *::-webkit-scrollbar-thumb {
+.dark::-webkit-scrollbar-thumb {
   background-color: var(--color-cyan-500);
   border-color: var(--color-n-900);
-}
-
-/* Submit arrow slide-out animation */
-@keyframes arrow-slide-out-x {
-  to {
-    transform: translateX(250px);
-  }
-}
-
-.no-delay {
-  transition-delay: 0s !important;
-  animation-delay: 0s !important;
-}
-
-.btn-arrow-slide-out {
-  animation: arrow-slide-out-x 600ms ease-out forwards;
-}
-
-/* Pulse animation */
-@keyframes pulse-animation {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.05);
-    opacity: 0.7;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.pulse {
-  display: inline-block;
-  animation: pulse-animation 3.5s ease-in-out infinite;
 }
 
 .certificate-video-dark {
@@ -485,7 +275,20 @@ body {
   transition: filter 200ms ease;
 }
 
+.hide-in-light {
+  display: none;
+}
+.show-in-light {
+  display: block;
+}
+
 @media (prefers-color-scheme: dark) {
+  .hide-in-dark {
+    display: none;
+  }
+  .show-in-dark {
+    display: block;
+  }
   .certificate-video-light {
     display: none;
   }

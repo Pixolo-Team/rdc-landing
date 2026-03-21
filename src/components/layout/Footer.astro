@@ -1,5 +1,7 @@
 ---
 import { Image } from "astro:assets";
+import galaxyAiLogoDark from "../../assets/galaxy-ai-logo-dark.svg";
+import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
 
 const sectionContent = {
   contact_number: "+91-93250-99635",
@@ -16,40 +18,41 @@ const sectionContent = {
 ---
 
 <footer class="bg-n-50 pt-12 xl:pt-24">
-  <div class="container mx-auto py-12 lg:py-2">
+  <div class="container mx-auto py-12 px-8 lg:py-2">
     <div class="flex flex-col gap-16 items-start md:gap-13 lg:gap-10">
 
-      <div class="flex w-full flex-col max-w-[500px] items-centre gap-2.5 text-left lg:px-8">
-        <p class="text-n-950 text-[28px] font-semibold sm:text-3xl lg:text-2xl;">{sectionContent.title}</p>
+      <!-- Top Info -->
+      <div class="flex w-full flex-col items-centre gap-2 text-left lg:px-8">
+        <p class="text-n-950 text-xl leading-tight font-semibold sm:text-3xl lg:text-2xl;">{sectionContent.title}</p>
         <p class="primary-font text-base font-normal text-n-900">
           {sectionContent.description}
         </p>
       </div>
 
       <div
-        class="flex flex-col gap-16 items-center md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-end"
+        class="flex flex-col gap-16 w-full md:gap-13 lg:flex-row lg:justify-between lg:w-full lg:px-8 lg:items-end"
       >
         <!-- Support -->
-        <div class="flex flex-col gap-5 lg:items-start">
-          <h3 class="sub-title">For Support</h3>
+        <div class="flex flex-col gap-5 items-start">
+          <h3 class="sub-title md:text-2xl lg:text-2xl">For Support</h3>
 
-          <div class="flex flex-col gap-2 items-center lg:items-start">
+          <div class="flex flex-col gap-2">
             <!-- Call -->
-            <p class="text-center">
-              <span class="para-text text-lg lg:text-2xl">Call:</span>
+            <p class="text-left">
+              <span class="para-text text-lg md:text-base lg:text-xl">Call:</span>
               <a
                 href={`tel:${sectionContent.contact_number}`}
-                class="para-text text-lg lg:text-2xl text-sky-600 hover:underline lg:ml-2"
+                class="para-text text-lg md:text-base lg:text-xl text-blue-600 hover:underline lg:ml-2"
               >
                 {sectionContent.contact_number}
               </a>
             </p>
             <!-- Email -->
-            <p class="text-center">
-              <span class="para-text text-lg lg:text-2xl">Email:</span>
+            <p class="text-left">
+              <span class="para-text text-lg md:text-base lg:text-xl">Email:</span>
               <a
                 href={`mailto:${sectionContent.email}`}
-                class="para-text text-lg lg:text-2xl text-sky-600 hover:underline lg:ml-2"
+                class="para-text break-all text-lg md:text-base lg:text-xl text-blue-600 hover:underline lg:ml-2"
               >
                 {sectionContent.email}
               </a>
@@ -59,21 +62,23 @@ const sectionContent = {
 
        
           <!-- Certification Partner -->
-          <div class="flex flex-col items-center gap-5 lg:self-end lg:items-start lg:pb-1">
+          <div class="flex flex-col items-center gap-5 md:w-full lg:w-auto lg:self-end lg:items-start lg:pb-1">
             <div
-              class="relative flex items-center gap-2.5 md:gap-3"
+              class="relative flex"
             >
-              <p class="primary-font text-n-900 text-[29px] leading-none font-bold md:text-[44px]">
-                Galaxy AI
-              </p>
-
               <Image
-                src="/images/stars.svg"
-                alt=""
-                width={44}
+                src={galaxyAiLogoLight}
+                alt="Galaxy AI"
+                width={212}
                 height={44}
-                class="h-7 w-7 md:h-11 md:w-11"
-                aria-hidden="true"
+                class="show-in-light hide-in-dark w-[170px] h-auto md:w-[240px]"
+              />
+              <Image
+                src={galaxyAiLogoDark}
+                alt="Galaxy AI"
+                width={212}
+                height={44}
+                class="hide-in-light show-in-dark w-[170px] h-auto md:w-[240px]"
               />
             </div>
           </div>
@@ -88,26 +93,21 @@ const sectionContent = {
           class="flex flex-col gap-2 items-center pt-2 lg:w-full lg:pt-0 lg:justify-between lg:flex-row"
         >
           <!-- Copyright Text -->
-          <p class="text-base text-n-700">
+          <p class="order-2 pt-3 text-center text-base text-n-700 lg:order-none lg:pt-0">
             Copyright © {sectionContent.year}. All Rights Reserved.
           </p>
 
-          <div class="flex flex-col gap-2 items-center lg:flex-row-reverse">
+          <div class="order-1 flex flex-col items-center gap-5 lg:order-none lg:flex-row-reverse lg:gap-2">
             <!-- Socials: square buttons using n tokens -->
-            <div
-              class="flex gap-7 py-6 lg:gap-2"
-              data-sal="slide-up"
-              data-sal-duration="500"
-              data-sal-easing="ease-out-back"
-            >
+            <div class="flex gap-7 py-6 lg:gap-2">
               <!-- Facebook -->
               <a
                 href={sectionContent.facebook_url}
                 target="_blank"
                 aria-label="Facebook"
-                class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
+                class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/facebook.svg" class="experience-card-icon w-full" />
+                <img src="/icons/facebook.svg" class="pointer-events-none experience-card-icon w-full" />
               </a>
 
               <!-- X -->
@@ -115,9 +115,9 @@ const sectionContent = {
                 href={sectionContent.x_url}
                 target="_blank"
                 aria-label="X"
-                class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
+                class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/x.svg" class="experience-card-icon w-full" />
+                <img src="/icons/x.svg" class="pointer-events-none experience-card-icon w-full" />
               </a>
 
               <!-- Insta -->
@@ -125,9 +125,9 @@ const sectionContent = {
                 href={sectionContent.insta_url}
                 target="_blank"
                 aria-label="Insta"
-                class="w-14 lg:w-6 transition-transform duration-200 hover:scale-110"
+                class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/insta.svg" class="experience-card-icon w-full" />
+                <img src="/icons/insta.svg" class="pointer-events-none experience-card-icon w-full" />
               </a>
             </div>
 

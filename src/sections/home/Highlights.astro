@@ -1,13 +1,13 @@
 ---
-import { Image } from "astro:assets";
 import SectionHeader from "../../components/SectionHeader.astro";
+import SvgIcon from "../../components/SvgIcon.astro";
 import { highlightsSectionContent } from "../../data/highlights-data";
 ---
 
 <section class="bg-n-50">
   <!-- Container -->
-  <div class="container mx-auto px-5 md:px-0">
-    <div class="flex flex-col items-center gap-14 pb-32 pt-20">
+  <div class="container mx-auto px-5 py-8 md:px-0">
+    <div class="flex flex-col items-center gap-16 pb-32 pt-20">
       <div
         data-sal="slide-down"
         data-sal-duration="600"
@@ -19,32 +19,33 @@ import { highlightsSectionContent } from "../../data/highlights-data";
       </div>
 
       <!-- Highlight cards -->
-      <div class="grid w-full justify-items-center grid-cols-1 gap-11 md:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 md:px-5">
+      <div class="grid w-full grid-cols-1 justify-items-center gap-11 md:grid-cols-2 md:gap-8 md:px-10 xl:grid-cols-4">
         {
           highlightsSectionContent.highlights.map((highlightsItem, index) => (
             <div
-              class="mx-auto flex flex-col items-center gap-4 text-center md:mx-0 md:items-start md:gap-6 md:text-left"
+              class="flex h-full w-full max-w-[300px] flex-col items-center gap-4 md:gap-6"
               data-sal="fade-up"
               data-sal-delay={String(120 + index * 120)}
               data-sal-duration="650"
             >
               {/* Icon card */}
-              <div class="flex aspect-square w-full max-w-[320px] items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
-                <Image
-                  src={highlightsItem.image}
-                  alt={highlightsItem.alt}
-                  width={86}
-                  height={86}
-                  class="h-[86px] w-[86px]"
-                />
+              <div class="flex aspect-square w-full items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
+                <div class="h-[86px] w-[86px]" aria-label={highlightsItem.alt} role="img">
+                  <SvgIcon
+                    name={highlightsItem.icon}
+                    width="100%"
+                    height="100%"
+                    color="var(--color-blue-500)"
+                  />
+                </div>
               </div>
 
               {/* Text content */}
-              <div class="flex w-full flex-col items-center gap-1 px-1.5 md:items-start">
-                <h3 class="text-n-900 text-2xl leading-none font-bold">
+              <div class="flex w-full flex-col gap-1 px-3 text-center xl:px-2">
+                <h3 class="text-n-900 text-2xl leading-tight font-bold text-left">
                   {highlightsItem.title}
                 </h3>
-                <p class="text-base leading-[1.5] font-medium text-n-600">
+                <p class="text-base leading-normal font-medium text-n-600 text-left">
                   {highlightsItem.description}
                 </p>
               </div>

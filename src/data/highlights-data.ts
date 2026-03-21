@@ -1,7 +1,7 @@
 export type HighlightDataItem = {
   title: string;
   description: string;
-  image: string;
+  icon: string;
   alt: string;
 };
 
@@ -12,25 +12,25 @@ export const highlightsSectionContent = {
     {
       title: "Official Galaxy AI Certificate",
       description: "Become a certified navigator after the masterclass.",
-      image: "/images/certificate.svg",
+      icon: "certificate",
       alt: "Certificate icon",
     },
     {
       title: "Real-life AI skills",
       description: "Practical workflows for work, study, and creativity.",
-      image: "/images/sparkle.svg",
+      icon: "sparkle",
       alt: "Spark icon",
     },
     {
       title: "Hands-on S26 Ultra experience",
       description: "Get early access to the newest flagship hardware.",
-      image: "/images/mobile-logo.svg",
+      icon: "mobile-logo",
       alt: "Phone icon",
     },
     {
       title: "Exclusive offers + discounts",
       description: "Attendee-only benefits on Galaxy ecosystem devices.",
-      image: "/images/offer-logo.svg",
+      icon: "offer-logo",
       alt: "Discount coupon icon",
     },
   ] satisfies HighlightDataItem[],
