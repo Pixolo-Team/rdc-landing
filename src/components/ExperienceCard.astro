@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import type { ExperienceCardData } from "../data/experience-data";
+
+type Props = ExperienceCardData;
+
+const {
+  eyebrow,
+  title,
+  description,
+  icon,
+  iconAlt = "",
+  iconWidth,
+  iconHeight,
+} = Astro.props;
+---
+
+<!-- Card Component -->
+<div class= "flex h-auto w-full flex-col items-start gap-6 self-start rounded-3xl border border-n-200 bg-n-100 p-6 transition-shadow duration-300 hover:shadow-[0px_6px_16px_0px_rgba(32,22,212,0.25)] sm:gap-7 sm:p-7 lg:gap-8 lg:p-8" >
+  
+  <!-- Icon Image -->
+  <Image
+    src={icon}
+    alt={iconAlt}
+    width={iconWidth}
+    height={iconHeight}
+  />
+
+  {
+    (eyebrow || title || description) && (
+      <div class="flex w-full flex-col items-start gap-3 sm:gap-3.5 md:gap-4">
+        {(eyebrow || title) && (
+          <div class="flex w-full flex-col items-start gap-px">
+            {
+              eyebrow && (
+                <p class="primary-font text-sm font-bold leading-6 text-indigo-500 md:text-base">
+                  {eyebrow}
+                </p>
+              )
+            }
+
+            {
+              title && (
+                <p class="primary-font text-n-900 text-xl font-bold leading-tight sm:text-2xl lg:text-[30px] lg:leading-none">
+                  {title}
+                </p>
+              )
+            }
+          </div>
+        )}
+
+        {
+          description && (
+            <p class="primary-font text-sm font-medium leading-6 text-n-900 sm:text-[15px] md:text-base">
+              {description}
+            </p>
+          )
+        }
+      </div>
+    )
+  }
+</div>
