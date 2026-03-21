@@ -1,13 +1,20 @@
 ---
+// LIBS //
+import { supabase } from "../../lib/supabase";
 
-import { getAppointmentsCatalogRequest } from "../../services/api/dropdowns.api.service";
+// TYPES //
+import type { CatalogResponseData } from "../../types/dropdown";
 
 // REACT ISLANDS //
 import { ReactForm } from "../react-sections/ReactForm";
 
-// DATA //
-const catalog = await getAppointmentsCatalogRequest();
-const catalogItems = catalog.data;
+const { data, error } = await supabase.rpc("get_catalog");
+
+if (error) {
+  console.error("Catalog fetch failed:", error.message);
+}
+
+const catalog: CatalogResponseData = data ?? { items: [] };
 ---
 
-<ReactForm client:visible catalog={catalogItems} />
+<ReactForm client:visible catalog={catalog} />

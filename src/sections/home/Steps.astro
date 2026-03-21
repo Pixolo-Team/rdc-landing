@@ -1,0 +1,120 @@
+---
+import SvgIcon from "../../components/SvgIcon.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+
+const steps = [
+  {
+    number: "ONE",
+    title: "Register",
+    description:
+      "Secure your spot online and choose your nearest Reliance Digital flagship store.",
+    icon: "register",
+    lightVideo: "/videos/step-1-light.mp4",
+    darkVideo: "/videos/step-1-dark.mp4",
+    imageWidth: 90,
+    imageHeight: 105,
+    imageClass: "h-[104.888px] w-[90px]",
+  },
+  {
+    number: "TWO",
+    title: "Attend the Masterclass",
+    description: "A guided 60-90 minute session led by Samsung certified AI Navigators.",
+    icon: "attendance",
+    lightVideo: "/videos/step-2-light.mp4",
+    darkVideo: "/videos/step-2-dark.mp4",
+    imageWidth: 92,
+    imageHeight: 79,
+    imageClass: "h-[79px] w-[92px]",
+  },
+  {
+    number: "THREE",
+    title: "Experience Galaxy AI",
+    description: "Learn by doing, master the features, and take home exclusive expertise.",
+    icon: "mob-ai",
+    lightVideo: "/videos/step-3-light.mp4",
+    darkVideo: "/videos/step-3-dark.mp4",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageClass: "h-[80.252px] w-[80.256px]",
+  },
+];
+---
+
+<section class="bg-n-50">
+  <!-- Container -->
+  <div class="container mx-auto px-5 py-28">
+    <div class="flex flex-col items-center gap-20">
+      <!-- Section heading -->
+       <SectionHeader
+          eyebrow={"Step by Step"}
+          title={"What you have to do"}
+        />
+
+      <!-- Step cards -->
+      <div class="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
+        {
+          steps.map((step, index) => (
+            <article
+              class="relative flex w-full flex-col gap-2 self-stretch overflow-hidden rounded-3xl border border-n-200 bg-n-100 px-5 py-7 lg:max-w-[450px]"
+              data-sal="fade-up"
+              data-sal-delay={String(140 + index * 120)}
+              data-sal-duration="650"
+            >
+              {/* Theme-aware video background */}
+              <div class="absolute inset-0">
+                <video
+                  class="pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-dark show-in-light"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                >
+                  <source src={step.lightVideo} type="video/mp4" />
+                </video>
+
+                <video
+                  class="pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-light show-in-dark"
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                >
+                  <source src={step.darkVideo} type="video/mp4" />
+                </video>
+
+                <div class="absolute inset-0 bg-n-50/54"></div>
+              </div>
+
+              {/* Step label and title */}
+              <div class="relative z-10 flex flex-col gap-2 px-1.5">
+                <p class="primary-font text-blue-500 text-2xl leading-none font-medium">
+                  {step.number}
+                </p>
+                <h3 class="primary-font text-n-900 text-4xl leading-none font-bold">
+                  {step.title}
+                </h3>
+              </div>
+
+              {/* Icon area */}
+              <div class="relative z-10 flex w-full items-center justify-center py-14 md:flex-1 md:py-36">
+                <div class={step.imageClass}>
+                  <SvgIcon
+                    name={step.icon}
+                    width={step.imageWidth}
+                    height={step.imageHeight}
+                    color="var(--color-n-900)"
+                  />
+                </div>
+              </div>
+
+              {/* Supporting copy */}
+              <p class="primary-font relative z-10 text-lg leading-[1.5] font-bold text-n-700">
+                {step.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

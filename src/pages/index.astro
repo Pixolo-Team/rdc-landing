@@ -4,13 +4,14 @@ import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
 import Hero from "../sections/home/Hero.astro";
-import CopilotEdition from "../sections/home/CopilotEdition.astro";
-import ClassExpectations from "../sections/home/ClassExpectations.astro";
-import Certificate from "../sections/home/Certificate.astro";
-import Highlights from "../sections/home/Highlights.astro";
+import About from "../sections/home/about.astro";
 import Form from "../sections/home/Form.astro";
-import HowItWorks from "../sections/home/HowItWorks.astro";
-import Faq from "../sections/Faq.astro";
+import Certificate from "../sections/home/Certificate.astro";
+import Cta from "../sections/home/Cta.astro";
+import Experience from "../sections/home/Experience.astro";
+import Faq from "../sections/home/Faq.astro";
+import Highlights from "../sections/home/Highlights.astro"
+import Steps from "../sections/home/Steps.astro";
 
 export const prerender = true;
 ---
@@ -19,18 +20,30 @@ export const prerender = true;
 <RootLayout>
   <!-- Hero section -->
   <Hero />
-  <!-- Copilot Edition section  -->
-  <CopilotEdition />
-  <!-- Class Expectations -->
-  <ClassExpectations />
+  
+  <!-- About section -->
+  <About />
+
+  
+  <!-- Experience section -->
+  <Experience />
+
   <!-- Certificate section -->
   <Certificate />
-  <!-- Highlights section  -->
+
+  <!-- Highlights section -->
   <Highlights />
-  <!-- How It Works section -->
-  <HowItWorks />
-  <!-- Form Section -->
-  <Form />
+
+  <!-- Steps section -->
+  <Steps />
+
+  <!-- CTA section -->
+  <Cta />
+  
+  <!-- Form  -->
+   <Form />
+   
   <!-- FAQ section -->
   <Faq />
+
 </RootLayout>

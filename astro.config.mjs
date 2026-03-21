@@ -10,6 +10,15 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
+  image: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.figma.com",
+        pathname: "/api/mcp/asset/**",
+      },
+    ],
+  },
   vite: {
     plugins: [tailwindcss()],
   },

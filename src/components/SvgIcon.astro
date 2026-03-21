@@ -1,0 +1,67 @@
+---
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+
+type Props = {
+  name: string;
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+};
+
+const {
+  name,
+  width = 24,
+  height = 24,
+  color = "currentColor",
+} = Astro.props;
+
+if (!name) {
+  throw new Error("SvgIcon requires a `name` prop.");
+}
+
+if (name.includes("/") || name.includes("\\")) {
+  throw new Error("SvgIcon `name` must be a file name from `public/icons` without path segments.");
+}
+
+const fileName = name.endsWith(".svg") ? name : `${name}.svg`;
+const filePath = join(process.cwd(), "public", "icons", fileName);
+
+if (!existsSync(filePath)) {
+  throw new Error(`SvgIcon could not find \`${fileName}\` in public/icons.`);
+}
+
+const escapeAttribute = (value: string | number) =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+let svgMarkup = readFileSync(filePath, "utf8").trim();
+
+svgMarkup = svgMarkup
+  .replace(/\sfill="(?!none)[^"]*"/gi, ' fill="currentColor"')
+  .replace(/\sstroke="(?!none)[^"]*"/gi, ' stroke="currentColor"');
+
+svgMarkup = svgMarkup.replace(/<svg\b([^>]*)>/i, (_, attrs: string) => {
+  const sanitizedAttrs = attrs
+    .replace(/\s(?:width|height|style|class|fill|stroke)="[^"]*"/gi, "")
+    .trim();
+
+  const finalAttrs = [
+    sanitizedAttrs,
+    `width="${escapeAttribute(width)}"`,
+    `height="${escapeAttribute(height)}"`,
+    `style="color: ${escapeAttribute(color)}; display: block;"`,
+    'aria-hidden="true"',
+    'focusable="false"',
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return `<svg ${finalAttrs}>`;
+});
+---
+
+<Fragment set:html={svgMarkup} />

@@ -1,0 +1,21 @@
+---
+// COMPONENTS //
+import FaqItems from "../../components/FaqItems.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+
+// DATA //
+import { faqSectionContent } from "../../data/faq-data";
+---
+
+<!-- FAQ Section -->
+<section
+  class="w-full px-8 py-18 container mx-auto flex flex-col items-center gap-12"
+>
+  <SectionHeader
+    eyebrow={faqSectionContent.eyebrow}
+    title={faqSectionContent.title}
+  />
+
+  <!-- FAQ List Component -->
+  <FaqItems items={faqSectionContent.faqItemList} />
+</section>
