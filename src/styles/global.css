@@ -159,6 +159,14 @@ body {
 
 
 @layer components {
+  .primary-font {
+    font-family: "PrimaryFont", sans-serif;
+  }
+
+  .secondary-font {
+    font-family: "SecondaryFont", sans-serif;
+  }
+
   .btn-cta {
     @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none transition-all hover:px-20 hover:rotate-2 sm:text-2xl sm:px-16 sm:py-6 disabled:opacity-50;
   }
