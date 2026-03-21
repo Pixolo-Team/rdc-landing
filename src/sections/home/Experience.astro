@@ -1,82 +1,22 @@
 ---
-const cards = [
-  {
-    eyebrow: "Study smarter",
-    title: "AI Notes & Summarizer",
-    description:
-      'Transition from theoretical curiosity to practical mastery. Our labs are designed to bridge the gap between "knowing about AI" and "knowing how to lead with AI."',
-    icon: "https://www.figma.com/api/mcp/asset/c4e743ce-16a7-4811-98cf-cff95bcdca38",
-    iconClass: "h-[41px] w-[41px] md:h-[47.5px] md:w-[47.5px]",
-    featured: true,
-  },
-  {
-    eyebrow: "Break language barriers",
-    title: "Live Translate",
-    description:
-      "Break down barriers with real-time translation during calls and face-to-face meetings. Speak any language instantly.",
-    icon: "https://www.figma.com/api/mcp/asset/f36b792b-a9db-43f0-8cf8-766a9881dbcf",
-    iconClass: "h-10 w-10 md:h-11 md:w-11",
-  },
-  {
-    eyebrow: "Edit like magic",
-    title: "AI Photo Assist",
-    description:
-      "Move objects, remove distractions, and remaster your creative portfolio with generative AI-powered editing tools.",
-    icon: "https://www.figma.com/api/mcp/asset/9a736933-8a77-4e82-867f-6b5e652856c9",
-    iconClass: "h-10 w-10 md:h-11 md:w-11",
-  },
-  {
-    eyebrow: "Work faster",
-    title: "AI Productivity",
-    description:
-      "Draft emails, build professional resumes, and generate presentation outlines in seconds. Work smarter, not harder.",
-    icon: "https://www.figma.com/api/mcp/asset/ea93cbc1-9dd1-4bb5-bbd8-428bc7501a6c",
-    iconClass: "h-10 w-10 md:h-11 md:w-11",
-  },
-];
+import ExperienceCard from "../../components/ExperienceCard.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import { experienceCards } from "../../data/experience-data";
 ---
 
-<section class="bg-n-50">
-  <div class="container mx-auto px-5 md:px-0">
-    <div class="flex flex-col items-center gap-11 pb-16 pt-20 md:gap-20 md:pb-28">
-      <div class="flex w-full flex-col items-center gap-1 text-center md:gap-0.5">
-        <p class="primary-font text-sm font-medium text-blue-500 md:text-base">
-          Galaxy AI Navigator Labs
-        </p>
-        <h2 class="primary-font text-n-900 text-[30px] leading-none font-bold md:text-5xl">
-          What You’ll Experience
-        </h2>
-      </div>
+<section>
+  <div class="container mx-auto px-5 sm:px-6 lg:px-8">
+    <div class="flex flex-col items-center gap-11 py-16 sm:gap-14 sm:py-20 md:gap-16 lg:py-28">
 
-      <div class="grid w-full gap-7 md:grid-cols-4 md:gap-5 xl:max-w-[1436px]">
-        {
-          cards.map((card) => (
-            <article
-              class:list={[
-                "flex flex-col items-start gap-8 rounded-3xl border border-n-200 bg-n-100 p-8",
-                "md:min-h-[248px]",
-                card.featured && "md:shadow-[0px_6px_16px_0px_rgba(32,22,212,0.25)]",
-              ]}
-            >
-              <img src={card.icon} alt="" aria-hidden="true" class={card.iconClass} />
+      <SectionHeader
+        eyebrow="Galaxy AI Navigator Labs"
+        title="What You’ll Experience"
+      />
 
-              <div class="flex w-full flex-col items-start gap-3.5 md:gap-4">
-                <div class="flex w-full flex-col items-start gap-px">
-                  <p class="primary-font text-sm leading-6 font-bold text-indigo-500 md:text-base">
-                    {card.eyebrow}
-                  </p>
-                  <h3 class="primary-font text-n-900 text-2xl leading-none font-bold md:text-[30px]">
-                    {card.title}
-                  </h3>
-                </div>
-
-                <p class="primary-font text-sm leading-6 font-medium text-n-900 md:text-base">
-                  {card.description}
-                </p>
-              </div>
-            </article>
-          ))
-        }
+      <div class="grid w-full grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 xl:max-w-[1436px]">
+        {experienceCards.map((experienceCardsItem) => (
+          <ExperienceCard {...experienceCardsItem} />
+        ))}
       </div>
     </div>
   </div>
