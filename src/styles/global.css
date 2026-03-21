@@ -30,6 +30,37 @@
   font-weight: 800;
 }
 
+
+/* SamsungSharpSans Medium */
+@font-face {
+  font-family: "SecondaryFont";
+  src: url("/fonts/SamsungSharpSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+
+/* SamsungSharpSans Bold */
+@font-face {
+  font-family: "SecondaryFont";
+  src: url("/fonts/SamsungSharpSans-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+/* SamsungSharpSans Regular */
+@font-face {
+  font-family: "SecondaryFont";
+  src: url("/fonts/SamsungSharpSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+/* SamsungSS Body Bold */
+@font-face {
+  font-family: "SecondaryFont";
+  src: url("/fonts/SamsungSSBody-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
+
+
 /* Apply globally */
 body {
   font-family: "PrimaryFont", sans-serif;
@@ -49,6 +80,22 @@ body {
   --color-n-950: var(--color-n-950);
 }
 
+@theme inline {
+  --color-n-50: var(--color-n-50);
+  --color-n-100: var(--color-n-100);
+  --color-n-200: var(--color-n-200);
+  --color-n-300: var(--color-n-300);
+  --color-n-400: var(--color-n-400);
+  --color-n-500: var(--color-n-500);
+  --color-n-600: var(--color-n-600);
+  --color-n-700: var(--color-n-700);
+  --color-n-800: var(--color-n-800);
+  --color-n-900: var(--color-n-900);
+  --color-n-950: var(--color-n-950);
+}
+
+
+
 :root {
   --color-slate-50: #ffffff;
   --color-n-50: var(--color-slate-50);
@@ -63,7 +110,34 @@ body {
   --color-n-900: var(--color-slate-900);
   --color-n-950: var(--color-slate-950);
   --color-cyan-500: #1ba7e0;
-  --color-blue-500: #1d376c;
+
+  /* Blue Color Range */
+  --color-blue-50: #FFFFFF;
+  --color-blue-100: #C2DEFF;
+  --color-blue-200: #99C9FF;
+  --color-blue-300: #70B3FF;
+  --color-blue-400: #479DFF;
+  --color-blue-500: #2189FF;
+  --color-blue-600: #0072F5;
+  --color-blue-700: #005FCC;
+  --color-blue-800: #004CA3;
+  --color-blue-900: #00397A;
+  --color-blue-950: #001329;
+
+  /* Indigo Color Range */
+  --color-indigo-50: #ECECFE;
+  --color-indigo-100: #D9D9FC;
+  --color-indigo-200: #C6C6FB;
+  --color-indigo-300: #9A9AF8;
+  --color-indigo-400: #9DA3FB;
+  --color-indigo-500: #747CF9;
+  --color-indigo-600:#626CF8;
+  --color-indigo-700: #3B57FE;
+  --color-indigo-800: #2041FE;
+  --color-indigo-900: #011FCB;
+  --color-indigo-950: #011065;
+
+
   --color-red-50: #fffafa;
   --color-red-500: #e32729;
 }
@@ -81,6 +155,8 @@ body {
   --color-n-900: var(--color-slate-100);
   --color-n-950: var(--color-slate-50);
 }
+
+
 
 @layer components {
   .btn-cta {
