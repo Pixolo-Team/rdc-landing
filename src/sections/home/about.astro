@@ -1,40 +1,36 @@
 ---
+import { Image } from "astro:assets";
 
 ---
 
 <section
   class="container relative mx-auto overflow-hidden bg-n-50 py-20 sm:py-24 lg:py-28 xl:py-36"
 >
-  <img
-    src="/images/phone.png"
+  <Image
+    src="/images/mobile.png"
     alt=""
-    class="pointer-events-none absolute left-[1px] top-[24px] w-[364px] h-[435px] z-10"
+    width={380}
+    height={840}
+    class="pointer-events-none absolute hidden lg:block"
   />
 
   <!-- Text Section -->
-  <div class="px-6 sm:px-10">
-    <div
-      class="fade-in-up mx-auto flex max-w-[858px] flex-col items-center gap-12 text-center sm:gap-14 lg:gap-16"
-    >
+    <div class="fade-in-up mx-auto max-w-[858px] flex flex-col items-center gap-12 text-center sm:gap-14 lg:gap-16">
+
+      <!-- Title  -->
       <div
-        class="flex w-full flex-col items-center gap-1"
-      >
-        <p
-          class="font-medium text-[13px] tracking-tight text-blue-500 sm:text-base"
-          
-        >
+        class="flex w-full flex-col items-center gap-1">
+        <p class="font-medium text-xs tracking-tight text-blue-500 sm:text-base" >
           MEET YOUR NEW AI PHONE
         </p>
-        <p
-          class="max-w-[17ch] font-bold text-[2rem] leading-none tracking-[-0.04em] text-n-900 sm:max-w-none sm:text-[2.75rem] lg:text-[3rem]"
-
-        >
+        <p class="font-bold text-3xl leading-none tracking-[-0.04em] text-n-900 md:text-5xl lg:text-5xl" >
           Built for the way you live and learn.
         </p>
       </div>
 
+      <!-- Body Text -->
       <p
-        class="max-w-[22ch] text-pretty text-[1.5rem] font-bold leading-[1.5] text-n-800 sm:max-w-[280px] sm:text-[1.75rem] lg:max-w-none lg:text-[1.875rem]"
+        class="max-w-[220px] text-2xl font-bold leading-[1.5] text-n-800 sm:max-w-[280px] sm:text-lg lg:max-w-none lg:text-3xl"
         style="font-family: 'SecondaryFont', sans-serif;"
       >
         This isn’t a demo. It’s a hands-on AI experience. In 60–90 minutes, you’ll learn how to
@@ -45,9 +41,13 @@
         class="relative h-[44px] w-[189px] shrink-0"
       >
         <div class="absolute" aria-hidden="true">
-          <img src="/images/guide-galaxy-logo.svg" alt="">
+          <Image
+            src="/images/guide-galaxy-logo.svg"
+            alt=""
+            width={189}
+            height={44}
+          />
         </div>
       </div>
     </div>
-  </div>
 </section>
