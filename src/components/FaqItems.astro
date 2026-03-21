@@ -22,7 +22,7 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
         <div
           class="faqItem-box bg-n-50 p-6 md:p-8 w-full flex flex-col lg:pl-16 cursor-pointer
          before:content-[''] before:absolute before:inset-y-0 before:left-0 before:w-1 before:h-0 data-[open=true]:before:h-full
-         before:bg-red-500 before:transition-all before:duration-300
+         before:bg-n-900 before:transition-all before:duration-300
          relative border-b-2 border-n-200 last:border-b-0"
           data-open={faqItem.open ? "true" : "false"}
           role="button"
@@ -32,7 +32,7 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
           {/* Title row (no button) */}
           <div class="flex flex-row justify-between items-center w-full gap-4">
             {/* Title */}
-            <p class="text-xl lg:text-2xl font-semibold leading-snug text-n-950 w-[95%]">
+            <p class="primary-font text-xl lg:text-2xl font-semibold leading-snug text-n-950 w-[95%]">
               {faqItem.title}
             </p>
 
@@ -91,7 +91,8 @@ const { items: faqItems = [] } = Astro.props as { items: FaqItem[] };
       item.dataset.open = open ? "true" : "false";
       if (arrow) {
         arrow.classList.toggle("rotate-180", open);
-        arrow.classList.toggle("text-red-500", open);
+        arrow.classList.toggle("text-n-400", !open);
+        arrow.classList.toggle("text-blue-500", open);
       }
     }
 
