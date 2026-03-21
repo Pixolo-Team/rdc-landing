@@ -1,84 +1,54 @@
 ---
 import { Image } from "astro:assets";
-
-const highlights = [
-  {
-    title: "Official Galaxy AI Certificate",
-    description: "Become a certified navigator after the masterclass.",
-    image: "https://www.figma.com/api/mcp/asset/77c43d23-e652-46d4-b085-144ea3702552",
-    alt: "Certificate icon",
-  },
-  {
-    title: "Real-life AI skills",
-    description: "Practical workflows for work, study, and creativity.",
-    image: "https://www.figma.com/api/mcp/asset/95171338-5f1b-486e-b77d-8a38287b2b73",
-    alt: "Spark icon",
-  },
-  {
-    title: "Hands-on S26 Ultra experience",
-    description: "Get early access to the newest flagship hardware.",
-    image: "https://www.figma.com/api/mcp/asset/e727b062-47b0-4c4c-837b-de333b47076b",
-    alt: "Phone icon",
-  },
-  {
-    title: "Exclusive offers + discounts",
-    description: "Attendee-only benefits on Galaxy ecosystem devices.",
-    image: "https://www.figma.com/api/mcp/asset/12927a80-bb99-4331-86e9-c63752bcb2a5",
-    alt: "Discount coupon icon",
-  },
-];
+import SectionHeader from "../../components/SectionHeader.astro";
+import { highlightsSectionContent } from "../../data/highlights-data";
 ---
 
 <section class="bg-n-50">
   <!-- Container -->
   <div class="container mx-auto px-5 md:px-0">
     <div class="flex flex-col items-center gap-14 pb-32 pt-20">
-      <!-- Section header -->
       <div
-        class="flex w-full flex-col items-center gap-0.5 text-center"
         data-sal="slide-down"
         data-sal-duration="600"
       >
-        <p class="primary-font text-base font-medium text-blue-500">
-          Galaxy AI Navigator Labs
-        </p>
-        <h2 class="primary-font text-n-900 text-4xl leading-none font-bold md:text-5xl">
-          Event Highlights
-        </h2>
+        <SectionHeader
+          eyebrow={highlightsSectionContent.eyebrow}
+          title={highlightsSectionContent.title}
+        />
       </div>
 
       <!-- Highlight cards -->
-      <div class="grid w-full gap-11 md:grid-cols-4">
+      <div class="grid w-full justify-items-center grid-cols-1 gap-11 md:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 md:px-5">
         {
-          highlights.map((highlight, index) => (
-            <article
-              class="flex flex-col items-start gap-4 md:gap-6"
+          highlightsSectionContent.highlights.map((highlightsItem, index) => (
+            <div
+              class="mx-auto flex flex-col items-center gap-4 text-center md:mx-0 md:items-start md:gap-6 md:text-left"
               data-sal="fade-up"
               data-sal-delay={String(120 + index * 120)}
               data-sal-duration="650"
             >
               {/* Icon card */}
-              <div class="flex w-full items-center justify-center rounded-[28px] border border-n-200 bg-n-100 py-28">
+              <div class="flex aspect-square w-full max-w-[320px] items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
                 <Image
-                  src={highlight.image}
-                  alt={highlight.alt}
+                  src={highlightsItem.image}
+                  alt={highlightsItem.alt}
                   width={86}
                   height={86}
-                  unoptimized
                   class="h-[86px] w-[86px]"
                 />
               </div>
 
               {/* Text content */}
-              <div class="flex w-full flex-col items-start gap-1 px-1.5">
-                <h3 class="primary-font text-n-900 text-2xl leading-none font-bold">
-                  {highlight.title}
+              <div class="flex w-full flex-col items-center gap-1 px-1.5 md:items-start">
+                <h3 class="text-n-900 text-2xl leading-none font-bold">
+                  {highlightsItem.title}
                 </h3>
-                <p class="primary-font text-base leading-[1.5] font-medium text-n-600">
-                  {highlight.description}
+                <p class="text-base leading-[1.5] font-medium text-n-600">
+                  {highlightsItem.description}
                 </p>
               </div>
-            </article>
+            </div>
           ))
         }
       </div>
