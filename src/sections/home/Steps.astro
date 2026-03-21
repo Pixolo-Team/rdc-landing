@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import stepGalaxyAi from "../../assets/step-galaxy-ai.png";
+import stepMasterclass from "../../assets/step-masterclass.png";
+import stepRegister from "../../assets/step-register.png";
+
+const steps = [
+  {
+    number: "ONE",
+    title: "Register",
+    description:
+      "Secure your spot online and choose your nearest Reliance Digital flagship store.",
+    image: stepRegister,
+    alt: "Registration icon",
+    imageWidth: 90,
+    imageHeight: 105,
+    imageClass: "h-[104.888px] w-[90px]",
+  },
+  {
+    number: "TWO",
+    title: "Attend the Masterclass",
+    description: "A guided 60-90 minute session led by Samsung certified AI Navigators.",
+    image: stepMasterclass,
+    alt: "Masterclass icon",
+    imageWidth: 92,
+    imageHeight: 79,
+    imageClass: "h-[79px] w-[92px]",
+  },
+  {
+    number: "THREE",
+    title: "Experience Galaxy AI",
+    description: "Learn by doing, master the features, and take home exclusive expertise.",
+    image: stepGalaxyAi,
+    alt: "Galaxy AI icon",
+    imageWidth: 80,
+    imageHeight: 80,
+    imageClass: "h-[80.252px] w-[80.256px]",
+  },
+];
+---
+
+<section class="bg-n-50">
+  <!-- Container -->
+  <div class="container mx-auto px-5 py-32 md:px-0">
+    <div class="flex flex-col items-center gap-20">
+      <!-- Section heading -->
+      <div
+        class="flex w-full flex-col items-center gap-0.5 text-center"
+        data-sal="slide-down"
+        data-sal-duration="600"
+      >
+        <p class="primary-font text-base font-medium text-blue-500">Step by Step</p>
+        <h2 class="primary-font text-n-900 text-[30px] leading-none font-bold md:text-5xl">
+          What you have to do
+        </h2>
+      </div>
+
+      <!-- Step cards -->
+      <div class="grid w-full gap-8 md:grid-cols-3 md:gap-12">
+        {
+          steps.map((step, index) => (
+            <article
+              class="flex w-full max-w-[450px] flex-col gap-2 self-stretch rounded-3xl border border-n-200 bg-n-100 px-5 py-7"
+              data-sal="fade-up"
+              data-sal-delay={String(140 + index * 120)}
+              data-sal-duration="650"
+            >
+              {/* Step label and title */}
+              <div class="flex flex-col gap-2 px-1.5">
+                <p class="primary-font text-blue-500 text-2xl leading-none font-medium">
+                  {step.number}
+                </p>
+                <h3 class="primary-font text-n-900 text-4xl leading-none font-bold">
+                  {step.title}
+                </h3>
+              </div>
+
+              {/* Icon area */}
+              <div class="flex w-full items-center justify-center py-14 md:flex-1 md:py-36">
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  width={step.imageWidth}
+                  height={step.imageHeight}
+                  class={step.imageClass}
+                />
+              </div>
+
+              {/* Supporting copy */}
+              <p class="primary-font text-lg leading-[1.5] font-bold text-n-700">
+                {step.description}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

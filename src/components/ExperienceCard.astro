@@ -7,7 +7,6 @@ type Props = ExperienceCardData;
 const {
   eyebrow,
   title,
-  description,
   icon,
   iconAlt = "",
   iconWidth,
@@ -28,7 +27,7 @@ const {
   />
 
   {
-    (eyebrow || title || description) && (
+    (eyebrow || title ) && (
       <div class="flex w-full flex-col items-start gap-3 sm:gap-3.5 md:gap-4">
         {(eyebrow || title) && (
           <div class="flex w-full flex-col items-start gap-px">
@@ -49,14 +48,6 @@ const {
             }
           </div>
         )}
-
-        {
-          description && (
-            <p class="primary-font text-sm font-medium leading-6 text-n-900 sm:text-[15px] md:text-base">
-              {description}
-            </p>
-          )
-        }
       </div>
     )
   }

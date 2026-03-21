@@ -11,7 +11,7 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Privacy",
     title: "World's first privacy display on mobile",
-    icon: "/images/calendar.svg",
+    icon: "/icons/UserLockPrivacy.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
@@ -19,7 +19,7 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Camera",
     title: "Best camera system",
-    icon: "/images/translate.svg",
+    icon: "/icons/BackCamera2.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
@@ -27,7 +27,7 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Photo Assist",
     title: "Quick & Easy studio level edits.",
-    icon: "/images/photo-assist.svg",
+    icon: "/icons/photo-assist.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
@@ -35,7 +35,7 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Creative Studio",
     title: "From photos to stickers in a tap",
-    icon: "/images/productivity-logo.svg",
+    icon: "/icons/EditImagePhoto.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
@@ -43,7 +43,7 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Nighthography Video",
     title: "Clear & bright, even at night.",
-    icon: "/images/productivity-logo.svg",
+    icon: "/icons/MoonStars.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
@@ -51,10 +51,9 @@ export const experienceCards: ExperienceCardData[] = [
   {
     eyebrow: "Now nudge & Now brief",
     title: "Real-time insgihts, track daily tasks",
-    icon: "/images/productivity-logo.svg",
+    icon: "/icons/ListToDoTasksChecklist.svg",
     iconAlt: "",
     iconWidth: 48,
     iconHeight: 48,
   },
-
 ];
