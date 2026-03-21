@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 ---
 
 <section class="relative overflow-hidden bg-n-100">
-  <div class="pointer-events-none absolute inset-0 z-0 hidden lg:block" aria-hidden="true">
+  <div class="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
     <video
       class="certificate-video-light absolute inset-0 h-full w-full object-cover opacity-90"
       autoplay
@@ -77,14 +77,14 @@ import { Image } from "astro:assets";
 
       <!-- Certificate message card -->
       <div
-        class="relative w-full max-w-[336px] rounded-4xl border border-white bg-transparent px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[774px] md:px-28 md:py-24"
+        class=" rounded-4xl border border-white bg-transparent px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[768px] md:px-28 md:py-24 lg:max-w-[998px]"
         data-sal="fade-up"
         data-sal-delay="250"
         data-sal-duration="700"
       >
         
         <!-- Message body -->
-        <p class="text-left text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
+        <p class="text-center text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
           At the end of the Lab, you will earn an Official Galaxy AI Certificate from Samsung and
           Reliance Digital to strengthen your profile.
         </p>
