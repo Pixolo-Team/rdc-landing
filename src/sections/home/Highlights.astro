@@ -1,92 +1,57 @@
 ---
-// DATA //
-const sectionContent = {
-  title: "HIGHLIGHTS",
-  highlights: [
-    { title: "FREE to attend", caption: "(limited seats)" },
-    { title: "90-minutes of hands-on learning", caption: "" },
-    {
-      title: "Learn AI the simple, practical way",
-      caption: "(no experience required)",
-    },
-  ],
-  highlight_section: {
-    title:
-      "Two Referral Discount codes per booking for exclusive Reliance Digital deals & offers",
-    sub_title: "(redeem online or in-store)",
-  },
-};
+import { Image } from "astro:assets";
+import SectionHeader from "../../components/SectionHeader.astro";
+import { highlightsSectionContent } from "../../data/highlights-data";
 ---
 
-<section
-  class="container mx-auto py-20 text-center"
-  data-sal="slide-up"
-  data-sal-delay="200"
-  data-sal-duration="200"
->
-  <!-- Outlined Title -->
-  <h2
-    class="select-none text-center text-[64px] font-bold leading-none uppercase -mb-[4%] md:-mb-[3%]
-           text-transparent [-webkit-text-stroke:2px_theme(colors.red.500)]
-           md:text-[124px]
-           lg:text-[165px]
-           xl:text-[190px]"
-    aria-hidden="true"
-  >
-    <span class="pulse">{sectionContent.title}</span>
-  </h2>
+<section class="bg-n-50">
+  <!-- Container -->
+  <div class="container mx-auto px-5 md:px-0">
+    <div class="flex flex-col items-center gap-14 pb-32 pt-20">
+      <div
+        data-sal="slide-down"
+        data-sal-duration="600"
+      >
+        <SectionHeader
+          eyebrow={highlightsSectionContent.eyebrow}
+          title={highlightsSectionContent.title}
+        />
+      </div>
 
-  <!-- Box - with 3 circles -->
-  <div
-    class="relative w-full bg-[url('/images/red-squares-bg.png')] bg-size-[400%] py-20 pb-38
-    flex flex-col gap-20 items-center justify-center
-    md:bg-size-[300%] lg:bg-size-[265%] lg:flex-row lg:flex-wrap
-    xl:flex-nowrap xl:bg-size-[160%] xl:gap-26"
-  >
-    <!-- circles row -->
-    {
-      sectionContent.highlights.map((highlightItem) => (
-        <div
-          class="tilt-card transform-3d relative flex items-center justify-center text-center
-        lg:w-[46%] xl:w-auto"
-        >
-          {/* Circle */}
-          <div
-            class="flex flex-col items-center justify-center gap-2 text-n-0
-              bg-red-500/80 w-80 h-80 rounded-full p-6
-              text-n-50"
-          >
-            <p class="sub-title text-n-50">{highlightItem.title}</p>
-            {/* Caption - Sub title */}
-            {highlightItem.caption && (
-              <p class="block font-medium text-lg">{highlightItem.caption}</p>
-            )}
-          </div>
+      <!-- Highlight cards -->
+      <div class="grid w-full justify-items-center grid-cols-1 gap-11 md:grid-cols-2 md:justify-items-stretch lg:grid-cols-4 md:px-5">
+        {
+          highlightsSectionContent.highlights.map((highlightsItem, index) => (
+            <div
+              class="mx-auto flex flex-col items-center gap-4 text-center md:mx-0 md:items-start md:gap-6 md:text-left"
+              data-sal="fade-up"
+              data-sal-delay={String(120 + index * 120)}
+              data-sal-duration="650"
+            >
+              {/* Icon card */}
+              <div class="flex aspect-square w-full max-w-[320px] items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
+                <Image
+                  src={highlightsItem.image}
+                  alt={highlightsItem.alt}
+                  width={86}
+                  height={86}
+                  class="h-[86px] w-[86px]"
+                />
+              </div>
 
-          {/* Tick Mark */}
-          <div class="absolute w-18 h-18 rounded-full bg-n-950 flex items-center justify-center -bottom-2 translate-z-[20px]">
-            <img src="/images/tick.svg" alt="tick-mark" class="size-9" />
-          </div>
-        </div>
-      ))
-    }
-  </div>
-
-  <!-- Blue ribbon (image) with centered text -->
-  <div
-    class="-mt-28 bg-[url('/images/blue-rec-bg.png')] bg-center bg-no-repeat bg-[length:100%_100%]
-      flex flex-col justify-center items-center text-center gap-12 relative
-      w-[96%] py-20 px-8 ml-[2%]
-      lg:w-[70%] lg:ml-[15%] xl:gap-6"
-  >
-    <!-- Title -->
-    <p class="sub-title text-n-50 leading-10 text-center
-      xl:leading-12">
-      {sectionContent.highlight_section.title}
-    </p>
-    <!-- Sub Title -->
-    <p class="text-n-50 text-xl font-medium text-center">
-      {sectionContent.highlight_section.sub_title}
-    </p>
+              {/* Text content */}
+              <div class="flex w-full flex-col items-center gap-1 px-1.5 md:items-start">
+                <h3 class="text-n-900 text-2xl leading-none font-bold">
+                  {highlightsItem.title}
+                </h3>
+                <p class="text-base leading-[1.5] font-medium text-n-600">
+                  {highlightsItem.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
   </div>
 </section>

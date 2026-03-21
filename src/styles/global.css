@@ -97,6 +97,7 @@ body {
 
 
 :root {
+  color-scheme: light dark;
   --color-slate-50: #ffffff;
   --color-n-50: var(--color-slate-50);
   --color-n-100: var(--color-slate-100);
@@ -142,6 +143,22 @@ body {
   --color-red-500: #e32729;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-n-50: var(--color-slate-950);
+    --color-n-100: var(--color-slate-900);
+    --color-n-200: var(--color-slate-800);
+    --color-n-300: var(--color-slate-700);
+    --color-n-400: var(--color-slate-600);
+    --color-n-500: var(--color-slate-500);
+    --color-n-600: var(--color-slate-400);
+    --color-n-700: var(--color-slate-300);
+    --color-n-800: var(--color-slate-200);
+    --color-n-900: var(--color-slate-100);
+    --color-n-950: var(--color-slate-50);
+  }
+}
+
 .dark {
   --color-n-50: var(--color-slate-950);
   --color-n-100: var(--color-slate-900);
@@ -159,6 +176,14 @@ body {
 
 
 @layer components {
+  .primary-font {
+    font-family: "PrimaryFont", sans-serif;
+  }
+
+  .secondary-font {
+    font-family: "SecondaryFont", sans-serif;
+  }
+
   .btn-cta {
     @apply cursor-pointer bg-blue-500 text-n-50 py-4 px-8 text-lg font-medium leading-none transition-all hover:px-20 hover:rotate-2 sm:text-2xl sm:px-16 sm:py-6 disabled:opacity-50;
   }
@@ -367,7 +392,7 @@ body {
 * {
   scrollbar-width: thin;
   scroll-behavior: smooth;
-  scrollbar-color: var(--color-red-500) var(--color-n-200);
+  scrollbar-color: var(--color-n-500) var(--color-n-200);
 }
 
 /* WebKit (Chrome, Edge, Safari) */
@@ -391,12 +416,30 @@ body {
 }
 
 /* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-color: var(--color-n-900) var(--color-n-900);
+  }
+}
+
 .dark * {
-  scrollbar-color: var(--color-cyan-500) var(--color-n-900);
+  scrollbar-color: var(--color-n-900) var(--color-n-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  *::-webkit-scrollbar-track {
+    background: var(--color-n-900);
+  }
 }
 
 .dark *::-webkit-scrollbar-track {
   background: var(--color-n-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  *::-webkit-scrollbar-thumb {
+    border-color: var(--color-n-900);
+  }
 }
 
 .dark *::-webkit-scrollbar-thumb {
@@ -439,6 +482,28 @@ body {
 .pulse {
   display: inline-block;
   animation: pulse-animation 3.5s ease-in-out infinite;
+}
+
+.certificate-video-dark {
+  display: none;
+}
+
+.experience-card-icon {
+  transition: filter 200ms ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .certificate-video-light {
+    display: none;
+  }
+
+  .certificate-video-dark {
+    display: block;
+  }
+
+  .experience-card-icon {
+    filter: brightness(0) invert(1);
+  }
 }
 
 /* Fade in from bottom on load */

@@ -1,44 +1,97 @@
 ---
-// DATA //
-const sectionContent = {
-  "title": "Certificate",
-  "paragraph": "Earn an AI-Ready Certificate (Microsoft Copilot Edition) co-branded with The AI School."
-};
+import { Image } from "astro:assets";
 ---
 
-<!-- Certificate -->
-<section class="bg-red-50 py-14 px-6"
-  data-sal="zoom-in"
-  data-sal-delay="600"
-  data-sal-duration="400"
->
+<section class="relative overflow-hidden bg-n-100">
+  <div class="pointer-events-none absolute inset-0 z-0 hidden md:block" aria-hidden="true">
+    <video
+      class="certificate-video-light absolute inset-0 h-full w-full object-cover opacity-90"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src="/videos/certificate-bg-light.mp4" type="video/mp4" />
+    </video>
+
+    <video
+      class="certificate-video-dark absolute inset-0 h-full w-full object-cover opacity-90"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src="/videos/certificate-bg-dark.mp4" type="video/mp4" />
+    </video>
+
+  </div>
 
   <!-- Container -->
-  <div class="container mx-auto flex flex-col gap-12 sm:px-10 lg:gap-16 xl:gap-12">
+  <div class="container relative z-10 mx-auto px-5 md:px-0">
+    <div class="flex flex-col items-center gap-8 pb-28 pt-20 md:gap-10">
 
-    <div class="flex flex-col gap-4 items-center sm:gap-6">
-      <!-- Section Title -->
-      <h3 class="sub-title">Certificate</h3>
+      <!-- Intro copy and certificate prompt -->
+      <div class="flex flex-col items-center gap-5">
 
-      <!-- Paragraph -->
-      <p class="para-text xl:w-3/7">
-        {sectionContent.paragraph}
-      </p>
-    </div>
+        <!-- Eyebrow and Galaxy AI wordmark -->
+        <div class="flex flex-col items-center gap-0.5 text-center">
+          <p
+            class="primary-font text-base leading-none font-bold text-blue-500 md:text-xl"
+            data-sal="slide-down"
+            data-sal-duration="500"
+          >
+            Hey
+          </p>
 
-    <!-- Logo's -->
-    <div
-      class="flex flex-col items-center justify-center gap-6 md:gap-8 xl:flex-row xl:gap-16"
-    >
-      <!-- Co Pilot Logo -->
-      <img src="/images/copilot-logo.svg" alt="Copilot" class="w-3/7 sm:w-2/6 xl:w-[220px]" />
+          <div
+            class="relative flex items-center gap-2.5 md:gap-3"
+            data-sal="zoom-in"
+            data-sal-delay="100"
+            data-sal-duration="600"
+          >
+          
+            <p class="primary-font text-n-900 text-[29px] leading-none font-bold md:text-[44px]">
+              Galaxy AI
+            </p>
 
-      <!-- AI School Logo -->
-      <img
-        src="/images/ai-school-logo.png"
-        alt="The AI School"
-        class="w-3/6  sm:w-2/5 xl:w-[250px]"
-      />
+            <Image
+              src="/images/stars.svg"
+              alt=""
+              width={44}
+              height={44}
+              class="h-7 w-7 md:h-11 md:w-11"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
+        <!-- Prompt line -->
+        <p
+          class="primary-font max-w-[180px] text-center text-lg leading-[1.5] font-bold text-n-900 md:max-w-none md:text-2xl"
+          data-sal="slide-up"
+          data-sal-delay="200"
+          data-sal-duration="600"
+        >
+          “Generate my official Galaxy AI Certificate”
+        </p>
+      </div>
+
+      <!-- Certificate message card -->
+      <div
+        class=" rounded-4xl border border-white bg-transparent px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[768px] md:px-28 md:py-24 lg:max-w-[998px]"
+        data-sal="fade-up"
+        data-sal-delay="250"
+        data-sal-duration="700"
+      >
+        
+        <!-- Message body -->
+        <p class="text-center text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
+          At the end of the Lab, you will earn an Official Galaxy AI Certificate from Samsung and
+          Reliance Digital to strengthen your profile.
+        </p>
+      </div>
     </div>
   </div>
 </section>

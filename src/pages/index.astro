@@ -3,9 +3,13 @@
 import RootLayout from "../layouts/RootLayout.astro";
 
 // SECTIONS //
-
 import About from "../sections/home/about.astro";
 import Form from "../sections/home/Form.astro";
+import Certificate from "../sections/home/Certificate.astro";
+import Cta from "../sections/home/Cta.astro";
+import Experience from "../sections/home/Experience.astro";
+import Faq from "../sections/home/Faq.astro";
+import Highlights from "../sections/home/Highlights.astro"
 
 export const prerender = true;
 ---
@@ -16,6 +20,23 @@ export const prerender = true;
   <!-- About section -->
   <About />
 
-  <Form />
   
+  <!-- Experience section -->
+  <Experience />
+
+  <!-- Certificate section -->
+  <Certificate />
+
+  <!-- Highlights section -->
+  <Highlights />
+
+  <!-- CTA section -->
+  <Cta />
+  
+  <!-- Form  -->
+   <Form />
+   
+  <!-- FAQ section -->
+  <Faq />
+
 </RootLayout>
