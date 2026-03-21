@@ -1,6 +1,35 @@
+---
+import { Image } from "astro:assets";
+---
+
 <section class="relative overflow-hidden bg-n-100">
+  <div class="pointer-events-none absolute inset-0 z-0 hidden lg:block" aria-hidden="true">
+    <video
+      class="certificate-video-light absolute inset-0 h-full w-full object-cover opacity-90"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src="/videos/certificate-bg-light.mp4" type="video/mp4" />
+    </video>
+
+    <video
+      class="certificate-video-dark absolute inset-0 h-full w-full object-cover opacity-90"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+    >
+      <source src="/videos/certificate-bg-dark.mp4" type="video/mp4" />
+    </video>
+
+  </div>
+
   <!-- Container -->
-  <div class="container mx-auto px-5 md:px-0">
+  <div class="container relative z-10 mx-auto px-5 md:px-0">
     <div class="flex flex-col items-center gap-8 pb-28 pt-20 md:gap-10">
       <!-- Intro copy and certificate prompt -->
       <div class="flex flex-col items-center gap-5">
@@ -24,18 +53,20 @@
               Galaxy AI
             </p>
 
-            <!-- Decorative sparkle cluster -->
-            <div class="relative h-7 w-7 md:h-11 md:w-11" aria-hidden="true">
-              <span class="absolute left-0 top-2 h-2.5 w-2.5 rotate-45 rounded-[2px] bg-[#7be7b5] md:left-0 md:top-3 md:h-4 md:w-4 md:rounded-[3px]"></span>
-              <span class="absolute right-0 top-0 h-4 w-4 rotate-45 rounded-[3px] bg-[#5d8dde] md:h-6 md:w-6 md:rounded-[4px]"></span>
-              <span class="absolute bottom-1 left-3 h-1.5 w-1.5 rotate-45 rounded-[1px] bg-[#5d8dde] md:bottom-1 md:left-4 md:h-2 md:w-2 md:rounded-[2px]"></span>
-            </div>
+            <Image
+              src="/images/stars.svg"
+              alt=""
+              width={44}
+              height={44}
+              class="h-7 w-7 md:h-11 md:w-11"
+              aria-hidden="true"
+            />
           </div>
         </div>
 
         <!-- Prompt line -->
         <p
-          class="primary-font max-w-[18ch] text-center text-lg leading-[1.5] font-bold text-n-900 md:max-w-none md:text-2xl"
+          class="primary-font max-w-[180px] text-center text-lg leading-[1.5] font-bold text-n-900 md:max-w-none md:text-2xl"
           data-sal="slide-up"
           data-sal-delay="200"
           data-sal-duration="600"
@@ -46,19 +77,14 @@
 
       <!-- Certificate message card -->
       <div
-        class="relative w-full max-w-[336px] rounded-[32px] border border-[#cbe0ff] bg-n-50 px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[774px] md:px-28 md:py-24"
+        class="relative w-full max-w-[336px] rounded-4xl border border-white bg-transparent px-9 py-12 shadow-[2px_6px_7.6px_0px_rgba(0,0,0,0.56)] md:max-w-[774px] md:px-28 md:py-24"
         data-sal="fade-up"
         data-sal-delay="250"
         data-sal-duration="700"
       >
-        <!-- Desktop dotted accent behind the message -->
-        <div
-          class="pointer-events-none absolute inset-x-0 -top-16 hidden h-[272px] bg-[radial-gradient(circle,_rgba(33,137,255,0.35)_1.2px,_transparent_1.2px)] bg-[length:12px_12px] bg-center [clip-path:polygon(50%_0%,100%_50%,50%_100%,0%_50%)] md:block"
-          aria-hidden="true"
-        ></div>
-
+        
         <!-- Message body -->
-        <p class="primary-font relative text-left text-[18px] leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
+        <p class="text-left text-lg leading-[1.5] font-medium text-n-900 md:text-center md:text-[30px]">
           At the end of the Lab, you will earn an Official Galaxy AI Certificate from Samsung and
           Reliance Digital to strengthen your profile.
         </p>

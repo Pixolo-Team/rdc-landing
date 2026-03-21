@@ -97,6 +97,7 @@ body {
 
 
 :root {
+  color-scheme: light dark;
   --color-slate-50: #ffffff;
   --color-n-50: var(--color-slate-50);
   --color-n-100: var(--color-slate-100);
@@ -140,6 +141,22 @@ body {
 
   --color-red-50: #fffafa;
   --color-red-500: #e32729;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-n-50: var(--color-slate-950);
+    --color-n-100: var(--color-slate-900);
+    --color-n-200: var(--color-slate-800);
+    --color-n-300: var(--color-slate-700);
+    --color-n-400: var(--color-slate-600);
+    --color-n-500: var(--color-slate-500);
+    --color-n-600: var(--color-slate-400);
+    --color-n-700: var(--color-slate-300);
+    --color-n-800: var(--color-slate-200);
+    --color-n-900: var(--color-slate-100);
+    --color-n-950: var(--color-slate-50);
+  }
 }
 
 .dark {
@@ -399,12 +416,30 @@ body {
 }
 
 /* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  * {
+    scrollbar-color: var(--color-cyan-500) var(--color-n-900);
+  }
+}
+
 .dark * {
   scrollbar-color: var(--color-cyan-500) var(--color-n-900);
 }
 
+@media (prefers-color-scheme: dark) {
+  *::-webkit-scrollbar-track {
+    background: var(--color-n-900);
+  }
+}
+
 .dark *::-webkit-scrollbar-track {
   background: var(--color-n-900);
+}
+
+@media (prefers-color-scheme: dark) {
+  *::-webkit-scrollbar-thumb {
+    border-color: var(--color-n-900);
+  }
 }
 
 .dark *::-webkit-scrollbar-thumb {
@@ -447,6 +482,20 @@ body {
 .pulse {
   display: inline-block;
   animation: pulse-animation 3.5s ease-in-out infinite;
+}
+
+.certificate-video-dark {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .certificate-video-light {
+    display: none;
+  }
+
+  .certificate-video-dark {
+    display: block;
+  }
 }
 
 /* Fade in from bottom on load */
