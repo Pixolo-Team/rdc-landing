@@ -44,7 +44,7 @@ export const experienceCards: ExperienceCardData[] = [
   },
   {
     eyebrow: "Now nudge & Now brief",
-    title: "Real-time insgihts, track daily tasks",
+    title: "Real-time insights, track daily tasks",
     icon: "ListToDoTasksChecklist",
     iconWidth: 48,
     iconHeight: 48,

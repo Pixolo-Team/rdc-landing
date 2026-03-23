@@ -1,3 +1,4 @@
+// REACT //
 import React from "react";
 
 interface Option {
@@ -13,7 +14,7 @@ interface Props {
   disabled?: boolean;
 }
 
-const SyledSelect: React.FC<Props> = ({
+const StyledSelect: React.FC<Props> = ({
   id,
   label,
   options,
@@ -154,7 +155,7 @@ const SyledSelect: React.FC<Props> = ({
           aria-activedescendant={
             open && options[highlight] ? `${id}-opt-${highlight}` : undefined
           }
-          className={`absolute z-10 mt-2 px-5 w-full bg-white shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
+          className={`absolute z-10 mt-2 px-5 w-full bg-n-50 shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
             open ? "" : "hidden"
           }`}
           onKeyDown={onKeyDownList}
@@ -170,7 +171,7 @@ const SyledSelect: React.FC<Props> = ({
                 aria-selected={isSelected}
                 data-value={optionItem.value}
                 data-index={oi}
-                className={`cursor-pointer text-base py-4 border-b last:border-0 hover:bg-n-50 ${
+                className={`cursor-pointer text-base py-4 border-b last:border-0 hover:bg-n-100 ${
                   isActive ? "bg-n-50" : ""
                 }`}
                 onMouseEnter={() => setHighlight(oi)}
@@ -205,4 +206,4 @@ const SyledSelect: React.FC<Props> = ({
   );
 };
 
-export default SyledSelect;
+export default StyledSelect;
