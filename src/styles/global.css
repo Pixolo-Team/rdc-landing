@@ -259,15 +259,6 @@ html::-webkit-scrollbar-thumb:hover {
   scrollbar-color: var(--color-n-900) var(--color-n-900);
 }
 
-.ambient-orb {
-  position: absolute;
-  border-radius: 999px;
-  filter: blur(22px);
-  opacity: 0.7;
-  pointer-events: none;
-  animation: ambient-float 8s ease-in-out infinite;
-}
-
 .interactive-panel {
   position: relative;
   overflow: hidden;
@@ -313,10 +304,6 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ambient-orb {
-    animation: none;
-  }
-
   .interactive-panel,
   .interactive-panel::after {
     transition: none;
