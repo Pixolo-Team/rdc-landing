@@ -207,13 +207,6 @@ body {
   min-height: 100%;
   overflow-x: hidden;
   scrollbar-width: none;
-  background:
-    radial-gradient(
-      circle at top center,
-      color-mix(in srgb, var(--color-blue-100) 26%, transparent) 0%,
-      transparent 32%
-    ),
-    linear-gradient(180deg, var(--color-n-50) 0%, var(--color-n-50) 100%);
 }
 
 body::-webkit-scrollbar {
@@ -264,10 +257,6 @@ html::-webkit-scrollbar-thumb:hover {
 
 .dark {
   scrollbar-color: var(--color-n-900) var(--color-n-900);
-}
-
-.page-fade-up {
-  animation: page-fade-up 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .ambient-orb {
@@ -324,7 +313,6 @@ html::-webkit-scrollbar-thumb:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-fade-up,
   .ambient-orb {
     animation: none;
   }
@@ -337,17 +325,6 @@ html::-webkit-scrollbar-thumb:hover {
   .interactive-panel:hover,
   .interactive-panel:focus-within {
     transform: none;
-  }
-}
-
-@keyframes page-fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
