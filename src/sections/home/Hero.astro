@@ -21,8 +21,9 @@ const attendees = [
 <section class="hero-section">
   <!-- Hero container -->
   <div class="container mx-auto px-5 pt-36 md:pt-40 md:px-8 lg:pt-50">
-    <div class="flex flex-col gap-10 xl:flex-row md:items-start md:gap-38 md:justify-between xl:items-end">
-      
+    <div
+      class="flex flex-col gap-10 xl:flex-row md:items-start md:gap-38 md:justify-between xl:items-end"
+    >
       <!-- Left content block -->
       <div class="flex flex-col gap-12 md:gap-16 xl:pb-18">
         <!-- Intro content -->
@@ -61,15 +62,23 @@ const attendees = [
             data-sal-delay="120"
             data-sal-duration="750"
           >
-            <div class="secondary-font flex flex-col text-left text-4xl leading-[1] font-bold md:text-6xl">
-              <p class="text-n-900 leading-tight">Join the
-              <span class="bg-gradient-to-r from-[#9a9af8] via-[#747cf9] to-[#3b57fe] bg-clip-text text-transparent">
-                Galaxy AI
-              </span></p>
+            <div
+              class="secondary-font flex flex-col text-left text-4xl leading-[1] font-bold md:text-6xl"
+            >
+              <p class="text-n-900 leading-tight">
+                Join the
+                <span
+                  class="bg-gradient-to-r from-[#9a9af8] via-[#747cf9] to-[#3b57fe] bg-clip-text text-transparent"
+                >
+                  Galaxy AI
+                </span>
+              </p>
               <p class="text-n-900">Navigator Labs</p>
             </div>
 
-            <p class="primary-font font-medium text-sm text-n-900 leading-relaxed md:text-lg">
+            <p
+              class="primary-font font-medium text-sm text-n-900 leading-relaxed md:text-lg"
+            >
               A hands-on masterclass powered by Samsung & Reliance Digital.
             </p>
           </div>
@@ -85,7 +94,12 @@ const attendees = [
               valueProps.map((item) => (
                 <div class="flex items-center gap-2 rounded-full bg-n-200 px-2 py-2">
                   <div class="h-[15px] w-[15px] xl:w-[22px] xl:h-[22px]">
-                    <SvgIcon name={item.icon} width="100%" height="100%" color="var(--color-indigo-500)"  />
+                    <SvgIcon
+                      name={item.icon}
+                      width="100%"
+                      height="100%"
+                      color="var(--color-indigo-500)"
+                    />
                   </div>
                   <p class="secondary-font relative top-[-0.06em] block leading-[0.82] text-xs font-bold uppercase text-n-900 md:text-sm">
                     {item.label}
@@ -98,20 +112,22 @@ const attendees = [
 
         <!-- CTA and social proof -->
         <div
-          class="flex flex-col gap-6 items-center md:flex-row md:items-start"
+          class="flex flex-col gap-6 items-start md:flex-row"
           data-sal="fade-up"
           data-sal-delay="260"
           data-sal-duration="750"
         >
           <!-- CTA button -->
-          <div class="flex w-full flex-col items-center gap-5 md:w-auto">
+          <div class="flex w-auto flex-col items-center gap-5">
             <a
               href="#registerForm"
-              class="secondary-font flex w-full items-center justify-center rounded-full bg-indigo-500 px-8 py-3.5 text-2xl font-bold text-blue-50 md:text-2xl"
+              class="hero-register-cta secondary-font flex w-full items-center justify-center rounded-full px-8 py-3.5 text-2xl font-bold text-blue-50 md:text-2xl"
             >
-              Register Now
+              <span class="hero-cta-label">Register Now</span>
             </a>
-            <p class="primary-font text-center text-sm text-n-500">Registration ends soon</p>
+            <p class="primary-font text-center font-medium text-sm text-n-500">
+              Registration ends soon
+            </p>
           </div>
 
           <!-- Attendance proof -->
@@ -119,17 +135,21 @@ const attendees = [
             <div class="flex items-center pr-5">
               {
                 attendees.map((attendee) => (
-                  <div class:list={[
-                    "mr-[-20px] flex size-[49.096px] items-center justify-center rounded-full border border-n-50 text-lg text-n-50",
-                    "primary-font font-medium",
-                    attendee.bgClass,
-                  ]}>
+                  <div
+                    class:list={[
+                      "mr-[-20px] flex size-[49.096px] items-center justify-center rounded-full border border-n-50 text-lg text-n-50",
+                      "primary-font font-medium",
+                      attendee.bgClass,
+                    ]}
+                  >
                     {attendee.initials}
                   </div>
                 ))
               }
             </div>
-            <p class="primary-font text-base text-n-700">people are attending</p>
+            <p class="primary-font font-medium text-base text-n-700">
+              people are attending
+            </p>
           </div>
         </div>
       </div>
@@ -142,14 +162,25 @@ const attendees = [
         data-sal-duration="800"
       >
         <!-- Tilted guide badge -->
-        <div class="absolute left-1/2 -translate-x-1/2 top-[-61px] z-10 md:top-[-92px] xl:top-[-72px] xl:left-2/3">
-          <div class="w-[230px] -rotate-[7.22deg] rounded-[24px] bg-n-100 px-6 py-5 shadow-[0px_4px_8.3px_5px_rgba(0,0,0,0.08)] md:w-[380px] md:px-10 md:py-7 xl:w-[300px]">
-                <SvgIcon name="hashtag" width="100%" height="100%" color="var(--color-n-900)" />
+        <div
+          class="absolute left-1/2 -translate-x-1/2 top-[-61px] z-10 md:top-[-92px] xl:top-[-72px] xl:left-2/3"
+        >
+          <div
+            class="hero-guide-badge w-[230px] -rotate-[7.22deg] rounded-[24px] bg-n-100 px-6 py-5 shadow-[0px_4px_8.3px_5px_rgba(0,0,0,0.08)] md:w-[380px] md:px-10 md:py-7 xl:w-[300px]"
+          >
+            <SvgIcon
+              name="hashtag"
+              width="100%"
+              height="100%"
+              color="var(--color-n-900)"
+            />
           </div>
         </div>
 
         <!-- Phone artwork -->
-        <div class="w-full translate-y-[10px] flex justify-center px-4 md:w-[510px]">
+        <div
+          class="w-full translate-y-[10px] flex justify-center px-4 md:w-[510px]"
+        >
           <Image
             src={heroPhone}
             alt="Samsung Galaxy phones"
@@ -164,21 +195,21 @@ const attendees = [
 </section>
 
 <script is:inline>
-
   const initHeroPhoneRotation = () => {
     const section = document.querySelector(".hero-section");
     const artwork = document.querySelector(".hero-phone-artwork");
 
-    if (!(section instanceof HTMLElement) || !(artwork instanceof HTMLElement)) return;
+    if (!(section instanceof HTMLElement) || !(artwork instanceof HTMLElement))
+      return;
 
     const updateRotation = () => {
       const rect = section.getBoundingClientRect();
-      
+
       const viewportHeight = window.innerHeight || 1;
 
-      const progress = -1*rect.top;
+      const progress = -1 * rect.top;
       const clamped = Math.max(0, progress);
-      const rotationY = clamped*0.04;
+      const rotationY = clamped * 0.04;
       artwork.style.transform = `perspective(1400px) rotateY(${rotationY.toFixed(2)}deg)`;
     };
 
@@ -199,8 +230,140 @@ const attendees = [
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initHeroPhoneRotation, { once: true });
+    document.addEventListener("DOMContentLoaded", initHeroPhoneRotation, {
+      once: true,
+    });
   } else {
     initHeroPhoneRotation();
   }
 </script>
+
+<style>
+  .hero-guide-badge {
+    animation: hero-guide-badge-float 4.8s ease-in-out infinite;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .hero-register-cta {
+    --hero-cta-shadow: 0 18px 38px
+      color-mix(in srgb, var(--color-indigo-900) 24%, transparent);
+    --hero-cta-shadow-hover: 0 24px 52px
+      color-mix(in srgb, var(--color-indigo-900) 34%, transparent);
+    --hero-cta-highlight: color-mix(
+      in srgb,
+      var(--color-blue-50) 72%,
+      transparent
+    );
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--color-blue-50) 18%, transparent);
+    background: linear-gradient(
+      135deg,
+      var(--color-indigo-300) 0%,
+      var(--color-indigo-500) 55%,
+      var(--color-blue-500) 100%
+    );
+    background-size: 160% 160%;
+    box-shadow: var(--hero-cta-shadow);
+    transition:
+      transform 320ms ease,
+      box-shadow 320ms ease,
+      filter 320ms ease,
+      background-position 420ms ease;
+  }
+
+  .hero-register-cta::before {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    z-index: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-blue-50) 18%, transparent) 0%,
+      transparent 55%,
+      color-mix(in srgb, var(--color-indigo-950) 8%, transparent) 100%
+    );
+    opacity: 0.9;
+  }
+
+  .hero-register-cta::after {
+    content: "";
+    position: absolute;
+    inset: -140% auto auto -30%;
+    z-index: 1;
+    width: 38%;
+    height: 360%;
+    transform: rotate(22deg);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--hero-cta-highlight) 50%,
+      transparent 100%
+    );
+    opacity: 0;
+    transition:
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 320ms ease;
+  }
+
+  .hero-cta-label {
+    position: relative;
+    z-index: 2;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-register-cta:hover,
+  .hero-register-cta:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: var(--hero-cta-shadow-hover);
+    filter: saturate(1.08);
+    background-position: 100% 50%;
+  }
+
+  .hero-register-cta:hover::after,
+  .hero-register-cta:focus-visible::after {
+    transform: translateX(340%) rotate(22deg);
+    opacity: 1;
+  }
+
+  .hero-register-cta:focus-visible {
+    outline: 3px solid
+      color-mix(in srgb, var(--color-blue-100) 88%, transparent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-register-cta,
+    .hero-register-cta::after {
+      transition: none;
+    }
+
+    .hero-guide-badge {
+      animation: none;
+    }
+
+    .hero-register-cta:hover,
+    .hero-register-cta:focus-visible {
+      transform: none;
+    }
+
+    .hero-register-cta:hover::after,
+    .hero-register-cta:focus-visible::after {
+      opacity: 0;
+      transform: rotate(22deg);
+    }
+  }
+
+  @keyframes hero-guide-badge-float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(-7.22deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-6deg);
+    }
+  }
+</style>

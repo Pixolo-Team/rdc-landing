@@ -215,6 +215,19 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-n-900);
+  caret-color: var(--color-n-900);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-n-50) inset;
+  box-shadow: 0 0 0 1000px var(--color-n-50) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 /* WebKit (Chrome, Edge, Safari) */
 html::-webkit-scrollbar {
   width: 10px;
