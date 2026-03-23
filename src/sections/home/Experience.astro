@@ -1,22 +1,32 @@
 ---
+// COMPONENTS //
 import ExperienceCard from "../../components/ExperienceCard.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+
+// DATA //
 import { experienceCards } from "../../data/experience-data";
 ---
 
 <section>
   <div class="container mx-auto px-5 sm:px-6 lg:px-8">
-    <div class="flex flex-col items-center gap-11 py-16 sm:gap-14 sm:py-20 md:gap-16 lg:py-40">
+    <div
+      class="flex flex-col items-center gap-11 py-16 sm:gap-14 sm:py-20 md:gap-16 lg:py-40"
+    >
+      <div data-sal="slide-down" data-sal-duration="600">
+        <SectionHeader
+          eyebrow="Galaxy AI Navigator Labs"
+          title="What You’ll Experience"
+        />
+      </div>
 
-      <SectionHeader
-        eyebrow="Galaxy AI Navigator Labs"
-        title="What You’ll Experience"
-      />
-
-      <div class="grid w-full grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3 xl:max-w-[1436px]">
-        {experienceCards.map((experienceCardsItem) => (
-          <ExperienceCard {...experienceCardsItem} />
-        ))}
+      <div
+        class="grid w-full grid-cols-1 gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3 xl:max-w-[1436px]"
+      >
+        {
+          experienceCards.map((experienceCardsItem) => (
+            <ExperienceCard {...experienceCardsItem} />
+          ))
+        }
       </div>
     </div>
   </div>
