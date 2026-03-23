@@ -9,10 +9,10 @@ import type { SuccessRegistrationResponseData } from "../../types/form";
 
 /** Register student with verified email */
 export async function registerRequest(payload: {
-  full_name: string;
+  fullName: string;
   dob: string;
   email: string;
-  contact_number: string;
+  phone: string;
   institution: string;
   city_id: string;
   location_id: string;
@@ -28,7 +28,7 @@ export async function registerRequest(payload: {
   }
 
   // Make the API Call
-  const res = await fetch(`${CONSTANTS.API_URL}registrations`, {
+  const res = await fetch(`${CONSTANTS.API_URL}registrations/create`, {
     method: "POST",
     cache: "no-store",
     headers: {

@@ -319,10 +319,10 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
         setIsSubmitting(true);
 
         const payload = {
-          full_name: formDetails.fullName.trim(),
+          fullName: formDetails.fullName.trim(),
           dob: formDetails.dob,
           email: formDetails.email.trim(),
-          contact_number: formDetails.contactNumber.trim(),
+          phone: formDetails.contactNumber.trim(),
           institution: formDetails.institution.trim(),
           city_id: selectedCity,
           location_id: selectedLocation,
