@@ -1,8 +1,8 @@
+// TYPES //
 import type { FormDetailsData } from "../types/form";
 
 export const CONSTANTS = {
-  // API_URL: "https://api.reliancedigitalcommunity.com/",
-  API_URL: "https://previgilant-dixie-disposingly.ngrok-free.dev/",
+  API_URL: "https://samsung-api.reliancedigitalcommunity.com/",
 };
 
 export const INITIAL_FORM: FormDetailsData = {
