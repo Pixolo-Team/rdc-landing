@@ -8,7 +8,7 @@ import type {
   AppointmentSlotData,
   CatalogResponseData,
 } from "../../types/dropdown";
-import type { FormDetailsData, RegisterRequestPayload } from "../../types/form";
+import type { FormDetailsData } from "../../types/form";
 
 // COMPONENTS //
 import StyledSelect from "../../components/StyledSelect";
@@ -16,7 +16,7 @@ import { OtpPopup } from "../../components/react-components/OtpPopup";
 
 // API SERVICES //
 import { otpRequest } from "../../services/api/auth.api.service";
-import { submitRegistration } from "../../services/api/register.api.service";
+import { registerRequest } from "../../services/api/register.api.service";
 
 // CONSTANTS //
 import { INITIAL_FORM } from "../../constants/app.constant";
@@ -318,7 +318,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
       try {
         setIsSubmitting(true);
 
-        const payload: RegisterRequestPayload = {
+        const payload = {
           fullName: formDetails.fullName.trim(),
           dob: formDetails.dob,
           email: formDetails.email.trim(),
@@ -331,12 +331,15 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
         console.log(payload);
 
-        // Send the Data to Supabase
-        const response = await submitRegistration(payload);
+        const response = await registerRequest(payload);
+
+        if (!response.status || !response.data) {
+          throw new Error(response.message || "Failed to submit registration.");
+        }
 
         setError("general", "Registration successful!");
         resetAll();
-        window.location.href = `/success?registration_id=${response.registration_id}`;
+        window.location.href = `/success?registration_id=${response.data.registration_id}`;
       } catch (err) {
         console.error(err);
         setError("general", "Error during registration. Please try again.");

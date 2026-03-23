@@ -12,7 +12,7 @@ export const getAppointmentsCatalogRequest = async (): Promise<
   ApiResponseData<CatalogResponseData>
 > => {
   // API call to fetch all the slot date
-  const res = await fetch(`${CONSTANTS.API_URL}appointments/catalog`, {
+  const res = await fetch(`${CONSTANTS.API_URL}appointments/get-all-slots`, {
     method: "GET",
     cache: "no-store",
   });

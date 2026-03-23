@@ -1,6 +1,6 @@
 ---
-// LIBS //
-import { supabase } from "../../lib/supabase";
+// API SERVICES //
+import { getAppointmentsCatalogRequest } from "../../services/api/dropdowns.api.service";
 
 // TYPES //
 import type { CatalogResponseData } from "../../types/dropdown";
@@ -8,13 +8,14 @@ import type { CatalogResponseData } from "../../types/dropdown";
 // REACT ISLANDS //
 import { ReactForm } from "../react-sections/ReactForm";
 
-const { data, error } = await supabase.rpc("get_catalog");
+let catalog: CatalogResponseData = { items: [] };
 
-if (error) {
-  console.error("Catalog fetch failed:", error.message);
+try {
+  const response = await getAppointmentsCatalogRequest();
+  catalog = response.data ?? { items: [] };
+} catch (error) {
+  console.error("Catalog fetch failed:", error);
 }
-
-const catalog: CatalogResponseData = data ?? { items: [] };
 ---
 
 <ReactForm client:visible catalog={catalog} />
