@@ -215,6 +215,19 @@ body::-webkit-scrollbar {
   height: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-n-900);
+  caret-color: var(--color-n-900);
+  -webkit-box-shadow: 0 0 0 1000px var(--color-n-50) inset;
+  box-shadow: 0 0 0 1000px var(--color-n-50) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 /* WebKit (Chrome, Edge, Safari) */
 html::-webkit-scrollbar {
   width: 10px;
@@ -244,6 +257,72 @@ html::-webkit-scrollbar-thumb:hover {
 
 .dark {
   scrollbar-color: var(--color-n-900) var(--color-n-900);
+}
+
+.interactive-panel {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 320ms ease,
+    box-shadow 320ms ease,
+    border-color 320ms ease,
+    background-color 320ms ease;
+}
+
+.interactive-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -35% -70% auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-blue-300) 32%, transparent) 0%,
+    transparent 72%
+  );
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 320ms ease,
+    transform 320ms ease;
+  pointer-events: none;
+}
+
+.interactive-panel:hover,
+.interactive-panel:focus-within {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 54px
+    color-mix(in srgb, var(--color-indigo-950) 12%, transparent);
+  border-color: color-mix(in srgb, var(--color-blue-200) 90%, transparent);
+}
+
+.interactive-panel:hover::after,
+.interactive-panel:focus-within::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interactive-panel,
+  .interactive-panel::after {
+    transition: none;
+  }
+
+  .interactive-panel:hover,
+  .interactive-panel:focus-within {
+    transform: none;
+  }
+}
+
+@keyframes ambient-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(0, -14px, 0) scale(1.05);
+  }
 }
 
 @media (prefers-color-scheme: dark) {

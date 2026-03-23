@@ -8,12 +8,10 @@ import { highlightsSectionContent } from "../../data/highlights-data";
   <!-- Container -->
   <div class="container mx-auto px-5 py-8 md:px-0">
     <div class="flex flex-col items-center gap-16 pb-24 pt-20">
-      <div data-sal="slide-down" data-sal-duration="600">
-        <SectionHeader
-          eyebrow={highlightsSectionContent.eyebrow}
-          title={highlightsSectionContent.title}
-        />
-      </div>
+      <SectionHeader
+        eyebrow={highlightsSectionContent.eyebrow}
+        title={highlightsSectionContent.title}
+      />
 
       <!-- Highlight cards -->
       <div
@@ -28,7 +26,7 @@ import { highlightsSectionContent } from "../../data/highlights-data";
               data-sal-duration="650"
             >
               {/* Icon card */}
-              <div class="flex aspect-square w-full items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
+              <div class="interactive-panel flex aspect-square w-full items-center justify-center rounded-[28px] border border-n-200 bg-n-100 p-10 sm:max-w-[340px] sm:p-12 md:max-w-[360px] md:p-14">
                 <div
                   class="h-[86px] w-[86px]"
                   aria-label={highlightsItem.alt}

@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <section class="bg-n-50">
@@ -11,7 +12,9 @@
       data-sal-duration="700"
     >
       <!-- CTA content -->
-      <div class="flex min-h-[450px] flex-col items-start gap-11 md:gap-14 md:min-h-[550px] lg:min-h-0 lg:justify-center lg:gap-10 xl:gap-16">
+      <div
+        class="flex min-h-[450px] flex-col items-start gap-11 md:gap-14 md:min-h-[550px] lg:min-h-0 lg:justify-center lg:gap-10 xl:gap-16"
+      >
         <!-- Copy block -->
         <div
           class="flex w-full flex-col items-start gap-2 text-blue-50"
@@ -22,9 +25,11 @@
           <p class="primary-font text-2xl leading-tight font-bold md:text-5xl">
             Limited Seats. High Demand !
           </p>
-          <p class="primary-font text-sm leading-normal font-medium md:text-xl lg:max-w-3/4 xl:max-w-2/4">
-            Each session has limited seats for hands-on experience. Registrations are filling fast
-            across all urban centers.
+          <p
+            class="primary-font text-sm leading-normal font-medium md:text-xl lg:max-w-3/4 xl:max-w-2/4"
+          >
+            Each session has limited seats for hands-on experience.
+            Registrations are filling fast across all urban centers.
           </p>
         </div>
 
@@ -37,12 +42,40 @@
         >
           <a
             href="#registerForm"
-            class="secondary-font rounded-full bg-n-50 px-6 py-4 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-2xl xl:text-3xl xl:px-9 xl:py-5"
+            class="cta-register-button secondary-font rounded-full bg-n-50 px-6 py-4 text-center text-base leading-none font-bold text-n-900 md:px-7 md:py-3.5 md:text-2xl xl:px-9 xl:py-5 xl:text-3xl"
           >
-            Register Now
+            <span>Register Now</span>
           </a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-register-button {
+    transition: transform 320ms ease;
+  }
+
+  .cta-register-button:hover,
+  .cta-register-button:focus-visible {
+    transform: translateY(-3px);
+  }
+
+  .cta-register-button:focus-visible {
+    outline: 3px solid
+      color-mix(in srgb, var(--color-blue-100) 88%, transparent);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-register-button {
+      transition: none;
+    }
+
+    .cta-register-button:hover,
+    .cta-register-button:focus-visible {
+      transform: none;
+    }
+  }
+</style>
