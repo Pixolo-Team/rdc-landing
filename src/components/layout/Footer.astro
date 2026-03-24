@@ -2,10 +2,6 @@
 // COMPONENTS //
 import { Image } from "astro:assets";
 
-// SVG's //
-import galaxyAiLogoDark from "../../assets/galaxy-ai-logo-dark.svg";
-import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
-
 const sectionContent = {
   contact_number: "+91-93250-99635",
   email: "support@reliancedigitalcommunity.com",
@@ -76,18 +72,18 @@ const sectionContent = {
         >
           <div class="relative flex">
             <Image
-              src={galaxyAiLogoLight}
-              alt="Galaxy AI"
-              width={212}
+              src="/images/footer-masterclass-light.png"
+              alt="Masterclass"
+              width={200}
               height={44}
-              class="show-in-light hide-in-dark w-[170px] h-auto md:w-[240px]"
+              class="show-in-light hide-in-dark block w-[170px] h-auto md:w-[200px]"
             />
             <Image
-              src={galaxyAiLogoDark}
-              alt="Galaxy AI"
-              width={212}
+              src="/images/footer-masterclass-dark.png"
+              alt="Masterclass"
+              width={200}
               height={44}
-              class="hide-in-light show-in-dark w-[170px] h-auto md:w-[240px]"
+              class="hide-in-light show-in-dark block w-[170px] h-auto md:w-[200px]"
             />
           </div>
         </div>
