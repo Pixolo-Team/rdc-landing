@@ -18,7 +18,8 @@ const steps = [
   {
     number: "TWO",
     title: "Attend the Masterclass",
-    description: "A guided 60-90 minute session led by Samsung certified AI Navigators.",
+    description:
+      "A guided 60-90 minute session led by Samsung certified AI Navigators.",
     icon: "attendance",
     lightVideo: "/videos/step-2-light.mp4",
     darkVideo: "/videos/step-2-dark.mp4",
@@ -29,7 +30,8 @@ const steps = [
   {
     number: "THREE",
     title: "Experience Galaxy AI",
-    description: "Learn by doing, master the features, and take home exclusive expertise.",
+    description:
+      "Learn by doing, master the features, and take home exclusive expertise.",
     icon: "mob-ai",
     lightVideo: "/videos/step-3-light.mp4",
     darkVideo: "/videos/step-3-dark.mp4",
@@ -45,10 +47,7 @@ const steps = [
   <div class="container mx-auto px-5 py-28">
     <div class="flex flex-col items-center gap-20">
       <!-- Section heading -->
-       <SectionHeader
-          eyebrow={"Step by Step"}
-          title={"What you have to do"}
-        />
+      <SectionHeader eyebrow={"Step by Step"} title={"What you have to do"} />
 
       <!-- Step cards -->
       <div class="grid w-full gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-4">
@@ -61,28 +60,37 @@ const steps = [
               data-sal-duration="650"
             >
               {/* Theme-aware video background */}
-              <div class="absolute inset-0">
+              <div class="absolute inset-0" data-video-shell>
+                <div class="step-video-fallback show-in-light hide-in-dark absolute inset-0" />
+                <div class="step-video-fallback hide-in-light show-in-dark absolute inset-0" />
+
                 <video
-                  class="pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-dark show-in-light"
+                  class="bg-video pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-dark show-in-light"
+                  data-bg-video
                   autoplay
                   muted
                   loop
                   playsinline
+                  preload="metadata"
+                  poster="/images/blue-rec-bg.png"
                 >
                   <source src={step.lightVideo} type="video/mp4" />
                 </video>
 
                 <video
-                  class="pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-light show-in-dark"
+                  class="bg-video pointer-events-none absolute inset-0 h-full w-full object-cover hide-in-light show-in-dark"
+                  data-bg-video
                   autoplay
                   muted
                   loop
                   playsinline
+                  preload="metadata"
+                  poster="/images/blue-rec-bg.png"
                 >
                   <source src={step.darkVideo} type="video/mp4" />
                 </video>
 
-                <div class="absolute inset-0 bg-n-50/54"></div>
+                <div class="absolute inset-0 bg-n-50/54" />
               </div>
 
               {/* Step label and title */}
@@ -118,3 +126,58 @@ const steps = [
     </div>
   </div>
 </section>
+
+<style>
+  .step-video-fallback {
+    background:
+      url("/images/fallback-light.png") center / cover no-repeat,
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--color-blue-300) 18%, transparent) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-blue-50) 30%, var(--color-n-50) 70%) 0%,
+        var(--color-n-100) 100%
+      );
+  }
+
+  :global(.dark) .step-video-fallback {
+    background:
+      url("/images/fallback-dark.png") center / cover no-repeat,
+      radial-gradient(
+        circle at top right,
+        color-mix(in srgb, var(--color-blue-500) 16%, transparent) 0%,
+        transparent 42%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-indigo-950) 24%, var(--color-n-100) 76%)
+          0%,
+        var(--color-n-100) 100%
+      );
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .step-video-fallback {
+      background:
+        url("/images/fallback-dark.png") center / cover no-repeat,
+        radial-gradient(
+          circle at top right,
+          color-mix(in srgb, var(--color-blue-500) 16%, transparent) 0%,
+          transparent 42%
+        ),
+        linear-gradient(
+          180deg,
+          color-mix(
+              in srgb,
+              var(--color-indigo-950) 24%,
+              var(--color-n-100) 76%
+            )
+            0%,
+          var(--color-n-100) 100%
+        );
+    }
+  }
+</style>

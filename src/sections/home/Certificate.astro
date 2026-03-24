@@ -6,27 +6,43 @@ import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
 
 <section class="relative overflow-hidden bg-n-100">
   <div
-    class="pointer-events-none absolute inset-0 z-0 hidden md:block"
+    class="certificate-video-shell pointer-events-none absolute inset-0 z-0"
+    data-video-shell
     aria-hidden="true"
   >
+    <div
+      class="certificate-video-fallback show-in-light hide-in-dark absolute inset-0"
+    >
+    </div>
+    <div
+      class="certificate-video-fallback hide-in-light show-in-dark absolute inset-0"
+    >
+    </div>
+
     <video
-      class="certificate-video-light pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
+      class="bg-video certificate-video-light pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
+      data-bg-video
       autoplay
       muted
       loop
       playsinline
       preload="metadata"
+      poster="/images/hero-bg-image.png"
+      aria-hidden="true"
     >
       <source src="/videos/certificate-bg-light.mp4" type="video/mp4" />
     </video>
 
     <video
-      class="certificate-video-dark pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
+      class="bg-video certificate-video-dark pointer-events-none absolute inset-0 h-full w-full object-cover opacity-90"
+      data-bg-video
       autoplay
       muted
       loop
       playsinline
       preload="metadata"
+      poster="/images/hero-bg-image.png"
+      aria-hidden="true"
     >
       <source src="/videos/certificate-bg-dark.mp4" type="video/mp4" />
     </video>
@@ -104,3 +120,156 @@ import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
     </div>
   </div>
 </section>
+
+<script is:inline>
+  const initBackgroundVideoFallbacks = () => {
+    const videoShells = document.querySelectorAll("[data-video-shell]");
+    if (!videoShells.length) return;
+
+    const isVisible = (element) =>
+      element instanceof HTMLElement &&
+      getComputedStyle(element).display !== "none";
+
+    const activateFallback = (shell) => {
+      if (shell instanceof HTMLElement) {
+        shell.classList.add("video-fallback-active");
+      }
+    };
+
+    const clearFallback = (shell) => {
+      if (shell instanceof HTMLElement) {
+        shell.classList.remove("video-fallback-active");
+      }
+    };
+
+    const tryPlay = (video) => {
+      if (!(video instanceof HTMLVideoElement) || !isVisible(video)) return;
+
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() =>
+          activateFallback(video.closest("[data-video-shell]")),
+        );
+      }
+    };
+
+    videoShells.forEach((shell) => {
+      const videos = shell.querySelectorAll("[data-bg-video]");
+
+      videos.forEach((videoNode) => {
+        if (!(videoNode instanceof HTMLVideoElement)) return;
+
+        videoNode.addEventListener("playing", () => clearFallback(shell));
+        videoNode.addEventListener("canplay", () => clearFallback(shell));
+        videoNode.addEventListener("loadeddata", () => clearFallback(shell));
+
+        ["error", "abort", "emptied"].forEach((eventName) => {
+          videoNode.addEventListener(eventName, () => activateFallback(shell));
+        });
+
+        videoNode.addEventListener("pause", () => {
+          if (!document.hidden) {
+            window.setTimeout(() => tryPlay(videoNode), 150);
+          }
+        });
+
+        tryPlay(videoNode);
+      });
+    });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) return;
+
+      document.querySelectorAll("[data-bg-video]").forEach((videoNode) => {
+        if (videoNode instanceof HTMLVideoElement) {
+          tryPlay(videoNode);
+        }
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      initBackgroundVideoFallbacks,
+      {
+        once: true,
+      },
+    );
+  } else {
+    initBackgroundVideoFallbacks();
+  }
+</script>
+
+<style>
+  :global([data-bg-video]) {
+    transition: opacity 220ms ease;
+  }
+
+  :global([data-video-shell].video-fallback-active [data-bg-video]) {
+    opacity: 0;
+  }
+
+  .certificate-video-fallback {
+    background:
+      url("/images/fallback-light.png") center / cover no-repeat,
+      radial-gradient(
+        circle at top center,
+        color-mix(in srgb, var(--color-blue-300) 22%, transparent) 0%,
+        transparent 52%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-blue-100) 46%, var(--color-n-50) 54%) 0%,
+        var(--color-n-100) 100%
+      );
+  }
+
+  :global(.dark) .certificate-video-fallback {
+    background:
+      url("/images/fallback-dark.png") center / cover no-repeat,
+      radial-gradient(
+        circle at top center,
+        color-mix(in srgb, var(--color-blue-500) 20%, transparent) 0%,
+        transparent 48%
+      ),
+      linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--color-indigo-950) 30%, var(--color-n-100) 70%)
+          0%,
+        var(--color-n-100) 100%
+      );
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .certificate-video-fallback {
+      background:
+        url("/images/fallback-dark.png") center / cover no-repeat,
+        radial-gradient(
+          circle at top center,
+          color-mix(in srgb, var(--color-blue-500) 20%, transparent) 0%,
+          transparent 48%
+        ),
+        linear-gradient(
+          180deg,
+          color-mix(
+              in srgb,
+              var(--color-indigo-950) 30%,
+              var(--color-n-100) 70%
+            )
+            0%,
+          var(--color-n-100) 100%
+        );
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global([data-bg-video]) {
+      display: none;
+    }
+  }
+</style>
