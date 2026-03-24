@@ -79,7 +79,7 @@ const attendees = [
               class="hide-in-light show-in-dark w-[90%] md:max-w-[410px] 2xl:max-w-[440px]"
             >
               <img
-                src="/images/new-masterclass-logo.png"
+                src="/images/new-masterclass-logo-dark.png"
                 alt="Digital Playground Masterclass"
                 class="hero-masterclass-logo hero-masterclass-logo--dark block h-auto w-full"
               />
@@ -89,7 +89,7 @@ const attendees = [
             <p
               class="primary-font w-full text-sm leading-relaxed font-medium text-n-900 md:w-[75%] lg:w-[60%] xl:w-[78%] md:text-lg"
             >
-              Join the Playground Masterclass powered by Reliance Digital and
+              Join the PlAiground Masterclass powered by Reliance Digital and
               Samsung
             </p>
           </div>
@@ -179,55 +179,9 @@ const attendees = [
   </div>
 </section>
 
-<script is:inline>
-  const initHeroPhoneRotation = () => {
-    const section = document.querySelector(".hero-section");
-    const artwork = document.querySelector(".hero-phone-artwork");
-
-    if (!(section instanceof HTMLElement) || !(artwork instanceof HTMLElement))
-      return;
-
-    const updateRotation = () => {
-      const rect = section.getBoundingClientRect();
-
-      const progress = -1 * rect.top;
-      const clamped = Math.max(0, progress);
-      const rotationY = clamped * 0.04;
-      artwork.style.transform = `perspective(1400px) rotateY(${rotationY.toFixed(2)}deg)`;
-    };
-
-    updateRotation();
-
-    let ticking = false;
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        updateRotation();
-        ticking = false;
-      });
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initHeroPhoneRotation, {
-      once: true,
-    });
-  } else {
-    initHeroPhoneRotation();
-  }
-</script>
-
 <style>
   .hero-masterclass-logo {
     width: 100%;
-  }
-
-  .hero-masterclass-logo--dark {
-    filter: brightness(0) invert(1);
   }
 
   .hero-guide-badge {
@@ -358,3 +312,45 @@ const attendees = [
     }
   }
 </style>
+
+<script is:inline>
+  const initHeroPhoneRotation = () => {
+    const section = document.querySelector(".hero-section");
+    const artwork = document.querySelector(".hero-phone-artwork");
+
+    if (!(section instanceof HTMLElement) || !(artwork instanceof HTMLElement))
+      return;
+
+    const updateRotation = () => {
+      const rect = section.getBoundingClientRect();
+
+      const progress = -1 * rect.top;
+      const clamped = Math.max(0, progress);
+      const rotationY = clamped * 0.04;
+      artwork.style.transform = `perspective(1400px) rotateY(${rotationY.toFixed(2)}deg)`;
+    };
+
+    updateRotation();
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateRotation();
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHeroPhoneRotation, {
+      once: true,
+    });
+  } else {
+    initHeroPhoneRotation();
+  }
+</script>
