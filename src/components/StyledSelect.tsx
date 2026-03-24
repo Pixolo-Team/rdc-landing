@@ -155,7 +155,7 @@ const StyledSelect: React.FC<Props> = ({
           aria-activedescendant={
             open && options[highlight] ? `${id}-opt-${highlight}` : undefined
           }
-          className={`absolute z-10 mt-2 px-5 w-full bg-n-50 shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
+          className={`absolute z-10 mt-2 w-full bg-n-50 shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
             open ? "" : "hidden"
           }`}
           onKeyDown={onKeyDownList}
@@ -171,8 +171,8 @@ const StyledSelect: React.FC<Props> = ({
                 aria-selected={isSelected}
                 data-value={optionItem.value}
                 data-index={oi}
-                className={`cursor-pointer text-base py-4 border-b last:border-0 hover:bg-n-100 ${
-                  isActive ? "bg-n-50" : ""
+                className={`w-full cursor-pointer border-b px-5 py-4 text-base last:border-0 hover:bg-n-100 ${
+                  isActive ? "bg-n-100" : "bg-transparent"
                 }`}
                 onMouseEnter={() => setHighlight(oi)}
                 onMouseDown={(e) => e.preventDefault()} // prevent losing focus before click

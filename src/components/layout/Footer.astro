@@ -1,5 +1,8 @@
 ---
+// COMPONENTS //
 import { Image } from "astro:assets";
+
+// SVG's //
 import galaxyAiLogoDark from "../../assets/galaxy-ai-logo-dark.svg";
 import galaxyAiLogoLight from "../../assets/galaxy-ai-logo-light.svg";
 
@@ -20,10 +23,13 @@ const sectionContent = {
 <footer class="bg-n-50 pt-12 xl:pt-24">
   <div class="container mx-auto py-12 px-8 lg:py-2">
     <div class="flex flex-col gap-16 items-start md:gap-13 lg:gap-10">
-
       <!-- Top Info -->
       <div class="flex w-full flex-col items-centre gap-2 text-left lg:px-8">
-        <p class="text-n-950 text-xl leading-tight font-semibold sm:text-3xl lg:text-2xl;">{sectionContent.title}</p>
+        <p
+          class="text-n-950 text-xl leading-tight font-semibold sm:text-3xl lg:text-2xl"
+        >
+          {sectionContent.title}
+        </p>
         <p class="primary-font text-base font-normal text-n-900">
           {sectionContent.description}
         </p>
@@ -39,7 +45,9 @@ const sectionContent = {
           <div class="flex flex-col gap-2">
             <!-- Call -->
             <p class="text-left">
-              <span class="para-text text-lg md:text-base lg:text-xl">Call:</span>
+              <span class="para-text text-lg md:text-base lg:text-xl">
+                Call:
+              </span>
               <a
                 href={`tel:${sectionContent.contact_number}`}
                 class="para-text text-lg md:text-base lg:text-xl text-blue-600 hover:underline lg:ml-2"
@@ -49,7 +57,9 @@ const sectionContent = {
             </p>
             <!-- Email -->
             <p class="text-left">
-              <span class="para-text text-lg md:text-base lg:text-xl">Email:</span>
+              <span class="para-text text-lg md:text-base lg:text-xl">
+                Email:
+              </span>
               <a
                 href={`mailto:${sectionContent.email}`}
                 class="para-text break-all text-lg md:text-base lg:text-xl text-blue-600 hover:underline lg:ml-2"
@@ -60,28 +70,27 @@ const sectionContent = {
           </div>
         </div>
 
-       
-          <!-- Certification Partner -->
-          <div class="flex flex-col items-center gap-5 md:w-full lg:w-auto lg:self-end lg:items-start lg:pb-1">
-            <div
-              class="relative flex"
-            >
-              <Image
-                src={galaxyAiLogoLight}
-                alt="Galaxy AI"
-                width={212}
-                height={44}
-                class="show-in-light hide-in-dark w-[170px] h-auto md:w-[240px]"
-              />
-              <Image
-                src={galaxyAiLogoDark}
-                alt="Galaxy AI"
-                width={212}
-                height={44}
-                class="hide-in-light show-in-dark w-[170px] h-auto md:w-[240px]"
-              />
-            </div>
+        <!-- Certification Partner -->
+        <div
+          class="flex flex-col items-center gap-5 md:w-full lg:w-auto lg:self-end lg:items-start lg:pb-1"
+        >
+          <div class="relative flex">
+            <Image
+              src={galaxyAiLogoLight}
+              alt="Galaxy AI"
+              width={212}
+              height={44}
+              class="show-in-light hide-in-dark w-[170px] h-auto md:w-[240px]"
+            />
+            <Image
+              src={galaxyAiLogoDark}
+              alt="Galaxy AI"
+              width={212}
+              height={44}
+              class="hide-in-light show-in-dark w-[170px] h-auto md:w-[240px]"
+            />
           </div>
+        </div>
       </div>
 
       <!-- Footer Bottom -->
@@ -90,16 +99,20 @@ const sectionContent = {
         <hr class="w-4/5 text-n-300 lg:w-full" />
 
         <div
-          class="flex flex-col gap-2 items-center pt-2 lg:w-full lg:pt-0 lg:justify-between lg:flex-row"
+          class="flex flex-col gap-2 items-center lg:py-6 lg:w-full lg:justify-between lg:flex-row"
         >
           <!-- Copyright Text -->
-          <p class="order-2 pt-3 text-center text-base text-n-700 lg:order-none lg:pt-0">
+          <p
+            class="order-2 pt-3 text-center text-base text-n-700 lg:order-none lg:pt-0"
+          >
             Copyright © {sectionContent.year}. All Rights Reserved.
           </p>
 
-          <div class="order-1 flex flex-col items-center gap-5 lg:order-none lg:flex-row-reverse lg:gap-2">
+          <div
+            class="order-1 flex flex-col items-center gap-5 lg:order-none lg:flex-row-reverse lg:items-center lg:gap-4"
+          >
             <!-- Socials: square buttons using n tokens -->
-            <div class="flex gap-7 py-6 lg:gap-2">
+            <div class="flex items-center gap-7 py-6 lg:gap-3 lg:py-0">
               <!-- Facebook -->
               <a
                 href={sectionContent.facebook_url}
@@ -107,32 +120,44 @@ const sectionContent = {
                 aria-label="Facebook"
                 class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/facebook.svg" class="pointer-events-none experience-card-icon w-full" />
+                <img
+                  src="/icons/facebook.svg"
+                  class="pointer-events-none experience-card-icon w-full"
+                />
               </a>
 
-              <!-- X -->
+              <!-- Twitter -->
               <a
                 href={sectionContent.x_url}
                 target="_blank"
                 aria-label="X"
                 class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/x.svg" class="pointer-events-none experience-card-icon w-full" />
+                <img
+                  src="/icons/x.svg"
+                  class="pointer-events-none experience-card-icon w-full"
+                />
               </a>
 
-              <!-- Insta -->
+              <!-- Instagram -->
               <a
                 href={sectionContent.insta_url}
                 target="_blank"
                 aria-label="Insta"
                 class="w-10 lg:w-6 transition-transform duration-200 hover:scale-110"
               >
-                <img src="/icons/insta.svg" class="pointer-events-none experience-card-icon w-full" />
+                <img
+                  src="/icons/insta.svg"
+                  class="pointer-events-none experience-card-icon w-full"
+                />
               </a>
             </div>
 
             <!-- Privacy & Terms -->
-            <nav aria-label="Footer links" class="text-sm text-n-950">
+            <nav
+              aria-label="Footer links"
+              class="flex items-center text-sm text-n-950"
+            >
               <a
                 href="https://www.reliancedigital.in/c/privacy-policy"
                 target="_blank"

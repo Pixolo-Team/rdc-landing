@@ -476,7 +476,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       aria-label="Email"
                       value={formDetails.email}
                       onChange={(e) => updateFormField("email", e.target.value)}
-                      className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950 pr-28"
+                      className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                       disabled={emailVerified}
                     />
 
@@ -658,7 +658,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                     type="submit"
                     disabled={isSubmitting || !hasAllRequiredFields()}
                     onClick={handleSubmit}
-                    className={`btn-cta px-10 w-full flex items-center justify-between overflow-hidden lg:w-3/5 xl:w-2/5 ${
+                    className={`btn-cta secondary-font px-10 w-full flex items-center justify-between overflow-hidden lg:w-3/5 xl:w-2/5 ${
                       !hasAllRequiredFields()
                         ? "opacity-50 cursor-not-allowed hover:rotate-none"
                         : ""
