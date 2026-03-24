@@ -155,7 +155,7 @@ const StyledSelect: React.FC<Props> = ({
           aria-activedescendant={
             open && options[highlight] ? `${id}-opt-${highlight}` : undefined
           }
-          className={`absolute z-10 mt-2 w-full  bg-n-50 shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
+          className={`absolute z-10 mt-2 w-full bg-n-50 shadow-lg rounded-2xl border border-n-200 max-h-60 overflow-auto ${
             open ? "" : "hidden"
           }`}
           onKeyDown={onKeyDownList}
