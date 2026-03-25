@@ -342,7 +342,12 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
         window.location.href = `/success?registration_id=${response.data.registration_id}`;
       } catch (err) {
         console.error(err);
-        setError("general", "Error during registration. Please try again.");
+        setError(
+          "general",
+          err instanceof Error
+            ? err.message
+            : "Error during registration. Please try again.",
+        );
       } finally {
         setIsSubmitting(false);
       }
