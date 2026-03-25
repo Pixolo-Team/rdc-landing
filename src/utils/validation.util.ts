@@ -1,7 +1,13 @@
+// Validate Email
 export const isValidEmail = (email: string): boolean => {
   const trimmed = email.trim();
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(trimmed);
+};
+
+// Validate Phone Number
+export const isValidPhoneNumber = (phoneNumber: string): boolean => {
+  return /^\d{10}$/.test(phoneNumber.trim());
 };
 
 /** Calculate Age */

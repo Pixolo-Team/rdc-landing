@@ -22,7 +22,11 @@ import { registerRequest } from "../../services/api/register.api.service";
 import { INITIAL_FORM } from "../../constants/app.constant";
 
 // UTILS //
-import { calculateAge, isValidEmail } from "../../utils/validation.util";
+import {
+  calculateAge,
+  isValidEmail,
+  isValidPhoneNumber,
+} from "../../utils/validation.util";
 
 // Props for this Component
 type FormProps = {
@@ -166,6 +170,8 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
     if (!formDetails.contactNumber.trim()) {
       newErrors.contactNumber = "Please enter your mobile number.";
+    } else if (!isValidPhoneNumber(formDetails.contactNumber)) {
+      newErrors.contactNumber = "Please enter a valid 10-digit mobile number.";
     }
 
     if (!formDetails.email.trim()) {
@@ -480,7 +486,10 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       placeholder=" "
                       aria-label="Email"
                       value={formDetails.email}
-                      onChange={(e) => updateFormField("email", e.target.value)}
+                      onChange={(e) => {
+                        updateFormField("email", e.target.value);
+                        clearError("email");
+                      }}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                       disabled={emailVerified}
                     />
@@ -536,9 +545,10 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
                       placeholder=" "
                       aria-label="Mobile Number"
                       value={formDetails.contactNumber}
-                      onChange={(e) =>
-                        updateFormField("contactNumber", e.target.value)
-                      }
+                      onChange={(e) => {
+                        updateFormField("contactNumber", e.target.value);
+                        clearError("contactNumber");
+                      }}
                       className="w-full text-xl text-n-900 bg-transparent border-b border-n-950 focus:outline-none py-3 placeholder-n-950"
                     />
 
