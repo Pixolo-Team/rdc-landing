@@ -503,8 +503,7 @@ export const ReactForm: React.FC<FormProps> = ({ catalog }) => {
 
                     {!errors.email && !emailVerified && (
                       <p className="text-xs text-n-500 mt-1">
-                        Enter a valid Email to get your Coupons and Drop Kit
-                        details.
+                        Enter a valid Email ID.
                       </p>
                     )}
 
