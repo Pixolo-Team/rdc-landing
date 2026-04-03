@@ -42,11 +42,6 @@ const {
     <!-- Common Footer -->
     <Footer />
 
-    <script type="module" is:inline>
-      import sal from "https://cdn.skypack.dev/sal.js";
-      sal({ threshold: 0.1, once: true });
-    </script>
-
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-PMVF7LR0M5"
     ></script>
@@ -61,7 +56,10 @@ const {
     </script>
 
     <script>
+      import sal from "sal.js";
       import VanillaTilt from "vanilla-tilt";
+
+      sal({ threshold: 0.1, once: true });
 
       document.addEventListener("DOMContentLoaded", () => {
         const tiltCards = document.querySelectorAll(".tilt-card");
